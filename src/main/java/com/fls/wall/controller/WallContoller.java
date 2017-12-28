@@ -1,4 +1,6 @@
-package Manager;
+package com.fls.wall.controller;
+
+import com.fls.wall.Wall;
 
 /**
  * Created by Marcin on 2017-12-12.

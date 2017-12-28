@@ -1,17 +1,14 @@
-package Manager;
+package com.fls.manager;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
-import javafx.scene.Node;
+
 import static javafx.scene.input.KeyCode.ENTER;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasChildren;
 
-import org.testfx.matcher.base.GeneralMatchers;
-import org.testfx.matcher.base.GeneralMatchers.*;
 /**
  * Created by Marcin on 2017-12-12.
  */

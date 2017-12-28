@@ -1,8 +1,16 @@
-package Manager;
+package com.fls.manager;
 
+import com.fls.Main;
+import com.fls.chat.Chat;
+import com.fls.entities.User;
+import com.fls.forum.Forum;
+import com.fls.profiles.Profiles;
+import com.fls.user_finder.UserFinder;
+import com.fls.manager.controller.ManagerController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
+import com.fls.wall.Wall;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,10 +26,11 @@ public class Manager {
     private List<User> friendsOnline;
     private Chat chat;
     private Profiles profiles;
-    private UserSearcher userSearcher;
+    private UserFinder userFinder;
     private Forum forum;
     private Wall wall;
     private Scene scene;
+    private BorderPane rootLayout;
 
     public Manager(Main main, Long tokenId, Long userId) {
         this.main = main;
@@ -29,16 +38,16 @@ public class Manager {
         this.userId = userId;
         this.chat = new Chat();
         this.profiles = new Profiles();
-        this.userSearcher = new UserSearcher();
+        this.userFinder = new UserFinder();
         this.forum = new Forum();
         this.wall = new Wall();
 
-        FXMLLoader loader = new FXMLLoader(Manager.class.getResource("manager.fxml"));
-        loader.setLocation(Manager.class.getResource("../manager.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));
         try {
-            Pane rootLayout = loader.load();
+            rootLayout = loader.load();
             scene = new Scene(rootLayout);
             controller = loader.getController();
+            controller.setModel(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,7 +63,9 @@ public class Manager {
     public void loadProfile(Long userIds) {}
     public void loadForum() {}
     public void loadWall() {}
-    public void loadUserSearcher() {}
+    public void loadUserFinder(String query) {
+        rootLayout.setCenter(userFinder.load(query));
+    }
 
     public Scene getScene() {
         return scene;

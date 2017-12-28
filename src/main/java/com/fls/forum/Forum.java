@@ -1,4 +1,4 @@
-package Manager;
+package com.fls.forum;
 
 import javafx.scene.layout.Pane;
 

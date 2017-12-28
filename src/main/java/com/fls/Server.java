@@ -1,4 +1,8 @@
-package Manager;
+package com.fls;
+
+import com.fls.chat.ChatSession;
+import com.fls.entities.User;
+import com.fls.wall.WallPost;
 
 /**
  * Created by Marcin on 2017-12-12.

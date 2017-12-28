@@ -1,4 +1,4 @@
-package Manager;
+package com.fls.profiles;
 
 import javafx.scene.layout.Pane;
 

@@ -1,5 +1,7 @@
-package Manager;
+package com.fls;
 
+import com.fls.manager.Manager;
+import com.fls.user_authentication.UserAuthentication;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

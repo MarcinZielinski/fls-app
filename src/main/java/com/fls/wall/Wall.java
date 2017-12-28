@@ -1,4 +1,4 @@
-package Manager;
+package com.fls.wall;
 
 import javafx.scene.layout.Pane;
 
