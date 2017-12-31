@@ -9,6 +9,7 @@ import com.fls.user_finder.UserFinder;
 import com.fls.manager.controller.ManagerController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import com.fls.wall.Wall;
 
@@ -30,7 +31,8 @@ public class Manager {
     private Forum forum;
     private Wall wall;
     private Scene scene;
-    private BorderPane rootLayout;
+    private AnchorPane rootLayout;
+    private BorderPane borderPane;
 
     public Manager(Main main, Long tokenId, Long userId) {
         this.main = main;
@@ -45,9 +47,11 @@ public class Manager {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));
         try {
             rootLayout = loader.load();
+            borderPane = (BorderPane)rootLayout.getChildren().get(0);
             scene = new Scene(rootLayout);
             controller = loader.getController();
             controller.setModel(this);
+            loadWall();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,9 +66,11 @@ public class Manager {
     public void loadChat(List<Long> userIds) {chat.load(userIds);}
     public void loadProfile(Long userIds) {}
     public void loadForum() {}
-    public void loadWall() {}
+    public void loadWall() {
+        borderPane.setCenter(wall.load());
+    }
     public void loadUserFinder(String query) {
-        rootLayout.setCenter(userFinder.load(query));
+        borderPane.setCenter(userFinder.load(query));
     }
 
     public Scene getScene() {

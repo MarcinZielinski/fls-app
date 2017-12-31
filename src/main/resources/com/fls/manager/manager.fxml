@@ -3,17 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="500" maxWidth="500" minHeight="300" minWidth="300" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.manager.controller.ManagerController">
-   <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Enter name" />
-            <TextField fx:id="searchUserField" />
-            <Button mnemonicParsing="false" onAction="#searchForUsers" text="Search" fx:id="searchButton" />
-         </children>
-      </HBox>
-   </top>
-</BorderPane>
+<AnchorPane minHeight="500.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.manager.controller.ManagerController">
+   <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+      <top>
+         <AnchorPane minHeight="100.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <Label text="Enter name"/>
+               <TextField fx:id="searchUserField"/>
+               <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchForUsers" text="Search"/>
+            </HBox>
+         </AnchorPane>
+      </top>
+   </BorderPane>
+</AnchorPane>
