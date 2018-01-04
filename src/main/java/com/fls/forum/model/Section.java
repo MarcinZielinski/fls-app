@@ -1,45 +1,68 @@
 package com.fls.forum.model;
 
 
-import java.util.List;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class Section {
-    private long id;
-    private String name;
-    private String description;
+    private final SimpleLongProperty id;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty description;
+    private Button button;
+
 
     public Section(long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+        this.id = new SimpleLongProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);
+        this.button = new Button("Send Mail");
+
+        button.setOnAction(new EventHandler<ActionEvent>(){
+
+            @Override
+            public void handle(ActionEvent t) {
+                System.out.println("hello");
+            }
+        });
 
 
-    private List<Integer> getAllPostIds(){
-        return null;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getName() {
-        return name;
+        return name.get();
+    }
+    public void setName(String fName) {
+        name.set(fName);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getDescription() {
+        return description.get();
     }
+    public void setDescription(String fName) {
+        description.set(fName);
+    }
+
+    public void setButton(Button button)
+    {
+        this.button = button;
+
+    }
+
+    public Button getButton(){
+
+        return button;
+    }
+
 
     public long getId() {
-        return id;
+        return id.get();
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public SimpleLongProperty idProperty() {
+        return id;
     }
 }
