@@ -29,6 +29,6 @@ public class PostsTest extends ApplicationTest {
     @Test
     public void should_contain_button() {
         // expect:
-        verifyThat(".button", hasText("Send"));
+        verifyThat(".button", hasText("+"));
     }
 }

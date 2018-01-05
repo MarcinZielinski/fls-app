@@ -44,6 +44,14 @@ public abstract class Post {
         this.plusCount.set(plusCount);
     }
 
+    public void addPlus() {
+        this.plusCount.set(plusCount.get() + 1);
+    }
+
+    public void removePlus() {
+        this.plusCount.set(plusCount.get() - 1);
+    }
+
     public Content getContent() {
         return content.get();
     }
@@ -103,5 +111,6 @@ public abstract class Post {
     public void setTopicId(long topicId) {
         this.topicId.set(topicId);
     }
+
 }
 

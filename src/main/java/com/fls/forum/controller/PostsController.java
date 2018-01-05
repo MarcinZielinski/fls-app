@@ -4,13 +4,19 @@ import com.fls.forum.model.AnswerPost;
 import com.fls.forum.model.Content;
 import com.fls.forum.model.Post;
 import com.fls.forum.model.QuestionPost;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.util.Date;
 
 public class PostsController {
+
+
 
     private long userId;
     private long topicId;
@@ -27,6 +33,15 @@ public class PostsController {
 
     @FXML
     private TableColumn<Post, Content> contentColumn;
+
+    @FXML
+    public TableColumn<Post, String> pointsColumn;
+
+    @FXML
+    public TableColumn<Post, Boolean> addPointColumn;
+
+    @FXML
+    public TableColumn<Post, Boolean> removePointColumn;
 
     @FXML
     private Button sendButton;
@@ -49,6 +64,15 @@ public class PostsController {
 
         authorColumn.setCellValueFactory(dataValue -> dataValue.getValue().userIdProperty().asString());
         contentColumn.setCellValueFactory(dataValue -> dataValue.getValue().contentProperty());
+        pointsColumn.setCellValueFactory(dataValue -> dataValue.getValue().plusCountProperty().asString());
+
+        addPointColumn.setCellValueFactory(p -> new SimpleBooleanProperty(p.getValue() != null));
+
+        addPointColumn.setCellFactory(p -> new AddPointCell());
+
+        removePointColumn.setCellValueFactory(p -> new SimpleBooleanProperty(p.getValue() != null));
+
+        removePointColumn.setCellFactory(p -> new RemovePointCell());
 
     }
 
