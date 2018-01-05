@@ -1,5 +1,6 @@
 package com.fls.wall;
 
+import com.fls.manager.Manager;
 import com.fls.wall.controller.WallController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -14,6 +15,12 @@ public class Wall {
     private Pane rootPane;
     private WallController wController;
     private VBox vBox;
+    private Manager manager;
+
+    public Wall(Manager manager) {
+        this.manager = manager;
+    }
+
     public Pane load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("pane_wall.fxml"));
         try {

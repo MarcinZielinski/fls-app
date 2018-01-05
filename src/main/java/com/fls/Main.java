@@ -20,6 +20,7 @@ public class Main extends Application {
         stage.setTitle("FLSocial");
         stage.show();
         loadUserAuthentication();
+        //loadManager(1L,1L);
     }
     public void loadUserAuthentication() {
         UserAuthentication authentication = new UserAuthentication(this);
@@ -28,5 +29,6 @@ public class Main extends Application {
     public void loadManager(Long tokenId, Long userId) {
         Manager manager = new Manager(this, tokenId, userId);
         stage.setScene(manager.getScene());
+        //manager.loadUserFinder("gowno");
     }
 }

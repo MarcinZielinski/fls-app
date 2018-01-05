@@ -14,5 +14,5 @@ public interface Server {
     static User getUser(Long userId) {return null;}
     static Long[] getUserFriends(Long userId) {return null;}
     static WallPost[] getWallPosts(Long userId) {return null;}
-    static List<User> getUsers(String query) {return null;}
+    static List<User> getUsers(User user) {return null;}
 }
