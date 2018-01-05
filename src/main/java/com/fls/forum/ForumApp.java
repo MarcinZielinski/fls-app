@@ -19,7 +19,7 @@ public class ForumApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("FLSocial");
 
-        Pane postsPane = new PostsLoader(getClass().getResource("pane_posts.fxml")).load();
+        Pane postsPane = new PostsLoader().load();
 
         Scene scene = new Scene(postsPane);
         this.primaryStage.setScene(scene);

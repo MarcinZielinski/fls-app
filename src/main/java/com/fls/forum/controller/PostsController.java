@@ -15,6 +15,8 @@ public class PostsController {
     private long userId;
     private long topicId;
 
+
+
     private ObservableList<Post> posts;
 
     @FXML
@@ -57,6 +59,10 @@ public class PostsController {
         postsTable.setItems(posts);
 
         titleLabel.setText(((QuestionPost)posts.get(0)).getTitle());
+    }
+
+    public ObservableList<Post> getPosts() {
+        return posts;
     }
 
 }
