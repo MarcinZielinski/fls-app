@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by Marcin on 2017-12-12.
  */
@@ -35,6 +33,7 @@ public class UserFinder {
     private Manager manager;
     private TitledPane searchResultsPane;
     private StackPane stackPane;
+    private ThreadHelper actualTask;
 
     public UserFinder() {
 
@@ -62,6 +61,7 @@ public class UserFinder {
     }
 
     private void fillWithQueryResult(VBox vBox, List<User> users) {
+        vBox.getChildren().clear(); // clearing the results of the last search
         for(User user : users) {
             Label label1 = new Label(String.format("%s %s",user.getFirstName(), user.getLastName()));
             ImageView imageView = ImageConverter.convertToImageView(user.getImage());
@@ -90,9 +90,13 @@ public class UserFinder {
     public void searchForUsers(User user) {
         user.setTokenId(manager.tokenId);
 
+        vBox.getChildren().clear(); // clearing the results of the last search
         Platform.runLater(() -> searchResultsPane.setExpanded(true)); // run later, when "later" means: run after FXMLLoader.invoke() method is called. invoke() sets "expanded" to false, so we need to change it to true after invoke() execution
-        new ThreadHelper<>(stackPane, () -> Server.getUsers(user), this::searchForUsersNewThread).restart();
-        }
+        if(actualTask != null) actualTask.cancel();
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), this::searchForUsersNewThread);
+        actualTask.restart();
+
+    }
 
     private void searchForUsersNewThread(List<User> users) {
         byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
