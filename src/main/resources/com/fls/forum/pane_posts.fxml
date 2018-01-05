@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fls.forum.controller.PostsController">
+    <Label fx:id="titleLabel" layoutX="63.0" layoutY="37.0" prefHeight="39.0" prefWidth="474.0" text="Title"/>
+    <TableView fx:id="postsTable" layoutX="63.0" layoutY="76.0" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308" prefHeight="222.0" prefWidth="474.0">
+      <columns>
+          <TableColumn fx:id="authorColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="75.0"
+                       text="Author"/>
+          <TableColumn fx:id="contentColumn" maxWidth="1.7976931348623157E308" prefWidth="329.0" text="Content"/>
+      </columns>
+    </TableView>
+    <TextArea fx:id="sendText" layoutX="63.0" layoutY="322.0" prefHeight="25.0" prefWidth="474.0"/>
+    <Label layoutX="63.0" layoutY="305.0" prefHeight="17.0" prefWidth="90.0" text="Your answer"/>
+    <Button fx:id="sendButton" layoutX="63.0" layoutY="359.0" mnemonicParsing="false" onAction="#handleSendAction"
+            prefHeight="25.0" prefWidth="90.0" text="Send"/>
+</Pane>
