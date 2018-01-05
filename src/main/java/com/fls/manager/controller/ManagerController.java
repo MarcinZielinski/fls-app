@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
 /**
  * Created by Marcin on 2017-12-12.
@@ -12,6 +13,9 @@ import javafx.scene.control.TextField;
 public class ManagerController {
     @FXML
     public TextField searchUserField;
+
+    @FXML
+    public BorderPane borderPane;
 
     private Manager model;
 

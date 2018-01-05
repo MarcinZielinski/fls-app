@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane fx:id="postView" maxHeight="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="600.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.wall.controller.WallPostController">
+   <children>
+      <Circle fx:id="avatar" fill="#0968ba7a" layoutX="42.0" layoutY="42.0" radius="15.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="name" layoutX="60.0" layoutY="27.0" text="Name Surname" underline="true" wrapText="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="27.0" />
+      <Label fx:id="content" alignment="TOP_LEFT" cacheHint="SCALE" contentDisplay="TEXT_ONLY" layoutX="20.0" layoutY="68.0" lineSpacing="2.0" mouseTransparent="true" text="aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa " wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>

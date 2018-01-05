@@ -15,7 +15,7 @@ public class Main extends Application {
 
     private Stage stage;
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         stage = primaryStage;
         stage.setTitle("FLSocial");
         stage.show();
@@ -28,5 +28,6 @@ public class Main extends Application {
     public void loadManager(Long tokenId, Long userId) {
         Manager manager = new Manager(this, tokenId, userId);
         stage.setScene(manager.getScene());
+        //manager.adjust();
     }
 }

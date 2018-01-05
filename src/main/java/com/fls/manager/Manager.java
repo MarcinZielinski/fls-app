@@ -42,15 +42,15 @@ public class Manager {
         this.profiles = new Profiles();
         this.userFinder = new UserFinder();
         this.forum = new Forum();
-        this.wall = new Wall();
+        this.wall = new Wall(this);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));
         try {
             rootLayout = loader.load();
-            borderPane = (BorderPane)rootLayout.getChildren().get(0);
             scene = new Scene(rootLayout);
             controller = loader.getController();
             controller.setModel(this);
+            borderPane = controller.borderPane;
             loadWall();
         } catch (IOException e) {
             e.printStackTrace();
