@@ -1,4 +1,4 @@
-package com.fls.forum;
+package com.fls.forum.controller;
 
 import com.fls.forum.model.Section;
 import javafx.beans.property.SimpleBooleanProperty;

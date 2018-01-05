@@ -1,6 +1,5 @@
-package com.fls.forum;
+package com.fls.forum.view;
 
-import com.fls.user_authentication.UserAuthentication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
