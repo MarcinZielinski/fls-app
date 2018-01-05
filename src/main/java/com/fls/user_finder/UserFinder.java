@@ -2,17 +2,20 @@ package com.fls.user_finder;
 
 import com.fls.Server;
 import com.fls.entities.User;
+import com.fls.manager.Manager;
 import com.fls.util.ImageConverter;
+import com.fls.util.ThreadHelper;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,9 +30,17 @@ public class UserFinder {
     private Pane rootPane;
     private UFController ufController;
     private VBox vBox;
+    private Manager manager;
+    private TitledPane searchResultsPane;
+    private StackPane stackPane;
+    private ThreadHelper actualTask;
 
     public UserFinder() {
 
+    }
+
+    public UserFinder(Manager manager) {
+        this.manager = manager;
     }
 
     public Pane load(String query) {
@@ -37,49 +48,60 @@ public class UserFinder {
         try {
             rootPane = loader.load();
             ufController = loader.getController();
+            ufController.setModel(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
         vBox = ufController.vBox;
-        vBox.spacingProperty().setValue(20);
+        searchResultsPane = ufController.resultsPane;
+        stackPane = ufController.stackPane;
 
-        List<User> users = getQueryResults(query);
-
-        byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image)).collect(Collectors.toCollection(ArrayList::new));
-        fillWithQueryResult(vBox, users);
+        searchForUsers(query);
         return rootPane;
     }
 
-    private List<User> getQueryResults(String query){
-        return Server.getUsers(query);
-    }
-
     private void fillWithQueryResult(VBox vBox, List<User> users) {
+        vBox.getChildren().clear(); // clearing the results of the last search
         for(User user : users) {
             Label label1 = new Label(String.format("%s %s",user.getFirstName(), user.getLastName()));
-            //label1.setTextAlignment(TextAlignment.LEFT);
-            //label1.setAlignment(Pos.CENTER);
-            //label1.setWrapText(true);
             ImageView imageView = ImageConverter.convertToImageView(user.getImage());
-            //imageView.setFitHeight(200);
-            //imageView.setFitWidth(200);
-            //SplitPane splitPane = new SplitPane(label1, imageView);
-            AnchorPane a1 = new AnchorPane(label1);
-            AnchorPane.setBottomAnchor(label1,0D);
-            AnchorPane.setLeftAnchor(label1, 0D);
-            AnchorPane.setRightAnchor(label1, 0D);
-            AnchorPane.setTopAnchor(label1, 0D);
-            AnchorPane.setBottomAnchor(imageView,0D);
-            AnchorPane.setLeftAnchor(imageView, 0D);
-            AnchorPane.setRightAnchor(imageView, 0D);
-            AnchorPane.setTopAnchor(imageView, 0D);
-            AnchorPane a2 = new AnchorPane(imageView);
-            HBox hBox = new HBox(a1, a2);
-            hBox.setAlignment(Pos.CENTER);
-            hBox.spacingProperty().setValue(30);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            HBox hBox = new HBox(imageView, label1);
+            hBox.setAlignment(Pos.CENTER_LEFT);
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> manager.loadProfile(user.getUserId()));
+            hBox.setStyle("-fx-background-color: lightgray");
+            hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> hBox.setOpacity(0.5));
+            hBox.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> hBox.setOpacity(1));
+            hBox.setSpacing(20);
             vBox.getChildren().add(hBox);
-
         }
+    }
+
+
+    private void searchForUsers(String query) {
+        String[] splitQuery = query.split(" ");
+        String firstName = splitQuery[0];
+        String lastName = query.length() > firstName.length() ? query.substring(splitQuery.length+1) : "";
+
+        searchForUsers(new User(firstName, lastName));
+    }
+
+    public void searchForUsers(User user) {
+        user.setTokenId(manager.tokenId);
+
+        vBox.getChildren().clear(); // clearing the results of the last search
+        Platform.runLater(() -> searchResultsPane.setExpanded(true)); // run later, when "later" means: run after FXMLLoader.invoke() method is called. invoke() sets "expanded" to false, so we need to change it to true after invoke() execution
+        if(actualTask != null) actualTask.cancel();
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), this::searchForUsersNewThread);
+        actualTask.restart();
+
+    }
+
+    private void searchForUsersNewThread(List<User> users) {
+        byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
+        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(3L, 3L, "Stanisław", "Sofa", image)).collect(Collectors.toCollection(ArrayList::new));
+
+        fillWithQueryResult(vBox, users);
     }
 }

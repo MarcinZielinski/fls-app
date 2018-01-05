@@ -50,7 +50,4 @@ public class Wall {
 
         return rootPane;
     }
-
-
-
 }

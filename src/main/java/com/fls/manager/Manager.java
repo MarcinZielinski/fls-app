@@ -38,10 +38,10 @@ public class Manager {
         this.main = main;
         this.tokenId = tokenId;
         this.userId = userId;
-        this.chat = new Chat();
-        this.profiles = new Profiles();
-        this.userFinder = new UserFinder();
-        this.forum = new Forum();
+        this.chat = new Chat(this);
+        this.profiles = new Profiles(this);
+        this.userFinder = new UserFinder(this);
+        this.forum = new Forum(this);
         this.wall = new Wall(this);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));
@@ -64,7 +64,9 @@ public class Manager {
     public void newMessageNotification(long userId) {}
 
     public void loadChat(List<Long> userIds) {chat.load(userIds);}
-    public void loadProfile(Long userIds) {}
+    public void loadProfile(Long userId) {
+        System.out.println("profil o id " + userId);
+    }
     public void loadForum() {}
     public void loadWall() {
         borderPane.setCenter(wall.load());
