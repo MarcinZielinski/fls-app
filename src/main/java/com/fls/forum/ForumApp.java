@@ -11,19 +11,11 @@ public class ForumApp extends Application {
         launch(args);
     }
 
-    private Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("FLSocial");
-
-        Pane postsPane = new PostsLoader().load();
-
-        Scene scene = new Scene(postsPane);
-        this.primaryStage.setScene(scene);
-        this.primaryStage.show();
+        primaryStage.setTitle("FLSocial");
+        primaryStage.setScene(new Scene(new PostsLoader().load()));
+        primaryStage.show();
     }
 
 }
