@@ -1,126 +1,42 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.model.Section;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.*;
 
-public class SectionsPaneController implements Initializable {
-
-    @FXML
-    TableView tableview;
+public class SectionsPaneController {
 
     @FXML
-    private Label label;
-    @FXML
-    private TableColumn<Section, String> nameCol;// = new TableColumn("Name");
-    @FXML
-    private TableColumn<Section, String> descriptionCol;// = new TableColumn("Description");
-    @FXML
-    private TableColumn buttonCol;// = new TableColumn("Description");
-//    TableColumn sendMailCol = new TableColumn("Action");
+    private ListView<Section> sectionsListView = new ListView<>();
+    private ObservableList<Section> nameList;
 
-
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-//        buttonCol.setSortable(false);
-//
-//        buttonCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Section, Boolean>,
-//                ObservableValue<Boolean>>)
-//                p -> new SimpleBooleanProperty(p.getValue() != null));
-//
-//        buttonCol.setCellFactory(
-//                (Callback<TableColumn<Section, Boolean>, TableCell<Section, Boolean>>)
-//                        p -> new ButtonCell());
-//
-////        tableview.getColumns().add(buttonCol);
-//
-//        final ObservableList<Section> data = FXCollections.observableArrayList(
-//                new Section(2L, "Python", "python d"),
-//                new Section(1L, "Java", "Java d")
-//        );
-//
-//
-//
-//
-//        nameCol.setCellValueFactory(
-//                new PropertyValueFactory<Section,String>("name")
-//        );
-//        descriptionCol.setCellValueFactory(
-//                new PropertyValueFactory<Section,String>("description")
-//        );
-//
-////        sendMailCol.setCellValueFactory(
-////                new PropertyValueFactory<Section,String>("buttonCol")
-////        );
-//
-//        tableview.setItems(data);
-
+    public SectionsPaneController(){
 
     }
 
-    private class ButtonCell extends TableCell<Section, Boolean> {
-        final Button cellButton = new Button("Action");
-
-        ButtonCell(){
-
-            cellButton.setOnAction(new EventHandler<ActionEvent>(){
-
-                @Override
-                public void handle(ActionEvent t) {
-                    System.out.println("hello");
-                }
-            });
-        }
-
-        //Display buttonCol if the row is not empty
-        @Override
-        protected void updateItem(Boolean t, boolean empty) {
-            super.updateItem(t, empty);
-            if(!empty){
-                setGraphic(cellButton);
-            }
-        }
+    private void setSectionsListView(){
+        List<Section> sections = new dataGenerator().getSections();
+        nameList = FXCollections.observableArrayList(sections);
+        sectionsListView.setItems(nameList);
+        sectionsListView.setOnMouseClicked(mouseEvent -> System.out.println(sectionsListView.getSelectionModel().getSelectedItem()));
     }
 
-    EventHandler<ActionEvent> btnNewHandler =
-            new EventHandler<ActionEvent>(){
-
-                @Override
-                public void handle(ActionEvent t) {
-                    System.out.println("hello2");
-                    //generate new Record with random number
-//                    int newId = data.size();
-//                    Record newRec = new Record(
-//                            newId,
-//                            random.nextInt(100),
-//                            random.nextInt(100),
-//                            random.nextInt(100),
-//                            random.nextInt(100),
-//                            random.nextInt(100));
-//                    data.add(newRec);
-
-                }
-            };
-
+    @FXML
+    void initialize(){
+        setSectionsListView();
+    }
 }
 
 

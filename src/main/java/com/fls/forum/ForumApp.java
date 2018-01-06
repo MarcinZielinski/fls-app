@@ -1,5 +1,6 @@
 package com.fls.forum;
 
+import com.fls.forum.controller.SectionsPaneController;
 import com.fls.forum.view.SectionsPane;
 import com.fls.manager.Manager;
 import javafx.application.Application;
@@ -24,13 +25,16 @@ public class ForumApp extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     private void loadUserAuthentication() {
 
         SectionsPane sectionsPane = new SectionsPane();
         stage.setScene(sectionsPane.getScene());
     }
+
     public void loadManager(Long tokenId, Long userId) {
         Manager manager = new Manager(null, 1L, 1L);
         stage.setScene(manager.getScene());
     }
+
 }

@@ -9,60 +9,37 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 public class Section {
-    private final SimpleLongProperty id;
-    private final SimpleStringProperty name;
-    private final SimpleStringProperty description;
-    private Button button;
+    private Long id;
+    private String name;
+    private String description;
 
 
     public Section(long id, String name, String description) {
-        this.id = new SimpleLongProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.description = new SimpleStringProperty(description);
-        this.button = new Button("Send Mail");
-
-        button.setOnAction(new EventHandler<ActionEvent>(){
-
-            @Override
-            public void handle(ActionEvent t) {
-                System.out.println("hello");
-            }
-        });
-
-
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
-        return name.get();
+        return name;
     }
-    public void setName(String fName) {
-        name.set(fName);
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
-        return description.get();
+        return description;
     }
-    public void setDescription(String fName) {
-        description.set(fName);
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public void setButton(Button button)
-    {
-        this.button = button;
-
-    }
-
-    public Button getButton(){
-
-        return button;
-    }
-
 
     public long getId() {
-        return id.get();
+        return id;
     }
 
-    public SimpleLongProperty idProperty() {
-        return id;
+    @Override
+    public String toString(){
+        return String.format("%-25s", name) + description;
     }
 }
