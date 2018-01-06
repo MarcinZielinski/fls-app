@@ -17,36 +17,7 @@ public class ForumApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        ObservableList<Section> data = FXCollections.observableArrayList();
-//        data.addAll(new Section(2L, "Python", "python d"), new Section(1L, "Java", "Java d"));
-//
-//        final ListView<Section> listView = new ListView<Section>(data);
-//        listView.setCellFactory(new Callback<ListView<Section>, ListCell<Section>>() {
-//
-//            @Override
-//            public ListCell<Section> call(ListView<Section> arg0) {
-//                return new ListCell<Section>() {
-//
-//                    @Override
-//                    protected void updateItem(Section item, boolean bln) {
-//                        super.updateItem(item, bln);
-//                        if (item != null) {
-//                            VBox vBox = new VBox(new Text(item.getName()), new Text(item.getDescription()));
-//                            HBox hBox = new HBox(new Label("[Graphic]"), vBox);
-//                            hBox.setSpacing(10);
-//                            setGraphic(hBox);
-//                        }
-//                    }
-//                };
-//            }
-//
-//        });
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(listView);
-//        primaryStage.setScene(new Scene(root, 200, 250));
-//        primaryStage.show();
-        Parent root = FXMLLoader.load(getClass().getResource("forum.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("pane_sections.fxml"));
         Scene scene = new Scene(root);
         stage = primaryStage;
         stage.setTitle("FLSocial");

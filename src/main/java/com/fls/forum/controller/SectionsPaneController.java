@@ -41,55 +41,38 @@ public class SectionsPaneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-
-
-
-//        tableview.getColumns().addAll(nameCol, descriptionCol );
-
-
-
-//        tableView.setItems(data);
-
-//        buttonCol.setCellFactory(new Callback<TableColumn<Section, Boolean>, TableCell<Section, Boolean>>() {
-//            @Override public TableCell<Section, Boolean> call(TableColumn<Section, Boolean> personBooleanTableColumn) {
-//                return null;
-//            }
-//        });
-
-
-//        TableColumn col_action = new TableColumn<>("Action");
-        buttonCol.setSortable(false);
-
-        buttonCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Section, Boolean>,
-                ObservableValue<Boolean>>)
-                p -> new SimpleBooleanProperty(p.getValue() != null));
-
-        buttonCol.setCellFactory(
-                (Callback<TableColumn<Section, Boolean>, TableCell<Section, Boolean>>)
-                        p -> new ButtonCell());
-
-//        tableview.getColumns().add(buttonCol);
-
-        final ObservableList<Section> data = FXCollections.observableArrayList(
-                new Section(2L, "Python", "python d"),
-                new Section(1L, "Java", "Java d")
-        );
-
-
-
-
-        nameCol.setCellValueFactory(
-                new PropertyValueFactory<Section,String>("name")
-        );
-        descriptionCol.setCellValueFactory(
-                new PropertyValueFactory<Section,String>("description")
-        );
-
-//        sendMailCol.setCellValueFactory(
-//                new PropertyValueFactory<Section,String>("buttonCol")
+//        buttonCol.setSortable(false);
+//
+//        buttonCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Section, Boolean>,
+//                ObservableValue<Boolean>>)
+//                p -> new SimpleBooleanProperty(p.getValue() != null));
+//
+//        buttonCol.setCellFactory(
+//                (Callback<TableColumn<Section, Boolean>, TableCell<Section, Boolean>>)
+//                        p -> new ButtonCell());
+//
+////        tableview.getColumns().add(buttonCol);
+//
+//        final ObservableList<Section> data = FXCollections.observableArrayList(
+//                new Section(2L, "Python", "python d"),
+//                new Section(1L, "Java", "Java d")
 //        );
-
-        tableview.setItems(data);
+//
+//
+//
+//
+//        nameCol.setCellValueFactory(
+//                new PropertyValueFactory<Section,String>("name")
+//        );
+//        descriptionCol.setCellValueFactory(
+//                new PropertyValueFactory<Section,String>("description")
+//        );
+//
+////        sendMailCol.setCellValueFactory(
+////                new PropertyValueFactory<Section,String>("buttonCol")
+////        );
+//
+//        tableview.setItems(data);
 
 
     }
