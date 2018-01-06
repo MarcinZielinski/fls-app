@@ -14,11 +14,7 @@
           <TableColumn fx:id="authorColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="75.0" text="Author" />
           <TableColumn fx:id="contentColumn" maxWidth="1.7976931348623157E308" prefWidth="234.0" text="Content" />
          <TableColumn fx:id="pointsColumn" prefWidth="91.0" text="Points" />
-         <TableColumn prefWidth="73.0" text="Review">
-            <columns>
-               <TableColumn fx:id="addPointColumn" prefWidth="40.0" text="Plus" />
-               <TableColumn fx:id="removePointColumn" prefWidth="40.0" text="Minus" />
-            </columns></TableColumn>
+         <TableColumn fx:id="reviewColumn" prefWidth="73.0" text="Review" />
       </columns>
     </TableView>
     <TextArea fx:id="sendText" layoutX="63.0" layoutY="322.0" prefHeight="37.0" prefWidth="634.0" />
