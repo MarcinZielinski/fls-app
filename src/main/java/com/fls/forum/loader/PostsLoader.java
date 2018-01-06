@@ -25,7 +25,7 @@ public class PostsLoader {
 
         PostsController postsController = loader.getController();
 //        controller.setAppController(this);
-        postsController.setData(1, 1, DataGenerator.generatePosts());
+        postsController.setData(1L, 1L, DataGenerator.generatePosts());
 
         return root;
 

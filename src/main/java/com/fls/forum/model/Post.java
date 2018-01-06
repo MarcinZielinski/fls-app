@@ -1,12 +1,12 @@
 package com.fls.forum.model;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import com.fls.forum.ForumApp;
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public abstract class Post {
@@ -14,25 +14,25 @@ public abstract class Post {
     private LongProperty topicId;
     private LongProperty id;
     private ObjectProperty<Date> cratedAt;
-    private LongProperty userId;
+    private LongProperty authorId;
     private ObjectProperty<Content> content;
     private LongProperty plusCount;
+    private ListProperty<Long> plusAuthors;
+    private BooleanProperty authorPlus;
 
-    Post(long topicId, long id, Date cratedAt, long userId, Content content) {
+    Post(long topicId, long id, Date cratedAt, long authorId, Content content, Boolean authorPlus) {
         this.topicId = new SimpleLongProperty(topicId);
         this.id = new SimpleLongProperty(id);
         this.cratedAt = new SimpleObjectProperty<>(cratedAt);
-        this.userId = new SimpleLongProperty(userId);
+        this.authorId = new SimpleLongProperty(authorId);
         this.content = new SimpleObjectProperty<>(content);
         this.plusCount = new SimpleLongProperty(0);
+        ObservableList<Long> observableList = FXCollections.observableArrayList(new ArrayList<>());
+        this.plusAuthors = new SimpleListProperty<>(observableList);
+        this.authorPlus = new SimpleBooleanProperty(authorPlus);
     }
 
-
-//    public List<Integer> getAllPlusAuthors(){
-//        return null;
-//    }
-
-    public long getPlusCount() {
+    public Long getPlusCount() {
         return plusCount.get();
     }
 
@@ -46,10 +46,14 @@ public abstract class Post {
 
     public void addPlus() {
         this.plusCount.set(plusCount.get() + 1);
+        plusAuthors.get().add(ForumApp.getUserId());
+        setAuthorPlus(true);
     }
 
     public void removePlus() {
         this.plusCount.set(plusCount.get() - 1);
+        plusAuthors.get().add(ForumApp.getUserId());
+        setAuthorPlus(true);
     }
 
     public Content getContent() {
@@ -64,16 +68,16 @@ public abstract class Post {
         this.content.set(content);
     }
 
-    public long getUserId() {
-        return userId.get();
+    public Long getAuthorId() {
+        return authorId.get();
     }
 
-    public LongProperty userIdProperty() {
-        return userId;
+    public LongProperty authorIdProperty() {
+        return authorId;
     }
 
-    public void setUserId(long userId) {
-        this.userId.set(userId);
+    public void setAuthorId(long authorId) {
+        this.authorId.set(authorId);
     }
 
     public Date getCratedAt() {
@@ -88,7 +92,7 @@ public abstract class Post {
         this.cratedAt.set(cratedAt);
     }
 
-    public long getId() {
+    public Long getId() {
         return id.get();
     }
 
@@ -100,7 +104,7 @@ public abstract class Post {
         this.id.set(id);
     }
 
-    public long getTopicId() {
+    public Long getTopicId() {
         return topicId.get();
     }
 
@@ -112,5 +116,28 @@ public abstract class Post {
         this.topicId.set(topicId);
     }
 
+    public ObservableList<Long> getPlusAuthors() {
+        return plusAuthors.get();
+    }
+
+    public ListProperty<Long> plusAuthorsProperty() {
+        return plusAuthors;
+    }
+
+    public void setPlusAuthors(ObservableList<Long> plusAuthors) {
+        this.plusAuthors.set(plusAuthors);
+    }
+
+    public boolean isAuthorPlus() {
+        return authorPlus.get();
+    }
+
+    public BooleanProperty authorPlusProperty() {
+        return authorPlus;
+    }
+
+    public void setAuthorPlus(boolean authorPlus) {
+        this.authorPlus.set(authorPlus);
+    }
 }
 

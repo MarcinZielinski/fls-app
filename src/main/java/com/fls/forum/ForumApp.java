@@ -18,4 +18,8 @@ public class ForumApp extends Application {
         primaryStage.show();
     }
 
+    public static Long getUserId(){
+        return 1L;
+    }
+
 }

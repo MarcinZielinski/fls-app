@@ -6,8 +6,8 @@ public class QuestionPost extends Post{
     private boolean solved;
     private String title;
 
-    public QuestionPost(long topicId, long id, Date cratedAt, long userId, Content content, String title) {
-        super(topicId, id, cratedAt, userId, content);
+    public QuestionPost(long topicId, long id, Date cratedAt, long userId, Content content, String title, Boolean authorPlus) {
+        super(topicId, id, cratedAt, userId, content, authorPlus);
         solved = false;
         this.title = title;
     }
