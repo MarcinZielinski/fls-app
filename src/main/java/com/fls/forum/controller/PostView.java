@@ -14,6 +14,10 @@ import java.util.Date;
 
 public class PostView {
 
+    public VBox getvBox() {
+        return vBox;
+    }
+
     private VBox vBox;
     private ApplicationController applicationController;
 

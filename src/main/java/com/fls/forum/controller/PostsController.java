@@ -19,8 +19,6 @@ import java.util.Date;
 
 public class PostsController {
 
-
-
     private Long userId;
     private Long topicId;
     private PostView postView;
@@ -28,6 +26,10 @@ public class PostsController {
 
 
     private ObservableList<Post> posts = FXCollections.observableArrayList();
+
+
+    @FXML
+    public Button send;
 
     @FXML
     private Label errorLabel;
@@ -103,6 +105,10 @@ public class PostsController {
 
     public ObservableList<Post> getPosts() {
         return posts;
+    }
+
+    public VBox getVbox(){
+        return postView.getvBox();
     }
 
 }

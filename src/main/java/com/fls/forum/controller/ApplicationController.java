@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class ApplicationController {
 
-    Stage primaryStage;
+    private Stage primaryStage;
 
     public ApplicationController(Stage primaryStage) throws IOException {
 
