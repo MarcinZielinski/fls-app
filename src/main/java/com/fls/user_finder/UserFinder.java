@@ -52,7 +52,7 @@ public class UserFinder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vBox = ufController.vBox;
+        vBox = ufController.searchResultsVBox;
         searchResultsPane = ufController.resultsPane;
         stackPane = ufController.stackPane;
 
@@ -62,19 +62,26 @@ public class UserFinder {
 
     private void fillWithQueryResult(VBox vBox, List<User> users) {
         vBox.getChildren().clear(); // clearing the results of the last search
-        for(User user : users) {
-            Label label1 = new Label(String.format("%s %s",user.getFirstName(), user.getLastName()));
-            ImageView imageView = ImageConverter.convertToImageView(user.getImage());
-            imageView.setFitHeight(100);
-            imageView.setFitWidth(100);
-            HBox hBox = new HBox(imageView, label1);
-            hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> manager.loadProfile(user.getUserId()));
-            hBox.setStyle("-fx-background-color: lightgray");
-            hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> hBox.setOpacity(0.5));
-            hBox.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> hBox.setOpacity(1));
-            hBox.setSpacing(20);
-            vBox.getChildren().add(hBox);
+        if(users!=null) {
+            for (User user : users) {
+                vBox.setAlignment(Pos.TOP_LEFT);
+                Label label1 = new Label(String.format("%s %s", user.getFirstName(), user.getLastName()));
+                ImageView imageView = ImageConverter.convertToImageView(user.getImage());
+                imageView.setFitHeight(100);
+                imageView.setFitWidth(100);
+                HBox hBox = new HBox(imageView, label1);
+                hBox.setAlignment(Pos.CENTER_LEFT);
+                hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> manager.loadProfile(user.getUserId()));
+                hBox.setStyle("-fx-background-color: lightgray");
+                hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> hBox.setOpacity(0.5));
+                hBox.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> hBox.setOpacity(1));
+                hBox.setSpacing(20);
+                vBox.getChildren().add(hBox);
+            }
+        } else {
+            Label label = new Label("No results :(");
+            vBox.getChildren().add(label);
+            vBox.setAlignment(Pos.CENTER);
         }
     }
 
@@ -93,15 +100,8 @@ public class UserFinder {
         vBox.getChildren().clear(); // clearing the results of the last search
         Platform.runLater(() -> searchResultsPane.setExpanded(true)); // run later, when "later" means: run after FXMLLoader.invoke() method is called. invoke() sets "expanded" to false, so we need to change it to true after invoke() execution
         if(actualTask != null) actualTask.cancel();
-        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), this::searchForUsersNewThread);
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), (users) -> fillWithQueryResult(vBox, users));
         actualTask.restart();
 
-    }
-
-    private void searchForUsersNewThread(List<User> users) {
-        byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(3L, 3L, "Stanisław", "Sofa", image)).collect(Collectors.toCollection(ArrayList::new));
-
-        fillWithQueryResult(vBox, users);
     }
 }

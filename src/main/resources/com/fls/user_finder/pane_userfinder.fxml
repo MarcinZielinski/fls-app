@@ -21,7 +21,7 @@
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="408.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.user_finder.UFController">
    <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
      <panes>
-         <TitledPane expanded="false" text="Advanced Search">
+         <TitledPane fx:id="advancedSearchPane" expanded="false" text="Advanced Search">
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <GridPane hgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                  <columnConstraints>
@@ -60,7 +60,7 @@
                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                           <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked" text="English" />
+                           <CheckBox fx:id="englishCheckbox" mnemonicParsing="false" onAction="#spokenLangChecked" text="English" />
                            <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked" text="German" GridPane.rowIndex="1" />
                            <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked" text="French" GridPane.rowIndex="2" />
                            <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked" text="Polish" GridPane.rowIndex="3" />
@@ -76,7 +76,7 @@
                      </GridPane>
                      <Slider fx:id="experienceSlider" blockIncrement="1.0" max="50.0" minorTickCount="1" showTickLabels="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      <Label fx:id="experienceLabel" text="Years (minimum):" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-                     <Button mnemonicParsing="false" onAction="#searchForUser" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                     <Button fx:id="advancedSearchButton" mnemonicParsing="false" onAction="#searchForUser" text="Search" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                      <Label text="Points (minimum)" GridPane.rowIndex="6" />
                      <GridPane hgap="5.0" vgap="15.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                        <columnConstraints>
@@ -109,12 +109,12 @@
                </GridPane>
              </AnchorPane>
          </TitledPane>
-          <TitledPane fx:id="resultsPane" expanded="false" text="Search results">
+          <TitledPane fx:id="resultsPane" text="Search results">
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true">
-                            <VBox fx:id="vBox" spacing="20.0" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
+                            <VBox fx:id="searchResultsVBox" spacing="20.0" />
                         </ScrollPane>
                   </children>
                </StackPane>

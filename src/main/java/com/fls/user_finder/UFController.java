@@ -27,7 +27,7 @@ import java.util.*;
  */
 public class UFController {
     @FXML
-    public VBox vBox;
+    public VBox searchResultsVBox;
     public TitledPane resultsPane;
     public Button addSpokenLanguageButton;
     public GridPane spokenLaguagesGridPane;
@@ -81,7 +81,7 @@ public class UFController {
         String firstName = nameSplit[0];
         String lastName = name.length() > firstName.length() ? name.substring(firstName.length()+1) : "";
         Set<String> spokenLanguages = new HashSet<>(spokenLanguagesList);
-        Set<String> programmingLanguages = new HashSet<>(Arrays.asList(programmingLangsTextField.getText().split(",;")));
+        Set<String> programmingLanguages = new HashSet<>(Arrays.asList(programmingLangsTextField.getText().split("[,;]")));
         Integer experience = (int)Math.round(experienceSlider.getValue());
 
         System.out.println(
