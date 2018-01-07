@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ForumApp extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -24,6 +26,9 @@ public class ForumApp extends Application {
         stage.setTitle("FLSocial");
         stage.setScene(scene);
         stage.show();
+
+        loadTopicsPane();
+
     }
 
     private void loadUserAuthentication() {
@@ -37,4 +42,9 @@ public class ForumApp extends Application {
         stage.setScene(manager.getScene());
     }
 
+    private void loadTopicsPane() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("pane_topics.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }
 }

@@ -9,7 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 public class Section {
-    private Long id;
+    private long id;
     private String name;
     private String description;
 
