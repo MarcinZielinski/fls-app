@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -25,6 +26,8 @@ public class TopicsPaneController implements Initializable{
     private ListView<Topic> topicsListView = new ListView<>();
     private ObservableList<Topic> nameList;
 
+    @FXML
+    private Label sectionNameLabel;
 
     public TopicsPaneController(Section section){
         this.currentSection = section;
@@ -34,7 +37,9 @@ public class TopicsPaneController implements Initializable{
         List<Topic> topics = null;
         if(currentSection != null){
             topics = new dataGenerator().getTopics(currentSection.getId());
+            sectionNameLabel.setText(currentSection.getName());
         }
+
         nameList = FXCollections.observableArrayList(topics);
         topicsListView.setItems(nameList);
         topicsListView.setOnMouseClicked(mouseEvent -> System.out.println(topicsListView.getSelectionModel().getSelectedItem()));
