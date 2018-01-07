@@ -12,10 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Pagination;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -25,23 +28,41 @@ public class TopicsPaneController implements Initializable{
     @FXML
     private ListView<Topic> topicsListView = new ListView<>();
     private ObservableList<Topic> nameList;
+    private List<Topic> topics = new ArrayList<>();
 
     @FXML
     private Label sectionNameLabel;
+
+    @FXML
+    private Pagination topicsListPagination;
 
     public TopicsPaneController(Section section){
         this.currentSection = section;
     }
 
+    private int topicsPerPage(){
+        return 10;
+    }
+
+    private ListView<Topic> createPage(int pageIndex) {
+        int start = pageIndex * topicsPerPage();
+        topicsListView.setItems(FXCollections.observableArrayList(topics.subList(start,start+topicsPerPage() > topics.size() ? topics.size() : (start + topicsPerPage()) )));
+        return topicsListView;
+    }
+
+
     private void setTopicsListView(){
-        List<Topic> topics = null;
         if(currentSection != null){
-            topics = new dataGenerator().getTopics(currentSection.getId());
             sectionNameLabel.setText(currentSection.getName());
+            topics = new dataGenerator().getTopics(currentSection.getId());
         }
 
+        topicsListPagination.setPageCount(((int)(Math.ceil((topics.size()-1) / 10)+1)));
+
+        topicsListPagination.setPageFactory(this::createPage);
+
         nameList = FXCollections.observableArrayList(topics);
-        topicsListView.setItems(nameList);
+        //topicsListView.setItems(nameList);
         topicsListView.setOnMouseClicked(mouseEvent -> System.out.println(topicsListView.getSelectionModel().getSelectedItem()));
     }
 
