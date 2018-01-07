@@ -27,7 +27,7 @@ public class ForumApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        loadTopicsPane();
+        //loadTopicsPane();
 
     }
 
