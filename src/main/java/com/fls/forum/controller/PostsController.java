@@ -4,13 +4,9 @@ import com.fls.forum.model.AnswerPost;
 import com.fls.forum.model.Content;
 import com.fls.forum.model.Post;
 import com.fls.forum.model.QuestionPost;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -34,6 +30,8 @@ public class PostsController {
     @FXML
     private Pane mainPane;
 
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private TextArea answerText;
@@ -54,8 +52,20 @@ public class PostsController {
 
     @FXML
     private void initialize() {
-        vBox.prefWidthProperty().bind(mainPane.widthProperty());
-        vBox.prefHeightProperty().bind(mainPane.heightProperty());
+        vBox.prefWidthProperty().bind(scrollPane.widthProperty());
+        vBox.prefHeightProperty().bind(scrollPane.heightProperty());
+
+
+
+        scrollPane.prefWidthProperty().bind(mainPane.widthProperty().multiply(0.9));
+        scrollPane.prefHeightProperty().bind(mainPane.heightProperty().multiply(0.7));
+
+
+        scrollPane.setFitToWidth(true);
+
+//        scrollPane.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;"
+//                + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
+//                + "-fx-border-radius: 5;" + "-fx-border-color: blue;");
 
     }
 
@@ -64,10 +74,17 @@ public class PostsController {
 
         posts.add(post);
 
+        String defalultStyle = "-fx-padding: 10;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
+                + "-fx-border-radius: 5;" + "-fx-border-color: blue;";
+
+
         HBox hBox = new HBox();
         hBox.setMaxWidth(Double.MAX_VALUE);
         hBox.setPrefWidth(Double.MAX_VALUE);
-        hBox.minHeightProperty().bind(mainPane.heightProperty().multiply(0.1));
+        hBox.prefHeightProperty().bind(scrollPane.heightProperty().multiply(0.1));
+        hBox.prefWidthProperty().bind(scrollPane.widthProperty().multiply(0.1));
+        hBox.setStyle(defalultStyle);
 
         Label authorLabel = new Label(Long.toString(post.getAuthorId()));
         authorLabel.textProperty().bind(post.authorIdProperty().asString());
@@ -77,16 +94,20 @@ public class PostsController {
 //        authorLabel.setPrefWidth(Double.MAX_VALUE);
 //        authorLabel.setMaxWidth(Double.MAX_VALUE);
 
+        authorLabel.setStyle(defalultStyle);
+
         Label contentLabel = new Label(post.getContent().toString());
         contentLabel.textProperty().bind(post.contentProperty().asString());
         contentLabel.setAlignment(Pos.TOP_CENTER);
-        contentLabel.minWidthProperty().bind(hBox.widthProperty().multiply(0.2));
-
+        contentLabel.minWidthProperty().bind(hBox.widthProperty().multiply(0.5));
+        contentLabel.setStyle(defalultStyle);
 
         Label plusCountLabel = new Label(Long.toString(post.getPlusCount()));
         plusCountLabel.textProperty().bind(post.plusCountProperty().asString());
-        plusCountLabel.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
+        plusCountLabel.prefWidthProperty().bind(hBox.widthProperty().multiply(0.1));
         plusCountLabel.setTextAlignment(TextAlignment.LEFT);
+        plusCountLabel.setAlignment(Pos.TOP_RIGHT);
+        plusCountLabel.setStyle(defalultStyle);
 
 
         hBox.getChildren().add(authorLabel);
@@ -98,29 +119,29 @@ public class PostsController {
 
 
         VBox buttons = new VBox(addButton, minusButton);
+        buttons.setStyle(defalultStyle);
 
 //        buttons.setAlignment(Pos.TOP_RIGHT);
-        buttons.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
+        buttons.prefWidthProperty().bind(hBox.widthProperty().multiply(0.1));
         buttons.prefHeightProperty().bind(hBox.heightProperty());
 
-        addButton.prefWidthProperty().bind(buttons.widthProperty().multiply(0.5));
-        minusButton.prefWidthProperty().bind(buttons.widthProperty());
-        addButton.setAlignment(Pos.TOP_RIGHT);
-        minusButton.setAlignment(Pos.TOP_RIGHT);
+//        addButton.prefWidthProperty().bind(buttons.widthProperty().multiply(0.5));
+        minusButton.prefWidthProperty().bind(addButton.widthProperty());
+        addButton.setAlignment(Pos.CENTER);
+        minusButton.setAlignment(Pos.CENTER);
 
         hBox.getChildren().addAll(buttons);
 
         vBox.getChildren().addAll(hBox);
-//        vBox.prefHeightProperty().bind(mainPane.heightProperty().multiply(0.7));
     }
 
     public void setData(Long userId, Long topicId, ObservableList<Post> posts) {
         this.userId = userId;
         this.topicId = topicId;
 
-//        for(Post post: posts) {
-//            addPost(post);
-//        }
+        for(Post post: posts) {
+            addPost(post);
+        }
 
         titleLabel.setText(((QuestionPost)posts.get(0)).getTitle());
     }
