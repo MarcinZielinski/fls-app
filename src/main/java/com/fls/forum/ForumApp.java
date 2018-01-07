@@ -1,9 +1,8 @@
 package com.fls.forum;
 
-import com.fls.forum.loader.PostsLoader;
+import com.fls.forum.controller.ApplicationController;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ForumApp extends Application {
@@ -14,8 +13,10 @@ public class ForumApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("FLSocial");
-        primaryStage.setScene(new Scene(new PostsLoader().load()));
-        primaryStage.show();
+
+        ApplicationController applicationController = new ApplicationController(primaryStage);
+        applicationController.loadPostsPane();
+
     }
 
     public static Long getUserId(){

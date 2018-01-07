@@ -11,6 +11,11 @@ public class Content {
         this.text = text;
     }
 
+    public Content(String text) {
+        this.postId = -1;
+        this.text = text;
+    }
+
     @Override
     public String toString(){
         return text;
