@@ -44,12 +44,7 @@ public class SectionsPaneController implements Initializable {
         });
     }
 
-//    @FXML
-//    void initialize(){
-//        setSectionsListView();
-//    }
-
-    public void changeScreenSectonSelected(Node source) throws IOException {
+    private void changeScreenSectonSelected(Node source) throws IOException {
         System.out.println(getClass());
         Parent sectionsParent = FXMLLoader.load(getClass().getResource("../pane_topics.fxml"));
         Scene scene = new Scene(sectionsParent);
