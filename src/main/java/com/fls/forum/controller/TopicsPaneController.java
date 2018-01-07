@@ -1,5 +1,6 @@
 package com.fls.forum.controller;
 
+import com.fls.forum.model.Section;
 import com.fls.forum.model.Topic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,8 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -21,18 +20,21 @@ import java.util.ResourceBundle;
 
 public class TopicsPaneController implements Initializable{
 
-    private long currentSectionId;
+    private Section currentSection;
     @FXML
     private ListView<Topic> topicsListView = new ListView<>();
     private ObservableList<Topic> nameList;
 
 
-    public TopicsPaneController(){
-
+    public TopicsPaneController(Section section){
+        this.currentSection = section;
     }
 
     private void setTopicsListView(){
-        List<Topic> topics = new dataGenerator().getTopics(1);
+        List<Topic> topics = null;
+        if(currentSection != null){
+            topics = new dataGenerator().getTopics(currentSection.getId());
+        }
         nameList = FXCollections.observableArrayList(topics);
         topicsListView.setItems(nameList);
         topicsListView.setOnMouseClicked(mouseEvent -> System.out.println(topicsListView.getSelectionModel().getSelectedItem()));
