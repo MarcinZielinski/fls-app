@@ -30,6 +30,9 @@ public class PostsController {
     private ObservableList<Post> posts = FXCollections.observableArrayList();
 
     @FXML
+    private Label errorLabel;
+
+    @FXML
     private Pane mainPane;
 
     @FXML
@@ -43,13 +46,21 @@ public class PostsController {
 
     @FXML
     private VBox vBox;
+
     private ApplicationController applicationController;
+
+    private TimedLabel errorTimedLabel;
 
 
     @FXML
     private void handleSendAction() {
-        addPost(new AnswerPost(topicId, 1, new Date(), userId, new Content(1, answerText.getText()), false));
-        System.out.println("hello");
+        if(answerText.getText().length() > 0) {
+            addPost(new AnswerPost(topicId, 1, new Date(), userId, new Content(1, answerText.getText()), false));
+            answerText.setText("");
+        }
+        else{
+            errorTimedLabel.setText("You cannot send empty message", 3);
+        }
     }
 
 
@@ -63,21 +74,23 @@ public class PostsController {
 
         scrollPane.setFitToWidth(true);
 
+        this.errorTimedLabel = new TimedLabel(errorLabel);
+
     }
 
-    public void setApplicationController(ApplicationController applicationController){
+    void setApplicationController(ApplicationController applicationController){
         this.applicationController = applicationController;
     }
 
 
-    public void addPost(Post post){
+    private void addPost(Post post){
 
         posts.add(post);
 
         postView.showPost(post);
     }
 
-    public void setData(Long userId, Long topicId, ObservableList<Post> posts) {
+    void setData(Long userId, Long topicId, ObservableList<Post> posts) {
         this.userId = userId;
         this.topicId = topicId;
         postView = new PostView(vBox, applicationController);

@@ -17,4 +17,5 @@
          <VBox fx:id="vBox" alignment="TOP_CENTER" prefHeight="402.0" prefWidth="772.0" />
       </content>
    </ScrollPane>
+   <Label fx:id="errorLabel" layoutX="343.0" layoutY="568.0" prefHeight="17.0" prefWidth="227.0" />
 </Pane>
