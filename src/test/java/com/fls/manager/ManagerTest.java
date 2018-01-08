@@ -21,16 +21,16 @@ public class ManagerTest extends ApplicationTest {
         stage.show();
     }
 
-    @Test
-    public void should_drag_file_into_trashcan() {
-        // given:
-        rightClickOn("#desktop").moveTo("New").clickOn("Text Document");
-        write("myTextfile.txt").push(ENTER);
-
-        // when:
-        drag(".file").dropTo("#trash-can");
-
-        // then:
-        verifyThat("#desktop", hasChildren(0, ".file"));
-    }
+//    @Test
+//    public void should_drag_file_into_trashcan() {
+//        // given:
+//        rightClickOn("#desktop").moveTo("New").clickOn("Text Document");
+//        write("myTextfile.txt").push(ENTER);
+//
+//        // when:
+//        drag(".file").dropTo("#trash-can");
+//
+//        // then:
+//        verifyThat("#desktop", hasChildren(0, ".file"));
+//    }
 }

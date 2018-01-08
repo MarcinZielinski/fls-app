@@ -4,8 +4,6 @@ import com.fls.forum.controller.SectionsPaneController;
 import com.fls.forum.view.SectionsPane;
 import com.fls.manager.Manager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,9 +14,9 @@ public class ForumApp extends Application {
         launch(args);
     }
 
-    private Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("FLSocial");
 
         Parent root = FXMLLoader.load(getClass().getResource("pane_sections.fxml"));
         Scene scene = new Scene(root);
@@ -32,9 +30,11 @@ public class ForumApp extends Application {
     }
 
     private void loadUserAuthentication() {
+//=======
+        //ApplicationController applicationController = new ApplicationController(primaryStage);
+        //applicationController.loadPostsPane();
+//>>>>>>> forum
 
-        SectionsPane sectionsPane = new SectionsPane();
-        stage.setScene(sectionsPane.getScene());
     }
 
     public void loadManager(Long tokenId, Long userId) {
@@ -47,4 +47,8 @@ public class ForumApp extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
+    public static Long getUserId(){
+        return 1L;
+    }
+
 }
