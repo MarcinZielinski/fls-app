@@ -43,8 +43,8 @@ public class PostView {
 
         Label authorLabel = new Label(Long.toString(post.getAuthorId()));
         authorLabel.textProperty().bind(post.authorIdProperty().asString());
-        authorLabel.setAlignment(Pos.BOTTOM_RIGHT);
-        authorLabel.prefWidthProperty().bind(hBox.prefWidthProperty().multiply(0.2));
+        authorLabel.setAlignment(Pos.BOTTOM_LEFT);
+        authorLabel.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
 //        authorLabel.setMaxWidth(Double.MAX_VALUE);
 //        authorLabel.setPrefWidth(Double.MAX_VALUE);
 //        authorLabel.setMaxWidth(Double.MAX_VALUE);
