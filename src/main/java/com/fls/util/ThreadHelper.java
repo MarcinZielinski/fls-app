@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class ThreadHelper<T> extends Service<T> {
 
-    private static ProgressIndicator progressIndicator = new ProgressIndicator();
+    private ProgressIndicator progressIndicator = new ProgressIndicator();
     private Callable<T> method;
 
     public ThreadHelper(StackPane parentPane, Callable<T> method, Consumer<T> whatToDoOnSucceed) {
@@ -19,6 +19,7 @@ public class ThreadHelper<T> extends Service<T> {
         }
         this.method = method;
         progressIndicator.visibleProperty().bind(this.runningProperty());
+        progressIndicator.setMouseTransparent(true);
         this.setOnSucceeded(workerStateEvent -> {
             T result = this.getValue();   //here you get the return value of your service
             parentPane.getChildren().remove(progressIndicator);

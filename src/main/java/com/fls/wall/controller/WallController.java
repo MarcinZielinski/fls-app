@@ -3,6 +3,7 @@ package com.fls.wall.controller;
 import com.fls.wall.Wall;
 import com.fls.wall.WallPost;
 import javafx.fxml.FXML;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -14,6 +15,7 @@ import javax.annotation.Generated;
 public class WallController {
     @FXML
     public StackPane stackPane;
+    public TitledPane postsPane;
 
     private Wall model;
 

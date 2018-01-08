@@ -8,56 +8,58 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.StackPane?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="362.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.wall.controller.WallController">
-    <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <children>
-            <Accordion blendMode="BLUE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                 <panes>
-                   <TitledPane text="Post Editor">
-                     <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0">
-                              <children>
-                                 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <content>
-                                       <VBox alignment="TOP_CENTER">
-                                          <children>
-                                             <TextArea promptText="Type your content here" wrapText="true">
-                                                <padding>
-                                                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                </padding>
-                                             </TextArea>
-                                             <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                                               <buttons>
-                                                 <Button mnemonicParsing="false" text="Add Image" />
-                                                   <Button mnemonicParsing="false" text="Apply" />
-                                               </buttons>
-                                             </ButtonBar>
-                                          </children>
-                                       </VBox>
-                                    </content>
-                                 </ScrollPane>
-                              </children></AnchorPane>
-                     </content>
-                   </TitledPane>
-                   <TitledPane text="Posts">
-                     <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                              <children>
-                                 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Accordion blendMode="BLUE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+           <panes>
+             <TitledPane text="Post Editor">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0">
+                        <children>
+                           <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <content>
+                                 <VBox alignment="TOP_CENTER">
+                                    <children>
+                                       <TextArea promptText="Type your content here" wrapText="true">
+                                          <padding>
+                                             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                          </padding>
+                                       </TextArea>
+                                       <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                         <buttons>
+                                           <Button mnemonicParsing="false" text="Add Image" />
+                                             <Button mnemonicParsing="false" text="Apply" />
+                                         </buttons>
+                                       </ButtonBar>
+                                    </children>
+                                 </VBox>
+                              </content>
+                           </ScrollPane>
+                        </children>
+               </AnchorPane>
+               </content>
+             </TitledPane>
+             <TitledPane fx:id="postsPane" text="Posts">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                     <StackPane fx:id="stackPane" layoutX="9.600000381469727" layoutY="9.600000381469727" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                                 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
                                     <VBox fx:id="posts" alignment="TOP_CENTER">
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding></VBox>
+                                       </padding>
+                              </VBox>
                                  </ScrollPane>
-                              </children>
-                           </AnchorPane>
-                     </content>
-                   </TitledPane>
-                 </panes>
-           </Accordion>
-        </children>
-    </StackPane>
+                        </children>
+                     </StackPane>
+                        </children>
+                     </AnchorPane>
+               </content>
+             </TitledPane>
+           </panes>
+     </Accordion>
 </AnchorPane>

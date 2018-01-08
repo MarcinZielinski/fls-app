@@ -6,7 +6,9 @@ import com.fls.manager.Manager;
 import com.fls.util.ImageConverter;
 import com.fls.util.ThreadHelper;
 import com.fls.wall.controller.WallController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -27,6 +29,7 @@ public class Wall {
     private WallController wController;
     private ThreadHelper actualTask;
     private WallPost[] posts;
+    private TitledPane postsPane;
 
     public Wall(Manager manager){
         this.manager = manager;
@@ -39,6 +42,7 @@ public class Wall {
                 rootPane = loader.load();
                 wController = loader.getController();
                 stackPane = wController.stackPane;
+                postsPane = wController.postsPane;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -50,6 +54,7 @@ public class Wall {
     }
 
     private void loadPosts() {
+        Platform.runLater(() -> postsPane.setExpanded(true));
         if(actualTask!=null) actualTask.cancel();
         actualTask = new ThreadHelper<>(stackPane, () -> Server.getWallPosts(manager.userId), this::loadPosts);
         actualTask.restart();

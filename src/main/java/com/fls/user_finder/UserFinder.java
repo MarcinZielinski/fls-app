@@ -18,7 +18,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Marcin on 2017-12-12.
@@ -32,9 +35,6 @@ public class UserFinder {
     private StackPane stackPane;
     private ThreadHelper actualTask;
 
-    public UserFinder() {
-
-    }
 
     public UserFinder(Manager manager) {
         this.manager = manager;
@@ -58,6 +58,8 @@ public class UserFinder {
     }
 
     private void fillWithQueryResult(VBox vBox, List<User> users) {
+        byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
+        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image)).collect(Collectors.toCollection(ArrayList::new));
         vBox.getChildren().clear(); // clearing the results of the last search
         if(users!=null) {
             for (User user : users) {
@@ -94,7 +96,6 @@ public class UserFinder {
     public void searchForUsers(User user) {
         user.setTokenId(manager.tokenId);
 
-        vBox.getChildren().clear(); // clearing the results of the last search
         Platform.runLater(() -> searchResultsPane.setExpanded(true)); // run later, when "later" means: run after FXMLLoader.invoke() method is called. invoke() sets "expanded" to false, so we need to change it to true after invoke() execution
         if(actualTask != null) actualTask.cancel();
         actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), (users) -> fillWithQueryResult(vBox, users));
