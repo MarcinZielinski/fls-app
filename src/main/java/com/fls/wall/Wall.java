@@ -44,10 +44,18 @@ public class Wall {
         for(int i =0; i < posts.length; ++i){
             byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
             posts[i] = new WallPost(new User(1L, 1L, "Andrzej", "Duda", image),
-                    "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD");
+                    "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD", this);
         }
         wController.loadPosts(posts);
 
         return rootPane;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public WallController getwController(){
+        return wController;
     }
 }

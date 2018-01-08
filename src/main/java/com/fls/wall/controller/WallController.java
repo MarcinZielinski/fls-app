@@ -34,4 +34,8 @@ public class WallController {
 
     }
 
+    public VBox getPostsVBox(){
+        return posts;
+    }
+
 }

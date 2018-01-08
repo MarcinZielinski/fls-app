@@ -15,10 +15,12 @@ public class WallPost {
     private WallPostController postController;
     private User user;
     private String content;
+    private Wall wall;
 
-    public WallPost(User user, String content) {
+    public WallPost(User user, String content, Wall wall) {
         this.user = user;
         this.content = content;
+        this.wall = wall;
     }
 
     public Pane load(){
@@ -39,5 +41,9 @@ public class WallPost {
 
     public String getContent() {
         return content;
+    }
+
+    public Wall getWall() {
+        return wall;
     }
 }

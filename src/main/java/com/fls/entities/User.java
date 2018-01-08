@@ -4,7 +4,6 @@ import lombok.Data;
 import java.util.Set; /**
  * Created by Marcin on 2017-12-12.
  */
-@Data
 public class User {
     private Long tokenId;
     private Long userId;
@@ -40,5 +39,25 @@ public class User {
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setTokenId(Long tokenId) {
+        this.tokenId = tokenId;
     }
 }
