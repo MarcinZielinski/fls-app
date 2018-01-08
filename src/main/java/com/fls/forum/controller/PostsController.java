@@ -1,12 +1,10 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
-import com.fls.forum.model.AnswerPost;
-import com.fls.forum.model.Content;
-import com.fls.forum.model.Post;
-import com.fls.forum.model.QuestionPost;
+import com.fls.forum.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -20,7 +18,7 @@ import java.util.Date;
 public class PostsController {
 
     private Long userId;
-    private Long topicId;
+    private Topic topic;
     private PostView postView;
 
 
@@ -57,7 +55,7 @@ public class PostsController {
     @FXML
     private void handleSendAction() {
         if(answerText.getText().length() > 0) {
-            addPost(new AnswerPost(topicId, 1, new Date(), userId, new Content(1, answerText.getText()), false));
+            addPost(new AnswerPost(topic, 1, new Date(), userId, new Content(1, answerText.getText()), false));
             answerText.setText("");
         }
         else{
@@ -92,9 +90,9 @@ public class PostsController {
         postView.showPost(post);
     }
 
-    void setData(Long userId, Long topicId, ObservableList<Post> posts) {
+    void setData(Long userId, Topic topic, ObservableList<Post> posts) {
         this.userId = userId;
-        this.topicId = topicId;
+        this.topic = topic;
         postView = new PostView(vBox, applicationController);
         for(Post post: posts) {
             addPost(post);
@@ -111,4 +109,7 @@ public class PostsController {
         return postView.getvBox();
     }
 
+    public void handleGoBackAction(ActionEvent actionEvent) {
+        applicationController.loadTopicsPane(topic.getSection());
+    }
 }

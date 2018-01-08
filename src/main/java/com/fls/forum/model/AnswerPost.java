@@ -6,8 +6,8 @@ public class AnswerPost extends Post{
 
     private boolean rightAnswer;
 
-    public AnswerPost(long topicId, long id, Date cratedAt, long userId, Content content, Boolean authorPlus) {
-        super(topicId, id, cratedAt, userId, content, authorPlus);
+    public AnswerPost(Topic topic, long id, Date cratedAt, long userId, Content content, Boolean authorPlus) {
+        super(topic, id, cratedAt, userId, content, authorPlus);
         rightAnswer = false;
     }
 

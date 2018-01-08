@@ -71,6 +71,10 @@ public class dataGenerator {
         topics.add(new Topic(1, 122, "How do I write a correct micro-benchmark in Java?", new QuestionPost()));
         topics.add(new Topic(1, 123, "How to parse JSON", new QuestionPost()));
 
+        for(Topic topic: topics){
+            topic.getQuestionPost().setTopic(topic);
+            topic.setSection(sections.get(0));
+        }
 
 
     }

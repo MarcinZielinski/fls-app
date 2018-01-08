@@ -11,7 +11,7 @@ import java.util.Date;
 
 public abstract class Post {
 
-    private LongProperty topicId;
+    private Topic topic;
     private LongProperty id;
     private ObjectProperty<Date> cratedAt;
     private LongProperty authorId;
@@ -20,8 +20,8 @@ public abstract class Post {
     private ListProperty<Long> plusAuthors;
     private BooleanProperty authorPlus;
 
-    Post(long topicId, long id, Date cratedAt, long authorId, Content content, Boolean authorPlus) {
-        this.topicId = new SimpleLongProperty(topicId);
+    Post(Topic topic, long id, Date cratedAt, long authorId, Content content, Boolean authorPlus) {
+        this.topic = topic;
         this.id = new SimpleLongProperty(id);
         this.cratedAt = new SimpleObjectProperty<>(cratedAt);
         this.authorId = new SimpleLongProperty(authorId);
@@ -104,18 +104,6 @@ public abstract class Post {
         this.id.set(id);
     }
 
-    public Long getTopicId() {
-        return topicId.get();
-    }
-
-    public LongProperty topicIdProperty() {
-        return topicId;
-    }
-
-    public void setTopicId(long topicId) {
-        this.topicId.set(topicId);
-    }
-
     public ObservableList<Long> getPlusAuthors() {
         return plusAuthors.get();
     }
@@ -138,6 +126,14 @@ public abstract class Post {
 
     public void setAuthorPlus(boolean authorPlus) {
         this.authorPlus.set(authorPlus);
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
 

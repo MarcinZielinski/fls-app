@@ -18,4 +18,5 @@
       </content>
    </ScrollPane>
    <Label fx:id="errorLabel" layoutX="343.0" layoutY="568.0" prefHeight="17.0" prefWidth="227.0" />
+   <Button fx:id="backButton" layoutX="27.0" layoutY="21.0" mnemonicParsing="false" text="Go back" onAction="#handleGoBackAction" />
 </Pane>
