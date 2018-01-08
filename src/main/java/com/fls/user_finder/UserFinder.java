@@ -18,10 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by Marcin on 2017-12-12.
@@ -86,7 +83,7 @@ public class UserFinder {
     }
 
 
-    private void searchForUsers(String query) {
+    public void searchForUsers(String query) {
         String[] splitQuery = query.split(" ");
         String firstName = splitQuery[0];
         String lastName = query.length() > firstName.length() ? query.substring(splitQuery.length+1) : "";
@@ -102,6 +99,5 @@ public class UserFinder {
         if(actualTask != null) actualTask.cancel();
         actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), (users) -> fillWithQueryResult(vBox, users));
         actualTask.restart();
-
     }
 }
