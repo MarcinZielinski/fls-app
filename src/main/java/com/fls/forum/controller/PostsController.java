@@ -32,6 +32,8 @@ public class PostsController {
 
     private ObservableList<Post> posts = FXCollections.observableArrayList();
 
+
+
     @FXML
     private VBox mainVbox;
 
@@ -56,13 +58,12 @@ public class PostsController {
     @FXML
     private Label titleLabel;
 
-//    @FXML
-//    private VBox vBox;
 
     @FXML
     private Pagination pagination;
 
-    ObservableList<Node> hBoxList = FXCollections.observableArrayList();
+
+    private ObservableList<Node> hBoxList = FXCollections.observableArrayList();
 
     private ApplicationController applicationController;
 
@@ -147,7 +148,7 @@ public class PostsController {
         this.userId = userId;
         this.topic = topic;
 //        postView = new PostView(vBox, applicationController);
-        postView = new PostView(null, applicationController);
+        postView = new PostView(applicationController);
         for(Post post: posts) {
             addPost(post);
         }
@@ -160,11 +161,21 @@ public class PostsController {
         return posts;
     }
 
-    public VBox getVbox(){
-        return postView.getvBox();
-    }
 
     public void handleGoBackAction(ActionEvent actionEvent) {
         applicationController.loadTopicsPane(topic.getSection());
     }
+
+    public VBox getMainVbox() {
+        return mainVbox;
+    }
+
+    public Pagination getPagination() {
+        return pagination;
+    }
+
+    public ObservableList<Node> gethBoxList() {
+        return hBoxList;
+    }
+
 }
