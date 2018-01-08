@@ -34,6 +34,7 @@ public class SectionsPaneController implements Initializable {
         sectionsListView.setItems(nameList);
         sectionsListView.setOnMouseClicked(mouseEvent -> {
             try {
+                if (mouseEvent.getClickCount() == 2)
                 changeScreenSectionSelected();
             } catch (IOException e) {
                 e.printStackTrace();

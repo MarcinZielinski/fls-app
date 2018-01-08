@@ -66,7 +66,7 @@ public class TopicsPaneController implements Initializable{
         //topicsListView.setItems(nameList);
         topicsListView.setOnMouseClicked(mouseEvent -> {
                 Topic topic = topicsListView.getSelectionModel().getSelectedItem();
-                if(topic != null)
+                if(topic != null && mouseEvent.getClickCount() == 2)
                     applicationController.loadPostsPane(topicsListView.getSelectionModel().getSelectedItem());
         });
     }
