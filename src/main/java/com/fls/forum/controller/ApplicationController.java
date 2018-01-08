@@ -3,6 +3,7 @@ package com.fls.forum.controller;
 import com.fls.forum.ForumApp;
 import com.fls.forum.model.Post;
 import com.fls.forum.model.Section;
+import com.fls.forum.model.Topic;
 import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,27 +21,29 @@ public class ApplicationController {
     public ApplicationController(Stage primaryStage) throws IOException {
 
         this.primaryStage = primaryStage;
-
         primaryStage.setTitle("FLSocial");
 
     }
 
 
-    public void loadPostsPane() throws IOException {
+    public void loadPostsPane(Topic topic){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_posts.fxml"));
 
+        try {
+            Pane root = loader.load();
+            PostsController postsController = loader.getController();
+            postsController.setApplicationController(this);
+            postsController.setData(1L, 1L, DataGenerator.generatePosts());
 
-        Pane root;
-        root = loader.load();
+            primaryStage.setScene(new Scene(root));
 
-        PostsController postsController = loader.getController();
-        postsController.setApplicationController(this);
-        postsController.setData(1L, 1L, DataGenerator.generatePosts());
+            primaryStage.show();
 
-        primaryStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        primaryStage.show();
 
     }
 
@@ -85,7 +88,6 @@ public class ApplicationController {
     public void loadTopicsPane(Section section){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_topics.fxml"));
-//        loader.setController(topicsPaneController);
 
 
         try {
@@ -96,7 +98,6 @@ public class ApplicationController {
             topicsPaneController.init();
             Scene scene = new Scene(sectionsParent);
 
-//        Stage window = (Stage)(source.getScene().getWindow());
             primaryStage.setScene(scene);
             primaryStage.show();
 

@@ -64,7 +64,11 @@ public class TopicsPaneController implements Initializable{
 
         nameList = FXCollections.observableArrayList(topics);
         //topicsListView.setItems(nameList);
-        topicsListView.setOnMouseClicked(mouseEvent -> System.out.println(topicsListView.getSelectionModel().getSelectedItem()));
+        topicsListView.setOnMouseClicked(mouseEvent -> {
+                Topic topic = topicsListView.getSelectionModel().getSelectedItem();
+                if(topic != null)
+                    applicationController.loadPostsPane(topicsListView.getSelectionModel().getSelectedItem());
+        });
     }
 
     public void changeScreenBackButtonClicked(javafx.event.ActionEvent event) {

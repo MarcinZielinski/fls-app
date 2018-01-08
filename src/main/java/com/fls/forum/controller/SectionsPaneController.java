@@ -34,26 +34,17 @@ public class SectionsPaneController implements Initializable {
         sectionsListView.setItems(nameList);
         sectionsListView.setOnMouseClicked(mouseEvent -> {
             try {
-                changeScreenSectionSelected((Node)mouseEvent.getSource());
+                changeScreenSectionSelected();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private void changeScreenSectionSelected(Node source) throws IOException {
-//        TopicsPaneController topicsPaneController = new TopicsPaneController(sectionsListView.getSelectionModel().getSelectedItem());
-//        topicsPaneController.setApplicationController(applicationController);
-
-        applicationController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pane_topics.fxml"));
-//        loader.setController(topicsPaneController);
-//        Parent sectionsParent = loader.load();
-//        Scene scene = new Scene(sectionsParent);
-//
-//        Stage window = (Stage)(source.getScene().getWindow());
-//        window.setScene(scene);
-//        window.show();
+    private void changeScreenSectionSelected() throws IOException {
+        Section section = sectionsListView.getSelectionModel().getSelectedItem();
+        if(section != null)
+            applicationController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
     }
 
     @Override
