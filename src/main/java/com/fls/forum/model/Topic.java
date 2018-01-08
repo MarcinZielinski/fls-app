@@ -12,4 +12,32 @@ public class Topic {
     public List<Integer> getAllPostsIds(){
         return null;
     }
+
+    public Topic(long categoryId, long id, String name, QuestionPost questionPost){
+        this.categoryId = categoryId;
+        this.id = id;
+        this.name = name;
+        this.questionPost = questionPost;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public QuestionPost getQuestionPost() {
+        return questionPost;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s", name);
+    }
 }
