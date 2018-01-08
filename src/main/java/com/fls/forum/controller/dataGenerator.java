@@ -71,6 +71,28 @@ public class dataGenerator {
         topics.add(new Topic(1, 122, "How do I write a correct micro-benchmark in Java?", new QuestionPost()));
         topics.add(new Topic(1, 123, "How to parse JSON", new QuestionPost()));
 
+        topics.add(new Topic(2, 124, "What is a NullPointerException, and how do I fix it?", new QuestionPost()));
+        topics.add(new Topic(2, 125, "Is java pass by reference or pass by value?", new QuestionPost()));
+        topics.add(new Topic(2, 126, "How do I compare strings in Java?", new QuestionPost()));
+        topics.add(new Topic(2, 127, "The Use of Multiple JFrames: Good or Bad Practice? [closed]", new QuestionPost()));
+        topics.add(new Topic(2, 128, "Unfortunately MyApp has stopped. How can I solve this?", new QuestionPost()));
+        topics.add(new Topic(2, 129, "Scanner is skipping nextLine() after using next() or nextFoo()?", new QuestionPost()));
+        topics.add(new Topic(2, 130, "What causes a java.lang.ArrayIndexOutOfBoundsException and how do I prevent it?", new QuestionPost()));
+        topics.add(new Topic(2, 131, "How to add JTable in JPanel with null layout?", new QuestionPost()));
+        topics.add(new Topic(2, 132, "Should I avoid the use of set(Preferred|Maximum|Minimum)Size methods in Java Swing?", new QuestionPost()));
+        topics.add(new Topic(2, 133, "Providing white space in a Swing GUI", new QuestionPost()));
+
+        topics.add(new Topic(3, 135, "What is a NullPointerException, and how do I fix it?", new QuestionPost()));
+        topics.add(new Topic(3, 136, "Is java pass by reference or pass by value?", new QuestionPost()));
+        topics.add(new Topic(3, 137, "How do I compare strings in Java?", new QuestionPost()));
+        topics.add(new Topic(3, 138, "The Use of Multiple JFrames: Good or Bad Practice? [closed]", new QuestionPost()));
+        topics.add(new Topic(3, 139, "Unfortunately MyApp has stopped. How can I solve this?", new QuestionPost()));
+        topics.add(new Topic(3, 140, "Scanner is skipping nextLine() after using next() or nextFoo()?", new QuestionPost()));
+        topics.add(new Topic(3, 141, "What causes a java.lang.ArrayIndexOutOfBoundsException and how do I prevent it?", new QuestionPost()));
+        topics.add(new Topic(3, 142, "How to add JTable in JPanel with null layout?", new QuestionPost()));
+        topics.add(new Topic(3, 143, "Should I avoid the use of set(Preferred|Maximum|Minimum)Size methods in Java Swing?", new QuestionPost()));
+        topics.add(new Topic(3, 144, "Providing white space in a Swing GUI", new QuestionPost()));
+        topics.add(new Topic(3, 145, "Providing white space in a Swing GUI", new QuestionPost()));
 
 
     }

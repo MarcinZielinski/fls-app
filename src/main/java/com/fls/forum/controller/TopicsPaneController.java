@@ -31,10 +31,10 @@ public class TopicsPaneController implements Initializable{
     private List<Topic> topics = new ArrayList<>();
 
     @FXML
-    private Label sectionNameLabel;
+    public Label sectionNameLabel;
 
     @FXML
-    private Pagination topicsListPagination;
+    public Pagination topicsListPagination;
 
     public TopicsPaneController(Section section){
         this.currentSection = section;
