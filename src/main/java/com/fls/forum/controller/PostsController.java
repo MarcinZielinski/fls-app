@@ -2,20 +2,27 @@ package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
 import com.fls.forum.model.*;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Callback;
 
 import java.util.Date;
 
 public class PostsController {
+
+
 
     private Long userId;
     private Topic topic;
@@ -25,9 +32,14 @@ public class PostsController {
 
     private ObservableList<Post> posts = FXCollections.observableArrayList();
 
+    @FXML
+    private VBox mainVbox;
 
     @FXML
-    public Button send;
+    private Button backButton;
+
+    @FXML
+    private  Button send;
 
     @FXML
     private Label errorLabel;
@@ -44,12 +56,19 @@ public class PostsController {
     @FXML
     private Label titleLabel;
 
+//    @FXML
+//    private VBox vBox;
+
     @FXML
-    private VBox vBox;
+    private Pagination pagination;
+
+    ObservableList<Node> hBoxList = FXCollections.observableArrayList();
 
     private ApplicationController applicationController;
 
     private TimedLabel errorTimedLabel;
+
+    private int itemsOnPage = 5;
 
 
     @FXML
@@ -66,17 +85,49 @@ public class PostsController {
 
     @FXML
     private void initialize() {
-        vBox.prefWidthProperty().bind(scrollPane.widthProperty());
-        vBox.prefHeightProperty().bind(scrollPane.heightProperty());
+//        vBox.prefWidthProperty().bind(scrollPane.widthProperty());
+//        vBox.prefHeightProperty().bind(scrollPane.heightProperty());
 
-        scrollPane.prefWidthProperty().bind(mainPane.widthProperty().multiply(0.9));
-        scrollPane.prefHeightProperty().bind(mainPane.heightProperty().multiply(0.7));
+        mainVbox.prefWidthProperty().bind(mainPane.widthProperty());
+        mainVbox.prefHeightProperty().bind(mainPane.heightProperty());
+
+
+        scrollPane.prefWidthProperty().bind(mainVbox.widthProperty().multiply(0.9));
+        scrollPane.prefHeightProperty().bind(mainVbox.heightProperty().multiply(0.7));
 
         scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        pagination.prefWidthProperty().bind(scrollPane.widthProperty());
+        pagination.prefHeightProperty().bind(scrollPane.heightProperty());
+
 
         this.errorTimedLabel = new TimedLabel(errorLabel);
 
+
+//        pagination.setStyle("-fx-border-color:red;");
+        pagination.setPageFactory(this::createPage);
+
+        IntegerBinding sizeProperty = Bindings.size(posts);
+
+        pagination.pageCountProperty().bind(sizeProperty.add(itemsOnPage - 1).divide(itemsOnPage));
+
     }
+
+    private VBox createPage(int pageIndex){
+        VBox box = new VBox();
+        int page = pageIndex * itemsOnPage;
+        hBoxList = FXCollections.observableArrayList();
+        hBoxList.clear();
+        for (int i = page; i < page + itemsOnPage && i < posts.size(); i++) {
+            HBox hBox = postView.showPost(posts.get(i));
+            hBoxList.add(hBox);
+        }
+
+        Bindings.bindContentBidirectional(box.getChildren(), hBoxList);
+        return box;
+    }
+
 
     void setApplicationController(ApplicationController applicationController){
         this.applicationController = applicationController;
@@ -84,19 +135,23 @@ public class PostsController {
 
 
     private void addPost(Post post){
-
+        if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
+            System.out.println("adding post");
+            hBoxList.add(postView.showPost(post));
+        }
         posts.add(post);
-
-        postView.showPost(post);
+        pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
     }
 
     void setData(Long userId, Topic topic, ObservableList<Post> posts) {
         this.userId = userId;
         this.topic = topic;
-        postView = new PostView(vBox, applicationController);
+//        postView = new PostView(vBox, applicationController);
+        postView = new PostView(null, applicationController);
         for(Post post: posts) {
             addPost(post);
         }
+        pagination.setCurrentPageIndex(0);
 
         titleLabel.setText(((QuestionPost)posts.get(0)).getTitle());
     }
