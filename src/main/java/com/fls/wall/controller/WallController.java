@@ -3,6 +3,7 @@ package com.fls.wall.controller;
 import com.fls.wall.Wall;
 import com.fls.wall.WallPost;
 import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.Generated;
@@ -11,6 +12,9 @@ import javax.annotation.Generated;
  * Created by Marcin on 2017-12-12.
  */
 public class WallController {
+    @FXML
+    public StackPane stackPane;
+
     private Wall model;
 
     @FXML
@@ -22,8 +26,11 @@ public class WallController {
     }
 
     public void loadPosts(WallPost[] posts){
-        for(WallPost wallPost : posts){
-            this.posts.getChildren().add(wallPost.load());
+        this.posts.getChildren().clear();
+        if(posts != null) {
+            for (WallPost wallPost : posts) {
+                this.posts.getChildren().add(wallPost.load());
+            }
         }
     }
 

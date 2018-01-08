@@ -4,11 +4,13 @@ import com.fls.Server;
 import com.fls.entities.User;
 import com.fls.manager.Manager;
 import com.fls.util.ImageConverter;
+import com.fls.util.ThreadHelper;
 import com.fls.wall.controller.WallController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -21,7 +23,9 @@ import java.util.List;
 public class Wall {
     private Manager manager;
     private Pane rootPane;
+    private StackPane stackPane;
     private WallController wController;
+    private ThreadHelper actualTask;
     private WallPost[] posts;
 
     public Wall(Manager manager){
@@ -34,11 +38,24 @@ public class Wall {
             try {
                 rootPane = loader.load();
                 wController = loader.getController();
+                stackPane = wController.stackPane;
             } catch (IOException e) {
                 e.printStackTrace();
             }
             wController.setModel(this);
         }
+        loadPosts();
+
+        return rootPane;
+    }
+
+    private void loadPosts() {
+        if(actualTask!=null) actualTask.cancel();
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getWallPosts(manager.userId), this::loadPosts);
+        actualTask.restart();
+    }
+
+    private void loadPosts(WallPost[] posts) {
         posts = Server.getWallPosts(manager.userId);
         posts = new WallPost[5];
         for(int i =0; i < posts.length; ++i){
@@ -47,11 +64,9 @@ public class Wall {
                     "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD");
         }
         wController.loadPosts(posts);
-
-        return rootPane;
     }
 
     public void refreshPosts() {
-
+        loadPosts();
     }
 }
