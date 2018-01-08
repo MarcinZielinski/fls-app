@@ -29,6 +29,7 @@ public class TopicsPaneController implements Initializable{
     private ListView<Topic> topicsListView = new ListView<>();
     private ObservableList<Topic> nameList;
     private List<Topic> topics = new ArrayList<>();
+    private ApplicationController applicationController;
 
     @FXML
     private Label sectionNameLabel;
@@ -66,13 +67,12 @@ public class TopicsPaneController implements Initializable{
         topicsListView.setOnMouseClicked(mouseEvent -> System.out.println(topicsListView.getSelectionModel().getSelectedItem()));
     }
 
-    public void changeScreenBackButtonClicked(javafx.event.ActionEvent event) throws IOException {
-        Parent sectionsParent = FXMLLoader.load(getClass().getResource("../pane_sections.fxml"));
-        Scene scene = new Scene(sectionsParent);
+    public void changeScreenBackButtonClicked(javafx.event.ActionEvent event) {
+        applicationController.loadSectionsPane();
+    }
 
-        Stage window = (Stage)((((Node)event.getSource())).getScene().getWindow());
-        window.setScene(scene);
-        window.show();
+    public void setApplicationController(ApplicationController applicationController) {
+        this.applicationController = applicationController;
     }
 
     @Override

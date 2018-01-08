@@ -4,6 +4,7 @@ import com.fls.forum.ForumApp;
 import com.fls.forum.model.Post;
 import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -61,6 +62,43 @@ public class ApplicationController {
             e.printStackTrace();
         }
 
+    }
+
+    public void loadSectionsPane(){
+        primaryStage.setTitle("FLSocial");
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ForumApp.class.getResource("pane_sections.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            SectionsPaneController sectionsPaneController = loader.getController();
+            sectionsPaneController.setApplicationController(this);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //loadTopicsPane();
+    }
+
+    public void loadTopicsPane(TopicsPaneController topicsPaneController){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ForumApp.class.getResource("pane_topics.fxml"));
+        loader.setController(topicsPaneController);
+        try {
+            Parent sectionsParent = loader.load();
+            Scene scene = new Scene(sectionsParent);
+
+//        Stage window = (Stage)(source.getScene().getWindow());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

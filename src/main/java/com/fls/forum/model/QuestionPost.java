@@ -1,5 +1,7 @@
 package com.fls.forum.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Date;
 
 public class QuestionPost extends Post{
@@ -10,6 +12,10 @@ public class QuestionPost extends Post{
         super(topicId, id, cratedAt, userId, content, authorPlus);
         solved = false;
         this.title = title;
+    }
+
+    public QuestionPost(){
+        super(1, 1, new Date(), 1, new Content("some text"), false);
     }
 
     public String getTitle() {

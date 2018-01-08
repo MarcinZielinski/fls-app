@@ -21,6 +21,7 @@ public class SectionsPaneController implements Initializable {
     @FXML
     private ListView<Section> sectionsListView = new ListView<>();
     private ObservableList<Section> nameList;
+    private ApplicationController applicationController;
 
     public SectionsPaneController(){
 
@@ -41,19 +42,27 @@ public class SectionsPaneController implements Initializable {
 
     private void changeScreenSectionSelected(Node source) throws IOException {
         TopicsPaneController topicsPaneController = new TopicsPaneController(sectionsListView.getSelectionModel().getSelectedItem());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pane_topics.fxml"));
-        loader.setController(topicsPaneController);
-        Parent sectionsParent = loader.load();
-        Scene scene = new Scene(sectionsParent);
+        topicsPaneController.setApplicationController(applicationController);
 
-        Stage window = (Stage)(source.getScene().getWindow());
-        window.setScene(scene);
-        window.show();
+        applicationController.loadTopicsPane(topicsPaneController);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pane_topics.fxml"));
+//        loader.setController(topicsPaneController);
+//        Parent sectionsParent = loader.load();
+//        Scene scene = new Scene(sectionsParent);
+//
+//        Stage window = (Stage)(source.getScene().getWindow());
+//        window.setScene(scene);
+//        window.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setSectionsListView();
+    }
+
+    public void setApplicationController(ApplicationController applicationController) {
+        System.out.println("setting controller");
+        this.applicationController = applicationController;
     }
 }
 

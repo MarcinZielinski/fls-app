@@ -9,6 +9,7 @@ public class Topic {
     private String name;
     private QuestionPost questionPost;
 
+
     public List<Integer> getAllPostsIds(){
         return null;
     }
