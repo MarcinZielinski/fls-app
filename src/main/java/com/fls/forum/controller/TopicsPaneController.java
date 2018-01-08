@@ -10,12 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Pagination;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class TopicsPaneController implements Initializable{
 
     @FXML
     private Pagination topicsListPagination;
+
 
 //    public TopicsPaneController(Section section){
 //        this.currentSection = section;
@@ -77,6 +80,10 @@ public class TopicsPaneController implements Initializable{
 
     public void setApplicationController(ApplicationController applicationController) {
         this.applicationController = applicationController;
+    }
+
+    public void createTopicButtonClicked(javafx.event.ActionEvent event){
+        applicationController.loadTopicsCreator(currentSection);
     }
 
     @Override
