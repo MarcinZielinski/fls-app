@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -30,5 +31,21 @@ public class ManagerController {
 
     public void searchForUsers(ActionEvent event) {
         model.loadUserFinder(searchUserField.getText());
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        model.logout();
+    }
+
+    public void undoPage(ActionEvent actionEvent) {
+        model.undo();
+    }
+
+    public void redoPage(ActionEvent actionEvent) {
+        model.redo();
+    }
+
+    public void logoClicked(MouseEvent mouseEvent) {
+        model.loadWall();
     }
 }

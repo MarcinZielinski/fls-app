@@ -50,4 +50,8 @@ public class Wall {
 
         return rootPane;
     }
+
+    public void refreshPosts() {
+
+    }
 }

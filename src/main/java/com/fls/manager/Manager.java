@@ -8,6 +8,7 @@ import com.fls.profiles.Profiles;
 import com.fls.user_finder.UserFinder;
 import com.fls.manager.controller.ManagerController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,9 @@ public class Manager {
     private Scene scene;
     private AnchorPane rootLayout;
     private BorderPane borderPane;
+    private Object actualCenterModule;
+    private PanesHistory panesHistory;
+    private Node actualCenterPane;
 
     public Manager(Main main, Long tokenId, Long userId) {
         this.main = main;
@@ -51,6 +55,7 @@ public class Manager {
             controller = loader.getController();
             controller.setModel(this);
             borderPane = controller.borderPane;
+            panesHistory = new PanesHistory(10);
             loadWall();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,19 +68,53 @@ public class Manager {
 
     public void newMessageNotification(long userId) {}
 
-    public void loadChat(List<Long> userIds) {chat.load(userIds);}
+    public void loadChat(List<Long> userIds) {
+        borderPane.setCenter(chat.load(userIds));
+    }
     public void loadProfile(Long userId) {
         System.out.println("profil o id " + userId);
     }
     public void loadForum() {}
     public void loadWall() {
-        borderPane.setCenter(wall.load());
+        if(actualCenterModule != wall) {
+            Node newPane  = wall.load();
+            panesHistory.addPane(newPane, wall);
+            setCenterModule(newPane, wall);
+        } else {
+            wall.refreshPosts();
+        }
     }
     public void loadUserFinder(String query) {
-        borderPane.setCenter(userFinder.load(query));
+        if(actualCenterModule != userFinder) {
+            Node newPane  = userFinder.load(query);
+            panesHistory.addPane(newPane, userFinder);
+            setCenterModule(newPane, userFinder);
+        } else {
+            userFinder.searchForUsers(query);
+        }
     }
 
     public Scene getScene() {
         return scene;
+    }
+
+    public void undo() {
+        StackNode<Node, Object> node = panesHistory.undoPane();
+        if(node != null) {
+            setCenterModule(node.firstValue, node.secondValue);
+        }
+    }
+
+    public void redo() {
+        StackNode<Node, Object> node = panesHistory.redoPane();
+        if(node != null) {
+            setCenterModule(node.firstValue, node.secondValue);
+        }
+    }
+
+    private void setCenterModule(Node pane, Object module) {
+        borderPane.setCenter(pane);
+        actualCenterPane = pane;
+        actualCenterModule = module;
     }
 }
