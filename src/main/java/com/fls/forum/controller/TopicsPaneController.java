@@ -37,9 +37,9 @@ public class TopicsPaneController implements Initializable{
     @FXML
     private Pagination topicsListPagination;
 
-    public TopicsPaneController(Section section){
-        this.currentSection = section;
-    }
+//    public TopicsPaneController(Section section){
+//        this.currentSection = section;
+//    }
 
     private int topicsPerPage(){
         return 10;
@@ -76,7 +76,15 @@ public class TopicsPaneController implements Initializable{
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
+    }
+
+    public void setCurrentSection(Section section){
+        this.currentSection = section;
+    }
+
+    public void init(){
         setTopicsListView();
     }
+
 }

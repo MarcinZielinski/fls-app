@@ -2,6 +2,7 @@ package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
 import com.fls.forum.model.Post;
+import com.fls.forum.model.Section;
 import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -79,17 +80,20 @@ public class ApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        //loadTopicsPane();
     }
 
-    public void loadTopicsPane(TopicsPaneController topicsPaneController){
+    public void loadTopicsPane(Section section){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_topics.fxml"));
-        loader.setController(topicsPaneController);
+//        loader.setController(topicsPaneController);
+
+
         try {
             Parent sectionsParent = loader.load();
+            TopicsPaneController topicsPaneController = loader.getController();
+            topicsPaneController.setApplicationController(this);
+            topicsPaneController.setCurrentSection(section);
+            topicsPaneController.init();
             Scene scene = new Scene(sectionsParent);
 
 //        Stage window = (Stage)(source.getScene().getWindow());

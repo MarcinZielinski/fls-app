@@ -3,6 +3,7 @@ package com.fls.forum.controller;
 import com.fls.forum.model.Section;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,10 +42,10 @@ public class SectionsPaneController implements Initializable {
     }
 
     private void changeScreenSectionSelected(Node source) throws IOException {
-        TopicsPaneController topicsPaneController = new TopicsPaneController(sectionsListView.getSelectionModel().getSelectedItem());
-        topicsPaneController.setApplicationController(applicationController);
+//        TopicsPaneController topicsPaneController = new TopicsPaneController(sectionsListView.getSelectionModel().getSelectedItem());
+//        topicsPaneController.setApplicationController(applicationController);
 
-        applicationController.loadTopicsPane(topicsPaneController);
+        applicationController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("../pane_topics.fxml"));
 //        loader.setController(topicsPaneController);
 //        Parent sectionsParent = loader.load();
