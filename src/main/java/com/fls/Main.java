@@ -18,7 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         stage.setTitle("FLSocial");
+        stage.setMinWidth(300);
         stage.show();
+
         loadUserAuthentication();
     }
     public void loadUserAuthentication() {

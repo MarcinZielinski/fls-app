@@ -16,6 +16,7 @@ public class WallPost {
     private User user;
     private String content;
     private Wall wall;
+    private Long timestamp;
 
     public WallPost(User user, String content, Wall wall) {
         this.user = user;
@@ -45,5 +46,29 @@ public class WallPost {
 
     public Wall getWall() {
         return wall;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public WallPost(User user, String content, Wall wall, Long timestamp) {
+        this.user = user;
+        this.content = content;
+        this.wall = wall;
+        this.timestamp = timestamp;
+    }
+
+    public Long getTimestamp() {
+
+        return timestamp;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public WallPostController getWallPostController(){
+        return postController;
     }
 }

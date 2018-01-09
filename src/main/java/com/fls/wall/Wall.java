@@ -28,7 +28,7 @@ public class Wall {
     private StackPane stackPane;
     private WallController wController;
     private ThreadHelper actualTask;
-    private WallPost[] posts;
+    private List<WallPost> posts;
     private TitledPane postsPane;
 
     public Wall(Manager manager){
@@ -56,17 +56,19 @@ public class Wall {
     private void loadPosts() {
         Platform.runLater(() -> postsPane.setExpanded(true));
         if(actualTask!=null) actualTask.cancel();
-        actualTask = new ThreadHelper<>(stackPane, () -> Server.getWallPosts(manager.userId), this::loadPosts);
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getWallPosts(manager.tokenId), this::loadPosts);
         actualTask.restart();
     }
 
-    private void loadPosts(WallPost[] posts) {
-        posts = Server.getWallPosts(manager.userId);
-        posts = new WallPost[5];
-        for(int i =0; i < posts.length; ++i){
-            byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-            posts[i] = new WallPost(new User(1L, 1L, "Andrzej", "Duda", image),
-                    "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD", this);
+    private void loadPosts(List<WallPost> wallPosts) {
+        //posts = wallPosts;
+        if(posts == null) {
+            posts = new ArrayList<>();
+            for (int i = 0; i < 5; ++i) {
+                byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
+                posts.add(0, new WallPost(new User(1L, 1L, "Andrzej", "Duda", image),
+                        "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD", this, System.currentTimeMillis()-1000000000+i*2000));
+            }
         }
         wController.loadPosts(posts);
     }
@@ -82,4 +84,18 @@ public class Wall {
     public WallController getwController(){
         return wController;
     }
+
+    public void addPost(WallPost wp){
+        posts.add(0, wp);
+        loadPosts();
+    }
+
+    public void deletePost(WallPost wp){
+        posts.remove(wp);
+        loadPosts();
+    }
+
+
+
+
 }

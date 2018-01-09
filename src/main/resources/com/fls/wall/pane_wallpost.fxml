@@ -16,13 +16,18 @@
       <Label fx:id="content" alignment="TOP_LEFT" cacheHint="SCALE" contentDisplay="TEXT_ONLY" layoutX="20.0" layoutY="68.0" lineSpacing="2.0" mouseTransparent="true" text="aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa " wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0" />
       <SplitMenuButton graphicTextGap="0.0" layoutX="528.0" layoutY="14.0" mnemonicParsing="false" pickOnBounds="false" text="..." AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <items>
-          <MenuItem mnemonicParsing="false" text="Edit" />
-          <MenuItem mnemonicParsing="false" text="Delete" />
+          <MenuItem fx:id="editAction" mnemonicParsing="false" text="Edit" />
+          <MenuItem fx:id="deleteAct" mnemonicParsing="false" text="Delete" />
         </items>
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </SplitMenuButton>
+      <Label fx:id="time" layoutX="60.0" layoutY="44.0" text="Label" textFill="#7a76a8">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets />

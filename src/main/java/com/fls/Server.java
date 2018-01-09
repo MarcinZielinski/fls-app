@@ -4,6 +4,7 @@ import com.fls.chat.ChatSession;
 import com.fls.entities.User;
 import com.fls.wall.WallPost;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public interface Server {
     static ChatSession[] getAllChatSessions(Long userId) {return null;}
     static User getUser(Long userId) {return null;}
     static Long[] getUserFriends(Long userId) {return null;}
-    static WallPost[] getWallPosts(Long userId) {return null;}
+    static List<WallPost> getWallPosts(Long userId) {return null;}
     static List<User> getUsers(User user) {return null;}
+    static Long createPost(WallPost wp) { return null; }
 }
