@@ -53,7 +53,6 @@ public class UserFinderTest extends TestFXBase {
     private static final String NAME_TEXT_FIELD = "#nameTextField";
     private static final String ADD_SPOKEN_LANGUAGE_BUTTON = "#addSpokenLanguageButton";
     private static final String PROGRAMMING_LANGUAGES_TEXT_FIELD = "#programmingLangsTextField";
-    private static final String EXPERIENCE_SLIDEDR = "#experienceSlider";
     private static final String POINTS_FLS_TEXT_FIELD = "#pointsFls";
     private static final String POINTS_STACK_TEXT_FIELD = "#pointsStack";
     private static final String ADVANCED_SEARCH_BUTTON = "#advancedSearchButton";
@@ -75,7 +74,7 @@ public class UserFinderTest extends TestFXBase {
     public void userFillingTest() throws Exception {
         //given:
         byte[] image = ImageConverter.convertToByteArray(new ImageView("com.fls.user_finder/thmb.jpg"));
-        ArrayList<User> users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<User> users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(3L, 3L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
 
         when(Server.getUsers(any(User.class))).thenReturn(users);
 
