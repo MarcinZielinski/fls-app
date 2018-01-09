@@ -104,8 +104,44 @@ public class ApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    public void loadTopicsCreator(Section section){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ForumApp.class.getResource("pane_topics_create.fxml"));
+
+        try{
+            Pane root = loader.load();
+            TopicsCreatorPaneController topicsCreatorPaneController = loader.getController();
+
+            Stage editStage = new Stage();
+            topicsCreatorPaneController.setData(section, editStage);
+
+            editStage.setScene(new Scene(root));
+            editStage.initModality(Modality.APPLICATION_MODAL);
+            editStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(ForumApp.class.getResource("pane_edit.fxml"));
+//
+//        try {
+//        Pane root = loader.load();
+//        EditorController editorController = loader.getController();
+//
+//        Stage editStage = new Stage();
+//        editorController.setData(post, editStage);
+//
+//        editStage.setScene(new Scene(root));
+//        editStage.initModality(Modality.APPLICATION_MODAL);
+//        editStage.showAndWait();
+//
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//    }
 
 }
