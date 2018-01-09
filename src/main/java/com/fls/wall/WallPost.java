@@ -3,6 +3,7 @@ package com.fls.wall;
 import com.fls.entities.User;
 import com.fls.wall.controller.WallPostController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -17,11 +18,13 @@ public class WallPost {
     private String content;
     private Wall wall;
     private Long timestamp;
+    private Image postImage;
 
-    public WallPost(User user, String content, Wall wall) {
+    public WallPost(User user, String content, Wall wall, Image postImage) {
         this.user = user;
         this.content = content;
         this.wall = wall;
+        this.postImage = postImage;
     }
 
     public Pane load(){
@@ -52,7 +55,7 @@ public class WallPost {
         this.timestamp = timestamp;
     }
 
-    public WallPost(User user, String content, Wall wall, Long timestamp) {
+    WallPost(User user, String content, Wall wall, Long timestamp) {
         this.user = user;
         this.content = content;
         this.wall = wall;
@@ -70,5 +73,9 @@ public class WallPost {
 
     public WallPostController getWallPostController(){
         return postController;
+    }
+
+    public Image getPostImage() {
+        return postImage;
     }
 }

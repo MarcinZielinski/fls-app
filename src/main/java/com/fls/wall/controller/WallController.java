@@ -54,9 +54,9 @@ public class WallController {
 
     private void postCreator(){
         if(actualWallPost==null){
-            WallPost wp = new WallPost(Server.getUser(model.getManager().userId), content.getText(), model);
+            WallPost wp = new WallPost(Server.getUser(model.getManager().userId), content.getText(), model, imageView.getImage());
             byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-            wp = new WallPost(new User(0L, 0L, "Kamil", "Wróbel", image), content.getText(), model);
+            wp = new WallPost(new User(0L, 0L, "Kamil", "Wróbel", image), content.getText(), model, imageView.getImage());
             //Long timeStamp = Server.createPost(wp);
             Long timeStamp = System.currentTimeMillis();
             wp.setTimestamp(timeStamp);
