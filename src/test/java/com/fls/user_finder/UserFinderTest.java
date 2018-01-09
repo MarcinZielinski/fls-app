@@ -6,10 +6,10 @@ import com.fls.entities.User;
 import com.fls.manager.Manager;
 import com.fls.util.ImageConverter;
 import javafx.application.Platform;
+import javafx.geometry.VerticalDirection;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -18,8 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.testfx.api.FxToolkit;
@@ -29,7 +27,6 @@ import org.testfx.util.WaitForAsyncUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
@@ -40,9 +37,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.powermock.api.mockito.PowerMockito.*;
 import static org.testfx.api.FxAssert.verifyThat;
 
 /**
@@ -58,7 +53,6 @@ public class UserFinderTest extends TestFXBase {
     private static final String NAME_TEXT_FIELD = "#nameTextField";
     private static final String ADD_SPOKEN_LANGUAGE_BUTTON = "#addSpokenLanguageButton";
     private static final String PROGRAMMING_LANGUAGES_TEXT_FIELD = "#programmingLangsTextField";
-    private static final String EXPERIENCE_SLIDEDR = "#experienceSlider";
     private static final String POINTS_FLS_TEXT_FIELD = "#pointsFls";
     private static final String POINTS_STACK_TEXT_FIELD = "#pointsStack";
     private static final String ADVANCED_SEARCH_BUTTON = "#advancedSearchButton";
@@ -80,7 +74,7 @@ public class UserFinderTest extends TestFXBase {
     public void userFillingTest() throws Exception {
         //given:
         byte[] image = ImageConverter.convertToByteArray(new ImageView("com.fls.user_finder/thmb.jpg"));
-        ArrayList<User> users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<User> users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(3L, 3L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
 
         when(Server.getUsers(any(User.class))).thenReturn(users);
 
@@ -116,7 +110,7 @@ public class UserFinderTest extends TestFXBase {
         verifyThat(stackTextField, NodeMatchers.hasText("0"));
 
         mockStatic(Server.class);
-        clickOn(ADVANCED_SEARCH_BUTTON);
+        scroll(10, VerticalDirection.DOWN).clickOn(ADVANCED_SEARCH_BUTTON);
 
         final ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
         verifyStatic(Server.class);

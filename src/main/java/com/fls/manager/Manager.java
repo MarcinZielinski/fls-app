@@ -70,12 +70,27 @@ public class Manager {
     public void newMessageNotification(long userId) {}
 
     public void loadChat(List<Long> userIds) {
-        borderPane.setCenter(chat.load(userIds));
+        if(actualCenterModule != chat) {
+            Node newPane  = chat.load(userIds);
+            panesHistory.addPane(newPane, chat);
+            setCenterModule(newPane, chat);
+        }
     }
     public void loadProfile(Long userId) {
         System.out.println("profil o id " + userId);
+        if(actualCenterModule != profiles) {
+            Node newPane  = profiles.load(userId);
+            panesHistory.addPane(newPane, profiles);
+            setCenterModule(newPane, profiles);
+        }
     }
-    public void loadForum() {}
+    public void loadForum() {
+        if(actualCenterModule != forum) {
+            Node newPane  = forum.load();
+            panesHistory.addPane(newPane, forum);
+            setCenterModule(newPane, forum);
+        }
+    }
     public void loadWall() {
         if(actualCenterModule != wall) {
             Node newPane  = wall.load();
