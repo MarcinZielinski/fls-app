@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
@@ -22,6 +23,7 @@ public class WallPostController {
     public Label time;
     public MenuItem editAction;
     public MenuItem deleteAct;
+    public SplitMenuButton menu;
 
     @FXML
     private void initialize(){
@@ -31,8 +33,11 @@ public class WallPostController {
         name.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> model.getWall().getManager().loadProfile(model.getUser().getUserId()));
         name.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> name.setUnderline(true));
         name.addEventHandler(MouseEvent.MOUSE_EXITED, e -> name.setUnderline(false));
+
         editAction.setOnAction(e -> editPost());
         deleteAct.setOnAction(e -> deletePost());
+
+
     }
 
     private WallPost model;
@@ -51,6 +56,10 @@ public class WallPostController {
         avatar.setFill(new ImagePattern(ImageConverter.convertToImage(model.getUser().getImage())));
         name.setText(model.getUser().getFirstName() + " " + model.getUser().getLastName());
         content.setText(model.getContent());
+        if(model.getWall().getManager().userId == model.getUser().getUserId()){
+            menu.setDisable(false);
+            menu.setVisible(true);
+        }
         if(model.getTimestamp()!=null){
             time.setText((new Date(model.getTimestamp())).toString());
         }
