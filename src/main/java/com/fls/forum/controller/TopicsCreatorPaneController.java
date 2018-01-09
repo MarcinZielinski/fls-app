@@ -68,9 +68,8 @@ public class TopicsCreatorPaneController {
         String postContent = topicQuestionContentTextArea.getText();
 
         if(validateCreatedTopic(postContent, topicName)){
-            //TODO: create Topic
+
             Topic newTopic = new Topic(section.getId(), topicName, null, section);
-            //TODO: create QuestionPost
             QuestionPost newPost = new QuestionPost(newTopic, new Date(), ForumApp.getUserId(), new Content(postContent), topicName);
 
             newTopic.setQuestionPost(newPost);
@@ -78,8 +77,6 @@ public class TopicsCreatorPaneController {
             stage.close();
         }
     }
-
-    //TODO: validation if no posts or no content
 
     private static void addTextLimiter(final TextField tf, final int maxLength) {
         tf.textProperty().addListener((ov, oldValue, newValue) -> {
