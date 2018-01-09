@@ -67,6 +67,8 @@ public class WallController {
             actualWallPost.setContent(content.getText());
             actualWallPost.getWallPostController().updateControls();
             model.refreshPosts();
+            clearCreator();
+            actualWallPost = null;
         }
     }
 
