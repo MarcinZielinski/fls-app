@@ -18,7 +18,7 @@ public class ApplicationController {
 
     private Stage primaryStage;
 
-    public ApplicationController(Stage primaryStage) throws IOException {
+    public ApplicationController(Stage primaryStage) {
 
         this.primaryStage = primaryStage;
         primaryStage.setTitle("FLSocial");
