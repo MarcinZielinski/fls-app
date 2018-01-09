@@ -141,9 +141,6 @@ public class PostsController {
         }
         posts.add(post);
 
-        System.out.println(posts.size());
-        System.out.println(topic.getPosts().size());
-
         if(posts.size() % itemsOnPage ==  1)
             pagination.setPageCount(pagination.getPageCount() + 1);
         pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
@@ -151,7 +148,6 @@ public class PostsController {
 
     private void viewPost(Post post){
         if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
-            System.out.println("adding post");
             hBoxList.add(postView.showPost(post));
         }
         pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
