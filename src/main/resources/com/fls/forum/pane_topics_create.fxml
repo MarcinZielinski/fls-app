@@ -44,11 +44,7 @@
                 <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-                  <TextArea fx:id="topicQuestionContentTextArea" prefHeight="192.0" prefWidth="494.0" promptText="Opisz dokładnie swój problem" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="DejaVu Sans ExtraLight" size="13.0" />
-                     </font>
-                  </TextArea>
+                  <TextArea fx:id="topicQuestionContentTextArea" prefHeight="192.0" prefWidth="494.0" promptText="Opisz dokładnie swój problem" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TilePane prefHeight="192.0" prefWidth="97.0" GridPane.rowIndex="1">
                         <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="66.0" text="Post">
                            <font>
@@ -61,13 +57,10 @@
                         <Font name="DejaVu Sans ExtraLight" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="topicNameTextField" promptText="Napisz krótko w czym rzecz" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="DejaVu Sans ExtraLight" size="13.0" />
-                     </font></TextField>
+                  <TextField fx:id="topicNameTextField" promptText="Napisz krótko w czym rzecz" GridPane.columnIndex="1" />
                   <Pane prefHeight="61.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                         <Button fx:id="makePostButton" layoutX="456.0" layoutY="34.0" mnemonicParsing="false" text="Stwórz" />
-                        <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="371.0" text="Nazwa wątku jest zbyt długa - max 100 znaków " textFill="#da0505">
+                        <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="371.0" textFill="#da0505" visible="false">
                            <font>
                               <Font name="DejaVu Sans ExtraLight" size="15.0" />
                            </font>
