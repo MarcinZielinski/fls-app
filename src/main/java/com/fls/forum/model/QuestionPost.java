@@ -8,10 +8,17 @@ public class QuestionPost extends Post{
     private boolean solved;
     private String title;
 
-    public QuestionPost(Topic topic, long id, Date cratedAt, long userId, Content content, String title, Boolean authorPlus) {
-        super(topic, id, cratedAt, userId, content, authorPlus);
+    public QuestionPost(Topic topic, long id, Date createdAt, long userId, Content content, String title, Boolean authorPlus) {
+        super(topic, id, createdAt, userId, content, authorPlus);
         solved = false;
         this.title = title;
+    }
+
+    public QuestionPost(Topic topic, Date createdAt, long userId, Content content, String title){
+        super(topic, -1, createdAt, userId, content, false);
+        solved = false;
+        this.title = title;
+
     }
 
     public QuestionPost(){

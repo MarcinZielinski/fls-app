@@ -18,7 +18,7 @@ public class ApplicationController {
 
     private Stage primaryStage;
 
-    public ApplicationController(Stage primaryStage) throws IOException {
+    public ApplicationController(Stage primaryStage) {
 
         this.primaryStage = primaryStage;
         primaryStage.setTitle("FLSocial");
@@ -34,7 +34,7 @@ public class ApplicationController {
             Pane root = loader.load();
             PostsController postsController = loader.getController();
             postsController.setApplicationController(this);
-            postsController.setData(1L, topic, DataGenerator.generatePosts(topic));
+            postsController.setData(ForumApp.getUserId(), topic);
 
             primaryStage.setScene(new Scene(root));
 

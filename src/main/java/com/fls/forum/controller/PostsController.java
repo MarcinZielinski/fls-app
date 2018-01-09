@@ -109,9 +109,9 @@ public class PostsController {
 //        pagination.setStyle("-fx-border-color:red;");
         pagination.setPageFactory(this::createPage);
 
-        IntegerBinding sizeProperty = Bindings.size(posts);
+//        IntegerBinding sizeProperty = Bindings.size(posts);
 
-        pagination.pageCountProperty().bind(sizeProperty.add(itemsOnPage - 1).divide(itemsOnPage));
+//        pagination.pageCountProperty().bind(sizeProperty.add(itemsOnPage - 1).divide(itemsOnPage));
 
     }
 
@@ -137,24 +137,38 @@ public class PostsController {
 
     private void addPost(Post post){
         if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
-            System.out.println("adding post");
             hBoxList.add(postView.showPost(post));
         }
         posts.add(post);
+
+        System.out.println(posts.size());
+        System.out.println(topic.getPosts().size());
+
+        if(posts.size() % itemsOnPage ==  1)
+            pagination.setPageCount(pagination.getPageCount() + 1);
         pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
     }
 
-    void setData(Long userId, Topic topic, ObservableList<Post> posts) {
+    private void viewPost(Post post){
+        if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
+            System.out.println("adding post");
+            hBoxList.add(postView.showPost(post));
+        }
+        pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
+    }
+
+    void setData(Long userId, Topic topic) {
         this.userId = userId;
         this.topic = topic;
-//        postView = new PostView(vBox, applicationController);
         postView = new PostView(applicationController);
-        for(Post post: posts) {
-            addPost(post);
+        posts = topic.getPosts();
+        for(Post post: posts){
+            viewPost(post);
         }
         pagination.setCurrentPageIndex(0);
 
         titleLabel.setText(((QuestionPost)posts.get(0)).getTitle());
+        pagination.setPageCount((posts.size() - 1) / itemsOnPage + 1);
     }
 
     public ObservableList<Post> getPosts() {
