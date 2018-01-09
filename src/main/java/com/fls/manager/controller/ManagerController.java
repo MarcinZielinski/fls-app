@@ -12,19 +12,31 @@ import javafx.scene.control.TextField;
 public class ManagerController {
     @FXML
     public TextField searchUserField;
+    @FXML
+    public Button searchButton;
+    @FXML
+    public Button chatButton;
 
     private Manager model;
 
     @FXML
-    public void initialize() {}
+    public void initialize() {
+    }
 
-    @FXML
-    public Button searchButton;
+    public Manager getModel() {
+        return model;
+    }
 
-    public Manager getModel() {return model;}
-    public void setModel(Manager model) {this.model = model;}
+    public void setModel(Manager model) {
+        this.model = model;
+    }
 
     public void searchForUsers(ActionEvent event) {
         model.loadUserFinder(searchUserField.getText());
     }
+
+    public void openChat() {
+        model.loadChat();
+    }
+
 }

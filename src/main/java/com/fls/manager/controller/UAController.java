@@ -9,16 +9,18 @@ import javafx.scene.control.Button;
  * Created by Marcin on 2017-12-18.
  */
 public class UAController {
-    private UserAuthentication model;
 
     @FXML
     public Button loginButton;
 
+    private UserAuthentication model;
+
     @FXML
-    void initialize() {}
+    void initialize() {
+    }
 
     public void login(ActionEvent event) {
-        model.login(0L,0L);
+        model.login(0L, 0L);
     }
 
     public void setModel(UserAuthentication model) {

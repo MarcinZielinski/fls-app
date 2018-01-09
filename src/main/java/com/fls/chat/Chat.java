@@ -1,12 +1,50 @@
 package com.fls.chat;
 
-import javafx.scene.layout.Pane;
+import com.fls.chat.event.ChatEvent;
+import com.fls.chat.event.ChatEventHandler;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-/**
- * Created by Marcin on 2017-12-12.
- */
 public class Chat {
-    public Pane load(List<Long> userIds){ return new Pane();}
+
+    private final ChatContext chatContext;
+    private final Map<Class, List<ChatEventHandler>> eventHandlers;
+    private final ChatSession chatSession;
+    private final List<ChatRoom> openChatRooms;
+
+    public Chat(ChatContext chatContext) {
+        this.chatContext = chatContext;
+        this.eventHandlers = chatContext.getEventHandlers();
+        this.chatSession = chatContext.getChatServer().createChatSession(this, chatContext.getChatUser());
+        this.openChatRooms = chatContext.getOpenChatRooms();
+    }
+
+    public ChatRoom openRoom(String name) {
+        ChatRoom room = chatSession.openRoom(name);
+        openChatRooms.add(room);
+        return room;
+    }
+
+    public ChatRoom createRoom(String name, Set<ChatUser> roomMembers) {
+        ChatRoom room = chatSession.createRoom(name, roomMembers);
+        openChatRooms.add(room);
+        return room;
+    }
+
+    public void onEvent(ChatEvent event) {
+        if (eventHandlers.containsKey(event.getClass())) {
+            eventHandlers.get(event.getClass())
+                    .forEach(h -> h.handle(event));
+        }
+    }
+
+    public <E extends ChatEvent> void subscribe(Class<E> eventClass, ChatEventHandler<E> handler) {
+        List<ChatEventHandler> handlers = eventHandlers.getOrDefault(eventClass, new ArrayList<>());
+        handlers.add(handler);
+        eventHandlers.put(eventClass, handlers);
+    }
+
 }

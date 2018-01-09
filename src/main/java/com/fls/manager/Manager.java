@@ -1,16 +1,16 @@
 package com.fls.manager;
 
 import com.fls.Main;
-import com.fls.chat.Chat;
+import com.fls.chat.ChatContext;
 import com.fls.entities.User;
 import com.fls.forum.Forum;
+import com.fls.manager.controller.ManagerController;
 import com.fls.profiles.Profiles;
 import com.fls.user_finder.UserFinder;
-import com.fls.manager.controller.ManagerController;
+import com.fls.wall.Wall;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import com.fls.wall.Wall;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Manager {
     private final Main main;
     private ManagerController controller;
     private List<User> friendsOnline;
-    private Chat chat;
+    private ChatContext chatContext;
     private Profiles profiles;
     private UserFinder userFinder;
     private Forum forum;
@@ -32,11 +32,11 @@ public class Manager {
     private Scene scene;
     private BorderPane rootLayout;
 
-    public Manager(Main main, Long tokenId, Long userId) {
+    public Manager(Main main, Long tokenId, Long userId, ChatContext chatContext) {
         this.main = main;
         this.tokenId = tokenId;
         this.userId = userId;
-        this.chat = new Chat();
+        this.chatContext = chatContext;
         this.profiles = new Profiles();
         this.userFinder = new UserFinder();
         this.forum = new Forum();
@@ -57,12 +57,22 @@ public class Manager {
         main.loadUserAuthentication();
     }
 
-    public void newMessageNotification(long userId) {}
+    public void newMessageNotification(long userId) {
+    }
 
-    public void loadChat(List<Long> userIds) {chat.load(userIds);}
-    public void loadProfile(Long userIds) {}
-    public void loadForum() {}
-    public void loadWall() {}
+    public void loadChat() {
+        main.loadChat(chatContext);
+    }
+
+    public void loadProfile(Long userIds) {
+    }
+
+    public void loadForum() {
+    }
+
+    public void loadWall() {
+    }
+
     public void loadUserFinder(String query) {
         rootLayout.setCenter(userFinder.load(query));
     }

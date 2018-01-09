@@ -5,15 +5,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
-<BorderPane maxHeight="500" maxWidth="500" minHeight="300" minWidth="300" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.manager.controller.ManagerController">
-   <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Enter name" />
-            <TextField fx:id="searchUserField" />
-            <Button mnemonicParsing="false" onAction="#searchForUsers" text="Search" fx:id="searchButton" />
-         </children>
-      </HBox>
-   </top>
+<BorderPane maxHeight="500" maxWidth="500" minHeight="300" minWidth="300" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fls.manager.controller.ManagerController">
+    <top>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Enter name"/>
+                <TextField fx:id="searchUserField"/>
+                <Button mnemonicParsing="false" onAction="#searchForUsers" text="Search" fx:id="searchButton"/>
+                <Button fx:id="chatButton" layoutX="274" layoutY="250" mnemonicParsing="false" onAction="#openChat"
+                        text="Chat"/>
+            </children>
+        </HBox>
+    </top>
 </BorderPane>
