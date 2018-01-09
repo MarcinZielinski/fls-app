@@ -1,12 +1,11 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.AnswerPost;
-import com.fls.forum.model.Post;
-import com.fls.forum.model.QuestionPost;
-import com.fls.forum.model.Section;
+import com.fls.forum.ForumApp;
+import com.fls.forum.model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -69,9 +68,14 @@ public class TopicsCreatorPaneController {
         String postContent = topicQuestionContentTextArea.getText();
 
         if(validateCreatedTopic(postContent, topicName)){
-            //TODO: create QuestionPost
-
             //TODO: create Topic
+            Topic newTopic = new Topic(section.getId(), topicName, null, section);
+            //TODO: create QuestionPost
+            QuestionPost newPost = new QuestionPost(newTopic, new Date(), ForumApp.getUserId(), new Content(postContent), topicName);
+
+            newTopic.setQuestionPost(newPost);
+            section.addTopic(newTopic);
+            stage.close();
         }
     }
 

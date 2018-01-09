@@ -4,9 +4,10 @@ import com.fls.forum.model.Post;
 import com.fls.forum.model.generator.DataGenerator;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class ModelTest {
 
@@ -27,6 +28,7 @@ public class ModelTest {
 
         assertEquals(plusCount + 1, (long)post.getPlusCount());
     }
+
 
 
     @Test

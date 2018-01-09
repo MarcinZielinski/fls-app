@@ -41,16 +41,16 @@ public class PostsTest extends ApplicationTest {
         Pane root;
         root = loader.load();
 
-        postsController = loader.getController();
-//        postsController.setApplicationController(this);
-        postsController.setData(1L, null, DataGenerator.generatePosts(null));
-        posts = postsController.getPosts();
-        vBox = postsController.getMainVbox();
-        pagination = postsController.getPagination();
-        hBoxList = postsController.gethBoxList();
-        primaryStage.setScene(new Scene(root));
-
-        primaryStage.show();
+//        postsController = loader.getController();
+////        postsController.setApplicationController(this);
+//        postsController.setData(1L, null, DataGenerator.generatePosts(null));
+//        posts = postsController.getPosts();
+//        vBox = postsController.getMainVbox();
+//        pagination = postsController.getPagination();
+//        hBoxList = postsController.gethBoxList();
+//        primaryStage.setScene(new Scene(root));
+//
+//        primaryStage.show();
     }
 
 
