@@ -1,6 +1,6 @@
 package com.fls.entities;
-import lombok.Data;
-
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set; /**
  * Created by Marcin on 2017-12-12.
  */
@@ -59,5 +59,30 @@ public class User {
 
     public void setTokenId(Long tokenId) {
         this.tokenId = tokenId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(tokenId, user.tokenId) &&
+                Objects.equals(userId, user.userId) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(spokenLanguages, user.spokenLanguages) &&
+                Objects.equals(programmingLanguages, user.programmingLanguages) &&
+                Objects.equals(experience, user.experience) &&
+                Objects.equals(flsPoints, user.flsPoints) &&
+                Objects.equals(stackPoints, user.stackPoints) &&
+                Objects.equals(hackerrankPoints, user.hackerrankPoints) &&
+                Arrays.equals(image, user.image);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(tokenId, userId, firstName, lastName, spokenLanguages, programmingLanguages, experience, flsPoints, stackPoints, hackerrankPoints);
+        result = 31 * result + Arrays.hashCode(image);
+        return result;
     }
 }

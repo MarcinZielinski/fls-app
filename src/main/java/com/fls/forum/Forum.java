@@ -11,5 +11,5 @@ public class Forum {
 
     }
 
-    Pane load() {return null;}
+    public Pane load() {return null;}
 }
