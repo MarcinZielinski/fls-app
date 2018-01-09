@@ -1,6 +1,8 @@
-package com.fls.user_finder;
+package com.fls.user_finder.contoller;
 
 import com.fls.entities.User;
+import com.fls.user_finder.UserFinder;
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -48,7 +50,7 @@ public class UFController {
     private void initialize() {
         spokenLanguagesList = new ArrayList<>();
         languagesVbox = new VBox();
-        spokenLaguagesGridPane.add(languagesVbox,0,4);
+        spokenLaguagesGridPane.add(languagesVbox,0,5);
         experienceSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             experienceSlider.setValue((int) Math.round(newValue.doubleValue()));
             experienceLabel.setText(String.format("Years (minimum): %d", (int)experienceSlider.getValue()));

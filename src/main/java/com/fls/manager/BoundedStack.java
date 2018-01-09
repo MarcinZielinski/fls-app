@@ -1,20 +1,32 @@
 package com.fls.manager;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class BoundedStack<T, E> {
     private StackNode<T, E> bottom;
     private StackNode<T, E> top;
     private final int MAX_SIZE;
-    private int actualSize;
+    private IntegerProperty size;
 
     public BoundedStack(final int maxSize) {
         this.MAX_SIZE = maxSize;
         bottom = new StackNode<>(null, null); // guard
         bottom.prev = null;
         top = bottom;
+        size = new SimpleIntegerProperty(this, "size", 0);
     }
 
-    public int size() {
-        return actualSize;
+    public IntegerProperty sizeProperty() {
+        return size;
+    }
+
+    public int getSize() {
+        return size.get();
+    }
+
+    private void setSize(Integer size) {
+        this.size.set(size);
     }
 
     public void push(StackNode<T, E> node) {
@@ -23,20 +35,20 @@ public class BoundedStack<T, E> {
     }
 
     public void push(T firstValue, E secondValue) {
-        if(actualSize < MAX_SIZE) {
+        if(getSize() < MAX_SIZE) {
             StackNode<T, E> next = new StackNode<>(firstValue, secondValue);
 
             top.next = next;
             next.prev = top;
 
             top = next;
-            ++actualSize;
+            setSize(getSize()+1);
         }
     }
 
     public void clear() {
         top = bottom;
-        actualSize = 0;
+        setSize(0);
     }
 
     @SuppressWarnings({"Duplicates", "unchecked"}) // it's not duplicate. Using different class fields in both methods
@@ -47,7 +59,7 @@ public class BoundedStack<T, E> {
         top = tmp.prev;
         top.next = null;
 
-        --actualSize;
+        setSize(getSize()-1);
 
         return tmp;
     }
@@ -60,7 +72,7 @@ public class BoundedStack<T, E> {
         bottom = tmp.next;
         bottom.prev = null;
 
-        --actualSize;
+        setSize(getSize()-1);
 
         return tmp;
     }

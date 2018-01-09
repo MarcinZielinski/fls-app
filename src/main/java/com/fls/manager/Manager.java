@@ -56,6 +56,7 @@ public class Manager {
             controller.setModel(this);
             borderPane = controller.borderPane;
             panesHistory = new PanesHistory(10);
+            controller.setBindings(panesHistory.undoStackSizeProperty(), panesHistory.redoStackSizeProperty());
             loadWall();
         } catch (IOException e) {
             e.printStackTrace();

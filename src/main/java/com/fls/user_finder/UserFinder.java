@@ -3,6 +3,7 @@ package com.fls.user_finder;
 import com.fls.Server;
 import com.fls.entities.User;
 import com.fls.manager.Manager;
+import com.fls.user_finder.contoller.UFController;
 import com.fls.util.ImageConverter;
 import com.fls.util.ThreadHelper;
 import javafx.application.Platform;
@@ -11,8 +12,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -59,28 +58,17 @@ public class UserFinder {
 
     private void fillWithQueryResult(VBox vBox, List<User> users) {
         byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image)).collect(Collectors.toCollection(ArrayList::new));
+        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(1L, 1L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
         vBox.getChildren().clear(); // clearing the results of the last search
         if(users!=null) {
+            vBox.setAlignment(Pos.TOP_LEFT);
             for (User user : users) {
-                vBox.setAlignment(Pos.TOP_LEFT);
-                Label label1 = new Label(String.format("%s %s", user.getFirstName(), user.getLastName()));
-                ImageView imageView = ImageConverter.convertToImageView(user.getImage());
-                imageView.setFitHeight(100);
-                imageView.setFitWidth(100);
-                HBox hBox = new HBox(imageView, label1);
-                hBox.setAlignment(Pos.CENTER_LEFT);
-                hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> manager.loadProfile(user.getUserId()));
-                hBox.setStyle("-fx-background-color: lightgray");
-                hBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> hBox.setOpacity(0.5));
-                hBox.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> hBox.setOpacity(1));
-                hBox.setSpacing(20);
-                vBox.getChildren().add(hBox);
+                UFResult result = new UFResult(manager, user);
+                vBox.getChildren().add(result.load());
             }
         } else {
-            Label label = new Label("No results :(");
-            vBox.getChildren().add(label);
             vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().add(new Label("No results :("));
         }
     }
 
