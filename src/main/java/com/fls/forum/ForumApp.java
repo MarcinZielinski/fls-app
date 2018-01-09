@@ -30,22 +30,6 @@ public class ForumApp extends Application {
     }
 
 
-
-
-    private void loadUserAuthentication() {
-
-    }
-
-    public void loadManager(Long tokenId, Long userId) {
-        Manager manager = new Manager(null, 1L, 1L);
-        stage.setScene(manager.getScene());
-    }
-
-    private void loadTopicsPane() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("pane_topics.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-    }
     public static Long getUserId(){
         return 1L;
     }

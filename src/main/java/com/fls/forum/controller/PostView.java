@@ -90,6 +90,7 @@ public class PostView {
         HBox plusMinusButtons = new HBox(addButton, minusButton);
         plusMinusButtons.setStyle("-fx-padding: 5");
         editButton.setStyle("-fx-padding: 5");
+        editButton.setText("Edit");
         Pane buttons = new Pane(plusMinusButtons, editButton);
         buttons.setStyle(defalultStyle);
         buttons.prefHeightProperty().bind(hBox.heightProperty());

@@ -42,7 +42,7 @@ public class PostsTest extends ApplicationTest {
         Pane root;
         root = loader.load();
 
-        Topic topic = new Topic(-1, -1, null, null);
+        Topic topic = new Topic(-1, "a", null, null);
         topic.setPosts(DataGenerator.generatePosts(topic));
         postsController = loader.getController();
         postsController.setData(1L, topic);
