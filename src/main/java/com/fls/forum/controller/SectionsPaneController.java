@@ -54,7 +54,6 @@ public class SectionsPaneController implements Initializable {
     }
 
     public void setApplicationController(ApplicationController applicationController) {
-        System.out.println("setting controller");
         this.applicationController = applicationController;
     }
 }

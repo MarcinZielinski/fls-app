@@ -20,6 +20,7 @@ public class TopicsCreatorPaneController {
 
     private Section section;
     private Stage stage;
+    private ApplicationController applicationController;
 
     @FXML
     private Label currentSectionNameLabel;
@@ -32,6 +33,10 @@ public class TopicsCreatorPaneController {
 
     @FXML
     private TextField topicNameTextField;
+
+    public void setApplicationController(ApplicationController applicationController) {
+        this.applicationController = applicationController;
+    }
 
     public void setData(Section section, Stage stage){
         this.section = section;
@@ -74,6 +79,8 @@ public class TopicsCreatorPaneController {
 
             newTopic.setQuestionPost(newPost);
             section.addTopic(newTopic);
+
+            applicationController.loadPostsPane(newTopic);
             stage.close();
         }
     }

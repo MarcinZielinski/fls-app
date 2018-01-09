@@ -113,7 +113,7 @@ public class ApplicationController {
         try{
             Pane root = loader.load();
             TopicsCreatorPaneController topicsCreatorPaneController = loader.getController();
-
+            topicsCreatorPaneController.setApplicationController(this);
             Stage editStage = new Stage();
             topicsCreatorPaneController.setData(section, editStage);
 
