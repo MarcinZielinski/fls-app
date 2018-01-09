@@ -31,7 +31,7 @@ public class ForumApp extends Application {
 
 
     public static Long getUserId(){
-        return 1L;
+        return 2L;
     }
 
 
