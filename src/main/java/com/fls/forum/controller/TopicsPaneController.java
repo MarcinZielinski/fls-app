@@ -55,7 +55,6 @@ public class TopicsPaneController implements Initializable{
     private void setTopicsListView(){
         if(currentSection != null){
             sectionNameLabel.setText(currentSection.getName());
-            topics = new dataGenerator().getTopics(currentSection.getId());
         }
 
         topicsListPagination.setPageCount(((int)(Math.ceil((topics.size()-1) / 10)+1)));
@@ -84,6 +83,7 @@ public class TopicsPaneController implements Initializable{
     }
 
     public void setCurrentSection(Section section){
+        topics = section.getTopics();
         this.currentSection = section;
     }
 

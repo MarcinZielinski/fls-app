@@ -1,5 +1,9 @@
 package com.fls.forum.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Topic {
@@ -9,6 +13,7 @@ public class Topic {
     private String name;
     private QuestionPost questionPost;
     private Section section;
+    private ObservableList<Post> posts = FXCollections.observableArrayList();
 
     public List<Integer> getAllPostsIds(){
         return null;
@@ -20,10 +25,21 @@ public class Topic {
         this.name = name;
         this.questionPost = questionPost;
         this.section = section;
+        addPost(questionPost);
     }
 
     public Topic(long categoryId, long id, String name, QuestionPost questionPost){
         this(categoryId, id, name, questionPost, null);
+    }
+
+    public ObservableList<Post> getPosts() {
+        //TODO: load from database
+        return posts;
+    }
+
+    public void addPost(Post post){
+        // TODO: send to database
+        posts.add(post);
     }
 
     public long getCategoryId() {

@@ -1,51 +1,56 @@
 package com.fls.forum.controller;
 
+import com.fls.forum.model.Content;
 import com.fls.forum.model.QuestionPost;
 import com.fls.forum.model.Section;
 import com.fls.forum.model.Topic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class dataGenerator {
 
-    private List<Section> sections;
-    private List<Topic> topics;
+    private static List<Section> sections;
+    private static List<Topic> topics;
 
-    public dataGenerator(){
+    public static void init(){
         sections = new ArrayList<>();
         topics = new ArrayList<>();
-        fillWithSections();
         fillWithTopics();
+        fillWithSections();
+        System.out.println(topics.size());
     }
 
 
-    public List<Section> getSections(){
+    public static List<Section> getSections(){
         return sections;
     }
 
-    public List<Topic> getTopics(long sectionId){
+    public static List<Topic> getTopics(long sectionId){
+
+        System.out.println(topics.size());
+
         List<Topic> result = new ArrayList<>();
         for (Topic topic: topics){
             if(topic.getCategoryId() == sectionId){
                 result.add(topic);
             }
         }
-        System.out.print(result);
+
+
+        System.out.println(result.size());
+
         return result;
     }
 
 
-    private void fillWithSections(){
+    private static void fillWithSections(){
         sections.add(new Section(1, "Java", "Programowanie w języku Java"));
         sections.add(new Section(2, "Humor", "Napisz coś śmiesznego"));
         sections.add(new Section(3, "Koło", "BIT, AGLO, AI i inne"));
         sections.add(new Section(4, "Praktyki", "Ogłoszenia pracy, staże"));
     }
 
-    private void fillWithTopics(){
+    private static void fillWithTopics(){
         topics.add(new Topic(1, 100, "What is a NullPointerException, and how do I fix it?", new QuestionPost()));
         topics.add(new Topic(1, 101, "Is java pass by reference or pass by value?", new QuestionPost()));
         topics.add(new Topic(1, 102, "How do I compare strings in Java?", new QuestionPost()));
@@ -73,7 +78,15 @@ public class dataGenerator {
 
         for(Topic topic: topics){
             topic.getQuestionPost().setTopic(topic);
-            topic.setSection(sections.get(0));
+            topic.getQuestionPost().setSolved(false);
+            topic.getQuestionPost().setTitle(topic.getName());
+            topic.getQuestionPost().setContent(new Content("aaa"));
+            topic.getQuestionPost().setAuthorPlus(false);
+            topic.getQuestionPost().setCratedAt(new Date());
+            topic.getQuestionPost().setAuthorId(1);
+
+
+            topic.getQuestionPost().setTopic(topic);
         }
 
 

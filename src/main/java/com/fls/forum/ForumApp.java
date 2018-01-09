@@ -2,6 +2,8 @@ package com.fls.forum;
 
 import com.fls.forum.controller.ApplicationController;
 import com.fls.forum.controller.SectionsPaneController;
+import com.fls.forum.controller.dataGenerator;
+import com.fls.forum.model.generator.DataGenerator;
 import com.fls.forum.view.SectionsPane;
 import com.fls.manager.Manager;
 import javafx.application.Application;
@@ -21,6 +23,7 @@ public class ForumApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        dataGenerator.init();
         ApplicationController applicationController = new ApplicationController(primaryStage);
         applicationController.loadSectionsPane();
 
