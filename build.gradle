@@ -11,6 +11,9 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:23.6-jre'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+
     testCompile group: "org.testfx", name: "testfx-core", version: "4.0.10-alpha"
     testCompile group: "org.testfx", name: "testfx-junit", version: "4.0.10-alpha"
     testCompile group: 'junit', name: 'junit', version: '4.12'
