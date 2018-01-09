@@ -59,8 +59,8 @@
                   </Label>
                   <TextField fx:id="topicNameTextField" promptText="Napisz krótko w czym rzecz" GridPane.columnIndex="1" />
                   <Pane prefHeight="61.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                        <Button fx:id="makePostButton" layoutX="456.0" layoutY="34.0" mnemonicParsing="false" text="Stwórz" />
-                        <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="371.0" textFill="#da0505" visible="false">
+                        <Button fx:id="makePostButton" layoutX="456.0" layoutY="34.0" mnemonicParsing="false" onAction="#onMakePostButtonClicked" text="Stwórz" />
+                        <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="480.0" textFill="#da0505" visible="false">
                            <font>
                               <Font name="DejaVu Sans ExtraLight" size="15.0" />
                            </font>

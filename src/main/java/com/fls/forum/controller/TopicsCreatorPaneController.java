@@ -42,26 +42,35 @@ public class TopicsCreatorPaneController {
     }
 
     private void onBackFromTopicCreatorButtonClicked(){
-            stage.close();
+        stage.close();
     }
 
-    private boolean validatePostContent(String postContent){
-        if(postContent.length() > 100){
-            topicNameErrorLabel.setText(String.format("Zbyt duża ilość znaków %d/2500", postContent.length()));
+    private boolean validateCreatedTopic(String postContent, String topicName){
+        if(topicName.length() > 3) {
+
+            if (postContent.length() > 15000) {
+                topicNameErrorLabel.setText(String.format("Zbyt duża ilość znaków: %d (max. 15000)", postContent.length()));
+                topicNameErrorLabel.setVisible(true);
+                return false;
+            }
+        } else {
+            topicNameErrorLabel.setText("Nazwa tematu powinna być dłuższa niż 3 znaki");
             topicNameErrorLabel.setVisible(true);
             return false;
         }
+
 
         topicNameErrorLabel.setVisible(false);
         return true;
     }
 
-    private void onMakePostButtonClicked(){
+    public void onMakePostButtonClicked(){
         String topicName = topicNameTextField.getText();
         String postContent = topicQuestionContentTextArea.getText();
 
-        if(validatePostContent(postContent)){
+        if(validateCreatedTopic(postContent, topicName)){
             //TODO: create QuestionPost
+
             //TODO: create Topic
         }
     }
