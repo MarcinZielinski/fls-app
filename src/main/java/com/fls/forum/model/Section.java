@@ -44,6 +44,10 @@ public class Section {
         return topics;
     }
 
+    public void addTopic(Topic topic){
+        this.topics.add(topic);
+    }
+
     public String getName() {
         return name;
     }

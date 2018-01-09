@@ -19,17 +19,18 @@ public class Topic {
         return null;
     }
 
-    public Topic(long categoryId, long id, String name, QuestionPost questionPost, Section section){
+    public Topic(long categoryId, String name, QuestionPost questionPost, Section section){
         this.categoryId = categoryId;
-        this.id = id;
         this.name = name;
         this.questionPost = questionPost;
         this.section = section;
-        addPost(questionPost);
+        if(questionPost != null){
+            addPost(questionPost);
+        }
     }
 
-    public Topic(long categoryId, long id, String name, QuestionPost questionPost){
-        this(categoryId, id, name, questionPost, null);
+    public Topic(long categoryId, String name, QuestionPost questionPost){
+        this(categoryId, name, questionPost, null);
     }
 
     public ObservableList<Post> getPosts() {
@@ -76,5 +77,10 @@ public class Topic {
 
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public void setQuestionPost(QuestionPost questionPost) {
+        this.questionPost = questionPost;
+        posts.add(questionPost);
     }
 }
