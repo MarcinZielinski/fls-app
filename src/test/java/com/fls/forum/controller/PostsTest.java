@@ -2,6 +2,7 @@ package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
 import com.fls.forum.model.Post;
+import com.fls.forum.model.Topic;
 import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -41,9 +42,12 @@ public class PostsTest extends ApplicationTest {
         Pane root;
         root = loader.load();
 
-        postsController = loader.getController();
+
 //        postsController.setApplicationController(this);
-        postsController.setData(1L, null, DataGenerator.generatePosts(null));
+        Topic topic = new Topic(-1, -1, null, null);
+        topic.setPosts(DataGenerator.generatePosts(topic));
+        postsController = loader.getController();
+        postsController.setData(1L, topic);
         posts = postsController.getPosts();
         vBox = postsController.getMainVbox();
         pagination = postsController.getPagination();
@@ -109,7 +113,6 @@ public class PostsTest extends ApplicationTest {
         // given
 
         Button firstAddButton = (Button) (((HBox)(((Pane)(((HBox)hBoxList.get(1))).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
-
         //when
 
         // then:
@@ -129,23 +132,6 @@ public class PostsTest extends ApplicationTest {
         assert (secondMinusButton.isVisible());
     }
 
-//    @Test
-//    public void givePlusTest(){
-//        // given
-//        Button secondAddButton = (Button) (((HBox)(((Pane)((HBox)hBoxList.get(0)).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
-//        Button secondMinusButton = (Button) (((HBox)(((Pane)((HBox)hBoxList.get(1)).getChildren().get(3)).getChildren().get(0))).getChildren().get(1));
-//        long secondPostPlusCount = posts.get(1).getPlusCount();
-//
-//        System.out.println(secondAddButton.isVisible());
-//
-//        //when
-//        clickOn(secondAddButton);
-//
-//        // then:
-//        assert secondPostPlusCount == posts.get(1).getPlusCount() + 1L;
-//        assert (!secondAddButton.isVisible());
-//        assert (!secondMinusButton.isVisible());
-//    }
 
     @Test
     public void invisibleEdit(){
@@ -156,6 +142,10 @@ public class PostsTest extends ApplicationTest {
 
         // then:
         assert (!firstEditButton.isVisible());
+    }
+
+    public <T extends Node> T find(final String fxId) throws Exception {
+        return (T) lookup(fxId).tryQuery().orElseThrow(() -> new Exception(String.format("Couldn't find node with fxId: %s",fxId)));
     }
 
 

@@ -42,6 +42,13 @@ public class Topic {
         posts.add(post);
     }
 
+
+    public void setPosts(ObservableList<Post> posts){
+        // TODO: send to database
+        this.posts = posts;
+    }
+
+
     public long getCategoryId() {
         return categoryId;
     }

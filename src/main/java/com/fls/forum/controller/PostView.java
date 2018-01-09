@@ -86,8 +86,6 @@ public class PostView {
 
             applicationController.loadEditPane(post);
         });
-        editButton.setText("Edit");
-
 
         HBox plusMinusButtons = new HBox(addButton, minusButton);
         plusMinusButtons.setStyle("-fx-padding: 5");
