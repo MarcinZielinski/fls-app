@@ -1,6 +1,8 @@
 package com.fls.manager.controller;
 
 import com.fls.manager.Manager;
+import com.fls.util.SoundEnum;
+import com.fls.util.SoundPlayer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
@@ -8,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -51,6 +55,7 @@ public class ManagerController {
 
     public void logout(ActionEvent actionEvent) {
         model.logout();
+        SoundPlayer.play(SoundEnum.BUTTON_CLICK);
     }
 
     public void undoPage(ActionEvent actionEvent) {
@@ -68,5 +73,10 @@ public class ManagerController {
     public void setBindings(IntegerProperty undoStackState, IntegerProperty redoStackState) {
         undoButton.disableProperty().bind(undoStackState.isEqualTo(1));
         redoButton.disableProperty().bind(redoStackState.isEqualTo(0));
+    }
+
+    public void checkForEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == KeyCode.ENTER)
+            searchForUsers(null);
     }
 }

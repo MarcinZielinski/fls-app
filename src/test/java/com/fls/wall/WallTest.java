@@ -58,6 +58,7 @@ public class WallTest extends TestFXBase {
         clickOn(EDIT_OPTION);
         WaitForAsyncUtils.waitForFxEvents();
         String edittedContent = "Zedytowany:\n" + content;
+        WaitForAsyncUtils.sleep(100, TimeUnit.MILLISECONDS);
         clickOn(CONTENT_TEXTBOX).eraseText(content.length()).write(edittedContent);
         clickOn(APPLY_BUTTON);
         WaitForAsyncUtils.waitForFxEvents();

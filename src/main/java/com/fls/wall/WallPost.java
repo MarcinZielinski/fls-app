@@ -36,6 +36,7 @@ public class WallPost {
             e.printStackTrace();
         }
         postController.setModel(this);
+        postController.calculateRatio(postImage);
         return postView;
     }
 

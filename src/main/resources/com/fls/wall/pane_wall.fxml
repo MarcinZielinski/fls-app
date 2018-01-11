@@ -19,7 +19,7 @@
            <panes>
              <TitledPane fx:id="creatorPane" cache="true" cacheHint="QUALITY" cacheShape="false" pickOnBounds="false" text="Post Editor">
                <content>
-                     <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                     <ScrollPane fx:id="scrollPostsPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                         <content>
                      <AnchorPane>
                         <children>

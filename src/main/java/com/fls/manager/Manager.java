@@ -7,6 +7,8 @@ import com.fls.forum.Forum;
 import com.fls.profiles.Profiles;
 import com.fls.user_finder.UserFinder;
 import com.fls.manager.controller.ManagerController;
+import com.fls.util.SoundEnum;
+import com.fls.util.SoundPlayer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -58,16 +60,23 @@ public class Manager {
             panesHistory = new PanesHistory(10);
             controller.setBindings(panesHistory.undoStackSizeProperty(), panesHistory.redoStackSizeProperty());
             loadWall();
+            playLoginSound();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void playLoginSound() {
+        SoundPlayer.play(SoundEnum.LOGIN);
     }
 
     public void logout() {
         main.loadUserAuthentication();
     }
 
-    public void newMessageNotification(long userId) {}
+    public void newMessageNotification(long userId) {
+        SoundPlayer.play(SoundEnum.NEW_MESSAGE);
+    }
 
     public void loadChat(List<Long> userIds) {
         if(actualCenterModule != chat) {
@@ -132,5 +141,6 @@ public class Manager {
         borderPane.setCenter(pane);
         actualCenterPane = pane;
         actualCenterModule = module;
+        SoundPlayer.play(SoundEnum.BUTTON_CLICK);
     }
 }

@@ -2,14 +2,17 @@ package com.fls.wall.controller;
 
 import com.fls.util.ImageConverter;
 import com.fls.wall.WallPost;
+import com.sun.javafx.stage.StageHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -28,6 +31,8 @@ public class WallPostController {
     public SplitMenuButton menu;
     public ImageView postImage;
     public VBox postContainer;
+    public Pane imagePane;
+    private double ratio;
 
     @FXML
     private void initialize(){
@@ -37,9 +42,20 @@ public class WallPostController {
         name.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> model.getWall().getManager().loadProfile(model.getUser().getUserId()));
         name.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> name.setUnderline(true));
         name.addEventHandler(MouseEvent.MOUSE_EXITED, e -> name.setUnderline(false));
-        postImage.fitWidthProperty().bind(postView.widthProperty());
-        postImage.fitHeightProperty().addListener((x) -> adjustSize());
-        //postContainer.heightProperty().addListener((x) -> adjustSize());
+
+        StageHelper.getStages().get(0).widthProperty().addListener(((observable, oldValue, newValue) -> Platform.runLater(() -> {
+            postImage.setFitWidth(postContainer.getWidth());
+            postContainer.setPrefHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+            postContainer.setMinHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+            postContainer.setMaxHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+        })));
+
+        imagePane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            postImage.setFitWidth(postContainer.getWidth());
+            postContainer.setPrefHeight(postImage.getFitWidth()*ratio + postView.getHeight());
+            postContainer.setMinHeight( postImage.getFitWidth()*ratio + postView.getHeight());
+            postContainer.setMaxHeight( postImage.getFitWidth()*ratio + postView.getHeight());
+        });
 
         editAction.setOnAction(e -> editPost());
         deleteAct.setOnAction(e -> deletePost());
@@ -78,5 +94,10 @@ public class WallPostController {
 
     private void deletePost(){
         model.getWall().getwController().deletePost(model);
+    }
+
+    public void calculateRatio(Image image) {
+        if(image != null)
+            ratio = image.getHeight() / image.getWidth();
     }
 }

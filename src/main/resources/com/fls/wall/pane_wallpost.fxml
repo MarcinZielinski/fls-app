@@ -41,7 +41,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </AnchorPane>
-      <Pane>
+      <Pane fx:id="imagePane">
          <children>
             <ImageView fx:id="postImage" pickOnBounds="true" preserveRatio="true" />
          </children>

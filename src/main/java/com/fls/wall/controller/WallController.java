@@ -6,17 +6,19 @@ import com.fls.util.ImageConverter;
 import com.fls.wall.Wall;
 import com.fls.wall.WallPost;
 import com.sun.javafx.stage.StageHelper;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
-import javax.annotation.Generated;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,6 +37,7 @@ public class WallController {
     public Button apply;
     public TextArea content;
     public TitledPane creatorPane;
+    public ScrollPane scrollPostsPane;
     private WallPost actualWallPost;
 
 
@@ -84,6 +87,7 @@ public class WallController {
                 this.posts.getChildren().add(wallPost.load());
             }
         }
+        Platform.runLater(() -> scrollPostsPane.requestLayout());
     }
 
     public void setModel(Wall model){
