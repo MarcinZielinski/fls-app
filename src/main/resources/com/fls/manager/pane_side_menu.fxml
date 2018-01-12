@@ -18,20 +18,25 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <AnchorPane onMouseClicked="#yourProfileClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased">
-                 <Label alignment="CENTER" contentDisplay="CENTER" text="Your Profile" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-             </AnchorPane>
-             <AnchorPane onMouseClicked="#chatClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="1">
-                 <Label alignment="CENTER" contentDisplay="CENTER" text="Chat" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-             </AnchorPane>
-             <AnchorPane onMouseClicked="#wallClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="3">
+             <AnchorPane onMouseClicked="#wallClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased">
                  <Label alignment="CENTER" contentDisplay="CENTER" text="Wall" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
              </AnchorPane>
-             <AnchorPane onMouseClicked="#forumClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="2">
+             <AnchorPane onMouseClicked="#yourProfileClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="1">
+                 <Label alignment="CENTER" contentDisplay="CENTER" text="Your Profile" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+             </AnchorPane>
+             <AnchorPane onMouseClicked="#chatClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="2">
+                 <Label alignment="CENTER" contentDisplay="CENTER" text="Chat" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+             </AnchorPane>
+             <AnchorPane onMouseClicked="#findUserClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="3">
+                 <Label alignment="CENTER" layoutX="42.0" text="Find user" AnchorPane.bottomAnchor="0.0"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+             </AnchorPane>
+             <AnchorPane onMouseClicked="#forumClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" GridPane.rowIndex="4">
                  <Label alignment="CENTER" contentDisplay="CENTER" text="Forum" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
              </AnchorPane>
          </children>

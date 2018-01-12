@@ -87,7 +87,6 @@ public class WallController {
                 this.posts.getChildren().add(wallPost.load());
             }
         }
-        Platform.runLater(() -> scrollPostsPane.requestLayout());
     }
 
     public void setModel(Wall model){

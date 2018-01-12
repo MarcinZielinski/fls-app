@@ -41,6 +41,7 @@ public class UFController {
     public TextField pointsStack;
     public TextField pointsHackerrank;
     public StackPane stackPane;
+    public TitledPane advancedSearchPane;
 
     private List<String> spokenLanguagesList;
     private VBox languagesVbox;

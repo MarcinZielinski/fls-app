@@ -51,10 +51,12 @@ public class WallPostController {
         })));
 
         imagePane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            postImage.setFitWidth(postContainer.getWidth());
-            postContainer.setPrefHeight(postImage.getFitWidth()*ratio + postView.getHeight());
-            postContainer.setMinHeight( postImage.getFitWidth()*ratio + postView.getHeight());
-            postContainer.setMaxHeight( postImage.getFitWidth()*ratio + postView.getHeight());
+            if(postImage.getImage() != null) {
+                postImage.setFitWidth(postContainer.getWidth());
+                postContainer.setPrefHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+                postContainer.setMinHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+                postContainer.setMaxHeight(postImage.getFitWidth() * ratio + postView.getHeight());
+            }
         });
 
         editAction.setOnAction(e -> editPost());
@@ -68,10 +70,10 @@ public class WallPostController {
         updateControls();
     }
 
-    private void adjustSize(){
-        postView.setMinHeight(content.getHeight()+content.getLayoutY()+20);
+    private void adjustSize() {
+        postView.setMinHeight(content.getHeight() + content.getLayoutY() + 20);
         model.getWall().getwController().getPostsVBox().setSpacing(20);
-        postContainer.setMinHeight(postView.getHeight()+postImage.getFitHeight());
+        postContainer.setMinHeight(content.getHeight() + content.getLayoutY() + 20 + postImage.getFitHeight());
     }
 
     public void updateControls(){

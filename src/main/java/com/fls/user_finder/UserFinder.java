@@ -33,6 +33,7 @@ public class UserFinder {
     private TitledPane searchResultsPane;
     private StackPane stackPane;
     private ThreadHelper actualTask;
+    private TitledPane advancedSearchPane;
 
 
     public UserFinder(Manager manager) {
@@ -51,6 +52,7 @@ public class UserFinder {
         vBox = ufController.searchResultsVBox;
         searchResultsPane = ufController.resultsPane;
         stackPane = ufController.stackPane;
+        advancedSearchPane = ufController.advancedSearchPane;
 
         searchForUsers(query);
         return rootPane;
@@ -74,6 +76,10 @@ public class UserFinder {
 
 
     public void searchForUsers(String query) {
+        if(query == null) { // the query is null when we want to run advanced search directly
+            Platform.runLater(() -> advancedSearchPane.setExpanded(true));
+            return;
+        }
         String[] splitQuery = query.split(" ");
         String firstName = splitQuery[0];
         String lastName = query.length() > firstName.length() ? query.substring(splitQuery.length+1) : "";

@@ -53,7 +53,7 @@
                      </ScrollPane>
                </content>
              </TitledPane>
-             <TitledPane fx:id="postsPane" cacheShape="false" text="Posts">
+             <TitledPane fx:id="postsPane" cacheShape="false" expanded="false" text="Posts">
                <content>
                <StackPane fx:id="stackPane">
                   <children>

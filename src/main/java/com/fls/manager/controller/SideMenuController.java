@@ -47,6 +47,10 @@ public class SideMenuController {
         model.loadWall();
     }
 
+    public void findUserClicked(MouseEvent mouseEvent) {
+        model.loadUserFinder(null);
+    }
+
     public void mousePressed(MouseEvent mouseEvent) {
         AnchorPane anchorPane = (AnchorPane) mouseEvent.getSource();
         anchorPane.setOpacity(0.5);

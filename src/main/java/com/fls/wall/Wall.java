@@ -36,18 +36,16 @@ public class Wall {
     }
 
     public Pane load() {
-        if(rootPane == null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("pane_wall.fxml"));
-            try {
-                rootPane = loader.load();
-                wController = loader.getController();
-                stackPane = wController.stackPane;
-                postsPane = wController.postsPane;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            wController.setModel(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("pane_wall.fxml"));
+        try {
+            rootPane = loader.load();
+            wController = loader.getController();
+            stackPane = wController.stackPane;
+            postsPane = wController.postsPane;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        wController.setModel(this);
         loadPosts();
 
         return rootPane;
