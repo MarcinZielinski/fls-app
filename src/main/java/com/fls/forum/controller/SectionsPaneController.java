@@ -3,15 +3,9 @@ package com.fls.forum.controller;
 import com.fls.forum.model.Section;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +16,7 @@ public class SectionsPaneController implements Initializable {
     @FXML
     private ListView<Section> sectionsListView = new ListView<>();
     private ObservableList<Section> nameList;
-    private ApplicationController applicationController;
+    private ForumController forumController;
 
     public SectionsPaneController(){
 
@@ -45,7 +39,7 @@ public class SectionsPaneController implements Initializable {
     private void changeScreenSectionSelected() throws IOException {
         Section section = sectionsListView.getSelectionModel().getSelectedItem();
         if(section != null)
-            applicationController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
+            forumController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
     }
 
     @Override
@@ -53,8 +47,8 @@ public class SectionsPaneController implements Initializable {
         setSectionsListView();
     }
 
-    public void setApplicationController(ApplicationController applicationController) {
-        this.applicationController = applicationController;
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
     }
 }
 

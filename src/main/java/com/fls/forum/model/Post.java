@@ -44,15 +44,15 @@ public abstract class Post {
         this.plusCount.set(plusCount);
     }
 
-    public void addPlus() {
+    public void addPlus(Long author) {
         this.plusCount.set(plusCount.get() + 1);
-        plusAuthors.get().add(ForumApp.getUserId());
+        plusAuthors.get().add(author);
         setAuthorPlus(true);
     }
 
-    public void removePlus() {
+    public void removePlus(Long author) {
         this.plusCount.set(plusCount.get() - 1);
-        plusAuthors.get().add(ForumApp.getUserId());
+        plusAuthors.get().add(author);
         setAuthorPlus(true);
     }
 

@@ -17,7 +17,6 @@ public class dataGenerator {
         topics = new ArrayList<>();
         fillWithTopics();
         fillWithSections();
-        System.out.println(topics.size());
     }
 
 
@@ -27,8 +26,6 @@ public class dataGenerator {
 
     public static List<Topic> getTopics(long sectionId){
 
-        System.out.println(topics.size());
-
         List<Topic> result = new ArrayList<>();
         for (Topic topic: topics){
             if(topic.getCategoryId() == sectionId){
@@ -37,7 +34,6 @@ public class dataGenerator {
         }
 
 
-        System.out.println(result.size());
 
         return result;
     }

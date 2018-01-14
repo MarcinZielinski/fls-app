@@ -4,25 +4,25 @@ import com.fls.forum.ForumApp;
 import com.fls.forum.model.Post;
 import com.fls.forum.model.Section;
 import com.fls.forum.model.Topic;
-import com.fls.forum.model.generator.DataGenerator;
+import com.fls.manager.Manager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ApplicationController {
+public class ForumController {
 
-    private Stage primaryStage;
+    private Pane primaryPane = new AnchorPane();
 
-    public ApplicationController(Stage primaryStage) {
+    private Manager manager;
 
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("FLSocial");
-
+    public ForumController() {
+        dataGenerator.init();
     }
 
 
@@ -33,12 +33,11 @@ public class ApplicationController {
         try {
             Pane root = loader.load();
             PostsController postsController = loader.getController();
-            postsController.setApplicationController(this);
-            postsController.setData(ForumApp.getUserId(), topic);
+            postsController.setForumController(this);
+            postsController.setData(getUserId(), topic);
 
-            primaryStage.setScene(new Scene(root));
-
-            primaryStage.show();
+            primaryPane.getChildren().clear();
+            primaryPane.getChildren().add(root);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,20 +67,21 @@ public class ApplicationController {
 
     }
 
-    public void loadSectionsPane(){
-        primaryStage.setTitle("FLSocial");
+    public Pane loadSectionsPane(){
 
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ForumApp.class.getResource("pane_sections.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
             SectionsPaneController sectionsPaneController = loader.getController();
-            sectionsPaneController.setApplicationController(this);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            sectionsPaneController.setForumController(this);
+
+            primaryPane.getChildren().clear();
+            primaryPane.getChildren().add(root);
+            return primaryPane;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -91,15 +91,14 @@ public class ApplicationController {
 
 
         try {
-            Parent sectionsParent = loader.load();
+            Parent root = loader.load();
             TopicsPaneController topicsPaneController = loader.getController();
-            topicsPaneController.setApplicationController(this);
+            topicsPaneController.setForumController(this);
             topicsPaneController.setCurrentSection(section);
             topicsPaneController.init();
-            Scene scene = new Scene(sectionsParent);
 
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            primaryPane.getChildren().clear();
+            primaryPane.getChildren().add(root);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -113,7 +112,7 @@ public class ApplicationController {
         try{
             Pane root = loader.load();
             TopicsCreatorPaneController topicsCreatorPaneController = loader.getController();
-            topicsCreatorPaneController.setApplicationController(this);
+            topicsCreatorPaneController.setForumController(this);
             Stage editStage = new Stage();
             topicsCreatorPaneController.setData(section, editStage);
 
@@ -126,22 +125,13 @@ public class ApplicationController {
         }
     }
 
-//    FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(ForumApp.class.getResource("pane_edit.fxml"));
-//
-//        try {
-//        Pane root = loader.load();
-//        EditorController editorController = loader.getController();
-//
-//        Stage editStage = new Stage();
-//        editorController.setData(post, editStage);
-//
-//        editStage.setScene(new Scene(root));
-//        editStage.initModality(Modality.APPLICATION_MODAL);
-//        editStage.showAndWait();
-//
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//    }
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
 
+    public Long getUserId(){
+        if(manager != null)
+            return manager.userId;
+        return 1L;
+    }
 }

@@ -5,20 +5,11 @@ import com.fls.forum.model.Topic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Pagination;
-import javafx.stage.Stage;
-import javafx.util.Callback;
 
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +22,7 @@ public class TopicsPaneController implements Initializable{
     private ListView<Topic> topicsListView = new ListView<>();
     private ObservableList<Topic> nameList;
     private List<Topic> topics = new ArrayList<>();
-    private ApplicationController applicationController;
+    private ForumController forumController;
 
     @FXML
     private Label sectionNameLabel;
@@ -69,20 +60,20 @@ public class TopicsPaneController implements Initializable{
         topicsListView.setOnMouseClicked(mouseEvent -> {
                 Topic topic = topicsListView.getSelectionModel().getSelectedItem();
                 if(topic != null && mouseEvent.getClickCount() == 2)
-                    applicationController.loadPostsPane(topicsListView.getSelectionModel().getSelectedItem());
+                    forumController.loadPostsPane(topicsListView.getSelectionModel().getSelectedItem());
         });
     }
 
     public void changeScreenBackButtonClicked(javafx.event.ActionEvent event) {
-        applicationController.loadSectionsPane();
+        forumController.loadSectionsPane();
     }
 
-    public void setApplicationController(ApplicationController applicationController) {
-        this.applicationController = applicationController;
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
     }
 
     public void createTopicButtonClicked(javafx.event.ActionEvent event){
-        applicationController.loadTopicsCreator(currentSection);
+        forumController.loadTopicsCreator(currentSection);
     }
 
     @Override

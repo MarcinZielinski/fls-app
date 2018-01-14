@@ -1,7 +1,6 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
-import com.fls.forum.model.Content;
 import com.fls.forum.model.Post;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
@@ -9,20 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-
-import java.util.Date;
 
 public class PostView {
 
-    private ApplicationController applicationController;
+    private ForumController forumController;
 
 
-    public PostView(ApplicationController applicationController){
-        this.applicationController = applicationController;
+    public PostView(ForumController forumController){
+        this.forumController = forumController;
     }
 
     public HBox showPost(Post post){
@@ -78,13 +73,13 @@ public class PostView {
         hBox.getChildren().add(contentLabel);
         hBox.getChildren().add(plusCountLabel);
 
-        Button addButton = new AddButton(post);
-        Button minusButton = new MinusButton(post);
+        Button addButton = new AddButton(post, forumController.getUserId());
+        Button minusButton = new MinusButton(post, forumController.getUserId());
         Button editButton = new Button();
-        editButton.visibleProperty().bind((post.authorIdProperty().isEqualTo(ForumApp.getUserId())));
+        editButton.visibleProperty().bind((post.authorIdProperty().isEqualTo(forumController.getUserId())));
         editButton.setOnAction(t -> {
 
-            applicationController.loadEditPane(post);
+            forumController.loadEditPane(post);
         });
 
         HBox plusMinusButtons = new HBox(addButton, minusButton);

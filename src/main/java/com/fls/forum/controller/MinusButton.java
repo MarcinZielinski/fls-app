@@ -8,18 +8,14 @@ import javafx.scene.control.Button;
 
 public class MinusButton extends Button {
 
-    private Post post;
+    MinusButton(Post post, Long userId) {
 
-
-    MinusButton(Post post) {
-
-        this.post = post;
         this.setText("-");
-        this.visibleProperty().bind(post.authorPlusProperty().not().and((post.authorIdProperty().isEqualTo(ForumApp.getUserId())).not()));
+        this.visibleProperty().bind(post.authorPlusProperty().not().and((post.authorIdProperty().isEqualTo(userId)).not()));
 
         setOnAction(t -> {
 
-            post.removePlus();
+            post.removePlus(userId);
         });
     }
 }

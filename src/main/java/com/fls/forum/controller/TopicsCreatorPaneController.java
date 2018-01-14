@@ -2,25 +2,20 @@ package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
 import com.fls.forum.model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Date;
-import java.util.Random;
 
 
 public class TopicsCreatorPaneController {
 
     private Section section;
     private Stage stage;
-    private ApplicationController applicationController;
+    private ForumController forumController;
 
     @FXML
     private Label currentSectionNameLabel;
@@ -34,8 +29,8 @@ public class TopicsCreatorPaneController {
     @FXML
     private TextField topicNameTextField;
 
-    public void setApplicationController(ApplicationController applicationController) {
-        this.applicationController = applicationController;
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
     }
 
     public void setData(Section section, Stage stage){
@@ -75,12 +70,12 @@ public class TopicsCreatorPaneController {
         if(validateCreatedTopic(postContent, topicName)){
 
             Topic newTopic = new Topic(section.getId(), topicName, null, section);
-            QuestionPost newPost = new QuestionPost(newTopic, new Date(), ForumApp.getUserId(), new Content(postContent), topicName);
+            QuestionPost newPost = new QuestionPost(newTopic, new Date(), forumController.getUserId(), new Content(postContent), topicName);
 
             newTopic.setQuestionPost(newPost);
             section.addTopic(newTopic);
 
-            applicationController.loadPostsPane(newTopic);
+            forumController.loadPostsPane(newTopic);
             stage.close();
         }
     }

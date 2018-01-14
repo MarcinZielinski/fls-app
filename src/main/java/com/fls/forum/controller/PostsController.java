@@ -1,22 +1,16 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.ForumApp;
 import com.fls.forum.model.*;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.IntegerBinding;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
-import javafx.util.Callback;
 
 import java.util.Date;
 
@@ -65,7 +59,7 @@ public class PostsController {
 
     private ObservableList<Node> hBoxList = FXCollections.observableArrayList();
 
-    private ApplicationController applicationController;
+    private ForumController forumController;
 
     private TimedLabel errorTimedLabel;
 
@@ -130,8 +124,8 @@ public class PostsController {
     }
 
 
-    void setApplicationController(ApplicationController applicationController){
-        this.applicationController = applicationController;
+    void setForumController(ForumController forumController){
+        this.forumController = forumController;
     }
 
 
@@ -156,7 +150,7 @@ public class PostsController {
     void setData(Long userId, Topic topic) {
         this.userId = userId;
         this.topic = topic;
-        postView = new PostView(applicationController);
+        postView = new PostView(forumController);
         posts = topic.getPosts();
         for(Post post: posts){
             viewPost(post);
@@ -173,7 +167,7 @@ public class PostsController {
 
 
     public void handleGoBackAction(ActionEvent actionEvent) {
-        applicationController.loadTopicsPane(topic.getSection());
+        forumController.loadTopicsPane(topic.getSection());
     }
 
     public VBox getMainVbox() {

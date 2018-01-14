@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="mainPane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.forum.controller.PostsController">
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" fx:id="mainPane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.forum.controller.PostsController">
    <VBox fx:id="mainVbox" layoutX="-6.0" layoutY="-3.0" prefHeight="669.0" prefWidth="1220.0" style="-fx-padding: 40;">
       <children>
          <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleGoBackAction" text="Go back" />
@@ -34,4 +35,4 @@
          </HBox>
       </children>
    </VBox>
-</Pane>
+</AnchorPane>
