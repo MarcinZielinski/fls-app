@@ -80,8 +80,6 @@ public class PostsController {
 
     @FXML
     private void initialize() {
-//        vBox.prefWidthProperty().bind(scrollPane.widthProperty());
-//        vBox.prefHeightProperty().bind(scrollPane.heightProperty());
 
         mainVbox.prefWidthProperty().bind(mainPane.widthProperty());
         mainVbox.prefHeightProperty().bind(mainPane.heightProperty());
@@ -96,16 +94,9 @@ public class PostsController {
         pagination.prefWidthProperty().bind(scrollPane.widthProperty());
         pagination.prefHeightProperty().bind(scrollPane.heightProperty());
 
-
         this.errorTimedLabel = new TimedLabel(errorLabel);
 
-
-//        pagination.setStyle("-fx-border-color:red;");
         pagination.setPageFactory(this::createPage);
-
-//        IntegerBinding sizeProperty = Bindings.size(posts);
-
-//        pagination.pageCountProperty().bind(sizeProperty.add(itemsOnPage - 1).divide(itemsOnPage));
 
     }
 
@@ -157,7 +148,7 @@ public class PostsController {
         }
         pagination.setCurrentPageIndex(0);
 
-        titleLabel.setText(((QuestionPost)posts.get(0)).getTitle());
+        titleLabel.setText(topic.getQuestionPost().getTitle());
         pagination.setPageCount((posts.size() - 1) / itemsOnPage + 1);
     }
 

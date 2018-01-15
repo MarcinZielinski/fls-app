@@ -1,14 +1,13 @@
 package com.fls.forum.model;
 
-import com.fls.forum.model.localModel.Post;
-import com.fls.forum.model.localModel.Section;
-import com.fls.forum.model.localModel.Topic;
+import com.fls.forum.model.localModel.*;
 import com.fls.forum.model.serverModel.PostServer;
 import com.fls.forum.model.serverModel.SectionServer;
 import com.fls.forum.model.serverModel.TopicServer;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Date;
 
 public class ServerController {
 
@@ -42,8 +41,11 @@ public class ServerController {
 
         List<Post> posts = new LinkedList<>();
 
-        for (PostServer post: postController.getItemList("posts?topicId=" + Long.toString(topic.getId())))
+        QuestionPost questionPost = new QuestionPost(topic, new Date(), topic.getAuthorId(), new Content(topic.getName()), topic.getName());
+        topic.setQuestionPost(questionPost);
+        for (PostServer post: postController.getItemList("posts?topicId=" + Long.toString(topic.getId()))) {
             posts.add(serverObjectParser.fromAnswerServer(post, topic));
+        }
 
         return posts;
     }

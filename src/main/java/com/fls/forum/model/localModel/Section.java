@@ -77,6 +77,9 @@ public class Section {
     public void loadTopics(){
         topics = new ServerController().getAllTopics(this);
 
+        for(Topic topic: topics)
+            topic.setSection(this);
+
     }
 
     public void setTopics(List<Topic> topics){

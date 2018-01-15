@@ -38,7 +38,10 @@ public class ServerObjectParser {
     }
 
     public AnswerPost fromAnswerServer(PostServer answer, Topic topic){
-        return new AnswerPost(topic, (long)answer.getId(), new Date(), (long)answer.getAuthorId(), new Content(answer.getContent()), false);
+
+        String content = answer.getContent() == null ? "empty content" : answer.getContent();
+        Integer authorId = answer.getAuthorId() == null ? -1 : answer.getAuthorId();
+        return new AnswerPost(topic, (long)answer.getId(), new Date(), (long)authorId, new Content(content), false);
     }
 
     public PostServer toPostServer(Post post){

@@ -1,5 +1,6 @@
 package com.fls.forum.model.localModel;
 
+import com.fls.forum.model.ServerController;
 import com.fls.forum.model.serverModel.PostServer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,16 @@ public class Topic {
     private QuestionPost questionPost;
     private Section section;
     private ObservableList<Post> posts = FXCollections.observableArrayList();
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    private Long authorId = -1L;
 
     public List<Integer> getAllPostsIds(){
         return null;
@@ -36,6 +47,11 @@ public class Topic {
     public Topic(long categoryId, String name, QuestionPost questionPost){
         this(categoryId, name, questionPost, null);
     }
+
+    public void loadPosts(){
+        this.posts.addAll(new ServerController().getAllPosts(this));
+    }
+
 
     public ObservableList<Post> getPosts() {
         //TODO: load from database

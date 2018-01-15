@@ -18,6 +18,8 @@ public class PostServer {
         this.plusCount = plusCount;
     }
 
+    public PostServer(){ }
+
 
     public Integer getTopicId() {
         return topicId;

@@ -34,6 +34,8 @@ public class ForumController {
 
         try {
             Pane root = loader.load();
+
+            topic.loadPosts();
             PostsController postsController = loader.getController();
             postsController.setForumController(this);
             postsController.setData(getUserId(), topic);
