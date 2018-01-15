@@ -29,15 +29,12 @@ public class TopicServer {
         this.postCount = postCount;
     }
 
+    public TopicServer(){ }
 
 
 
     public Integer getCategoryId() {
         return categoryId;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Integer getId() {

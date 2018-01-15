@@ -23,7 +23,7 @@ public class ServerObjectParser {
 
 
     public Topic fromTopicServer(TopicServer topic, Section section){
-        return new Topic(topic.getCategoryId(), "some topic", null, section);
+        return new Topic(topic.getCategoryId(), "topic with id: " + topic.getId(), null, section);
     }
 
 

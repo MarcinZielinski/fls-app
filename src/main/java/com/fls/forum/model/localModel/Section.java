@@ -2,6 +2,7 @@ package com.fls.forum.model.localModel;
 
 
 import com.fls.forum.controller.dataGenerator;
+import com.fls.forum.model.ServerController;
 
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class Section {
     }
 
     public void loadTopics(){
-        //TODO: get from sever
+        topics = new ServerController().getAllTopics(this);
 
     }
 
@@ -83,7 +84,6 @@ public class Section {
     }
 
     public List<Topic> getTopics(){
-        //TODO: get rom server
         return topics;
     }
 

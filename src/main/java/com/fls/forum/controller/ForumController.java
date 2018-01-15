@@ -94,6 +94,8 @@ public class ForumController {
 
         try {
             Parent root = loader.load();
+
+            section.loadTopics();
             TopicsPaneController topicsPaneController = loader.getController();
             topicsPaneController.setForumController(this);
             topicsPaneController.setCurrentSection(section);

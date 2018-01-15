@@ -21,7 +21,7 @@ public class JsonParser<T> {
 
     public List<T> getObjectList(String json) {
 
-
+        System.out.println(typeParameterClass);
         ObjectMapper mapper = new ObjectMapper();
 
         TypeFactory typeFactory = mapper.getTypeFactory();
