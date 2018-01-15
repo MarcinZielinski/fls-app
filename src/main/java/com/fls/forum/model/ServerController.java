@@ -1,5 +1,7 @@
 package com.fls.forum.model;
 
+import com.fls.forum.controller.dataGenerator;
+import com.fls.forum.model.generator.DataGenerator;
 import com.fls.forum.model.localModel.*;
 import com.fls.forum.model.serverModel.PostServer;
 import com.fls.forum.model.serverModel.SectionServer;
@@ -16,38 +18,51 @@ public class ServerController {
     private ServerObjectController<PostServer> postController = new ServerObjectController<>(PostServer.class);
     private ServerObjectParser serverObjectParser = new ServerObjectParser();
 
+    private final boolean SERVER_COMMUNICATION = true;
+
 
     public List<Section> getAllSections(){
 
-        List<Section> sections = new LinkedList<>();
+        if(SERVER_COMMUNICATION) {
 
-        for (SectionServer section: sectionController.getItemList("categories?sectionId=1"))
-            sections.add(serverObjectParser.fromSectionServer(section));
+            List<Section> sections = new LinkedList<>();
 
-        return sections;
+            for (SectionServer section : sectionController.getItemList("categories?sectionId=1"))
+                sections.add(serverObjectParser.fromSectionServer(section));
+
+            return sections;
+        }
+        else return dataGenerator.getSections();
     }
 
     public List<Topic> getAllTopics(Section section){
 
-        List<Topic> topics = new LinkedList<>();
+        if(SERVER_COMMUNICATION) {
 
-        for (TopicServer topic: topicController.getItemList("topics?categoryId=" + Long.toString(section.getId())))
-            topics.add(serverObjectParser.fromTopicServer(topic, section));
+            List<Topic> topics = new LinkedList<>();
 
-        return topics;
+            for (TopicServer topic : topicController.getItemList("topics?categoryId=" + Long.toString(section.getId())))
+                topics.add(serverObjectParser.fromTopicServer(topic, section));
+
+            return topics;
+        }
+        else return dataGenerator.getTopics(section.getId());
     }
 
     public List<Post> getAllPosts(Topic topic){
 
-        List<Post> posts = new LinkedList<>();
+        if(SERVER_COMMUNICATION) {
+            List<Post> posts = new LinkedList<>();
 
-        QuestionPost questionPost = new QuestionPost(topic, new Date(), topic.getAuthorId(), new Content(topic.getName()), topic.getName());
-        topic.setQuestionPost(questionPost);
-        for (PostServer post: postController.getItemList("posts?topicId=" + Long.toString(topic.getId()))) {
-            posts.add(serverObjectParser.fromAnswerServer(post, topic));
+            QuestionPost questionPost = new QuestionPost(topic, new Date(), topic.getAuthorId(), new Content(topic.getName()), topic.getName());
+            topic.setQuestionPost(questionPost);
+            for (PostServer post : postController.getItemList("posts?topicId=" + Long.toString(topic.getId()))) {
+                posts.add(serverObjectParser.fromAnswerServer(post, topic));
+            }
+
+            return posts;
         }
-
-        return posts;
+        else return DataGenerator.generatePosts(topic);
     }
 
 
