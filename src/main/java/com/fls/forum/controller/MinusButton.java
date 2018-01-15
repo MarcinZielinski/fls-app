@@ -1,9 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.ForumApp;
-import com.fls.forum.model.Post;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
+import com.fls.forum.model.localModel.Post;
 import javafx.scene.control.Button;
 
 public class MinusButton extends Button {

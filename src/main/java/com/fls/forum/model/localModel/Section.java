@@ -1,15 +1,8 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
 
 import com.fls.forum.controller.dataGenerator;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Section {
@@ -18,13 +11,63 @@ public class Section {
     private String description;
     private List<Topic> topics;
 
+    public List<Integer> getTopicIds() {
+        return topicIds;
+    }
 
-    public Section(long id, String name, String description) {
+    public void setTopicIds(List<Integer> topicIds) {
+        this.topicIds = topicIds;
+    }
+
+    private List<Integer> topicIds;
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getTopicCount() {
+        return topicCount;
+    }
+
+    public void setTopicCount(Long topicCount) {
+        this.topicCount = topicCount;
+    }
+
+    private Long topicCount;
+
+
+    public Section(){
+
+    }
+
+
+    public Section(long id, String name, String description, List<Integer> topicIds, Long topicCount) {
         this.id = id;
         this.name = name;
         this.description = description;
         //TODO: get from server
         topics = dataGenerator.getTopics(id);
+        this.topicIds = topicIds;
+        this.topicCount = topicCount;
+
+
+        for(Topic topic: topics)
+            topic.setSection(this);
+
+    }
+
+
+    public Section(long id, String name, String description, Long topicCount) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        //TODO: get from server
+        topics = dataGenerator.getTopics(id);
+        this.topics = topics;
+        this.topicCount = topicCount;
+
+
         for(Topic topic: topics)
             topic.setSection(this);
 

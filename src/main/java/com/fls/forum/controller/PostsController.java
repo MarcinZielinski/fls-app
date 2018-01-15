@@ -1,6 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.*;
+import com.fls.forum.model.localModel.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

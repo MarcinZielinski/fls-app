@@ -1,9 +1,9 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
-import com.fls.forum.model.Post;
-import com.fls.forum.model.Section;
-import com.fls.forum.model.Topic;
+import com.fls.forum.model.localModel.Post;
+import com.fls.forum.model.localModel.Section;
+import com.fls.forum.model.localModel.Topic;
 import com.fls.manager.Manager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

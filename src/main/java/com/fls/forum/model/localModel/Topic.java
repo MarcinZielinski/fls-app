@@ -1,15 +1,16 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
+import com.fls.forum.model.serverModel.PostServer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Topic {
 
     private long categoryId;
-    private long id;
+    private long id = -1;
     private String name;
     private QuestionPost questionPost;
     private Section section;
@@ -27,7 +28,10 @@ public class Topic {
         if(questionPost != null){
             addPost(questionPost);
         }
+
     }
+
+
 
     public Topic(long categoryId, String name, QuestionPost questionPost){
         this(categoryId, name, questionPost, null);

@@ -1,7 +1,7 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Content;
-import com.fls.forum.model.Post;
+import com.fls.forum.model.localModel.Content;
+import com.fls.forum.model.localModel.Post;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;

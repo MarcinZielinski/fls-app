@@ -1,12 +1,13 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
-import com.fls.forum.ForumApp;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public abstract class Post {
@@ -30,6 +31,14 @@ public abstract class Post {
         ObservableList<Long> observableList = FXCollections.observableArrayList(new ArrayList<>());
         this.plusAuthors = new SimpleListProperty<>(observableList);
         this.authorPlus = new SimpleBooleanProperty(authorPlus);
+    }
+
+
+    public Post(Long id, String content, Long authorId, Integer plusCount) {
+        this.id = new SimpleLongProperty(id);
+        this.content = new SimpleObjectProperty<>(new Content(content));
+        this.authorId = new SimpleLongProperty(authorId);
+        this.plusCount = new SimpleLongProperty(plusCount);
     }
 
     public Long getPlusCount() {

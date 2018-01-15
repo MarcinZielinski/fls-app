@@ -1,4 +1,4 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
 import java.util.Date;
 

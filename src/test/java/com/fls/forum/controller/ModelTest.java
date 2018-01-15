@@ -1,6 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Post;
+import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.generator.DataGenerator;
 import org.junit.Before;
 import org.junit.Test;

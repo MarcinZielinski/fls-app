@@ -1,12 +1,11 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
-import com.fls.forum.model.Post;
-import com.fls.forum.model.Topic;
+import com.fls.forum.model.localModel.Post;
+import com.fls.forum.model.localModel.Topic;
 import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
@@ -15,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.junit.Test;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.IOException;

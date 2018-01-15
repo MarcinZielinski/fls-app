@@ -1,4 +1,4 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
 public class Content {
     private long postId;
