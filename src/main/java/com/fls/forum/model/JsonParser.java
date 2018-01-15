@@ -1,7 +1,9 @@
 package com.fls.forum.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -18,14 +20,21 @@ public class JsonParser<T> {
 
 
     public List<T> getObjectList(String json) {
+
+
         ObjectMapper mapper = new ObjectMapper();
+
+        TypeFactory typeFactory = mapper.getTypeFactory();
+
+        JavaType inner = typeFactory.constructParametricType( List.class, typeParameterClass );
+
 
         try {
             return mapper.readValue(json,
-                    new TypeReference<LinkedList<T>>() {
-                    });
+                    inner);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("encountered exception");
             return new LinkedList<T>();
         }
     }
@@ -37,6 +46,7 @@ public class JsonParser<T> {
             return mapper.readValue(json, typeParameterClass);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("encountered exception");
             return null;
         }
     }

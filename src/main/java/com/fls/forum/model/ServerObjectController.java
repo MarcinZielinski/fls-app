@@ -32,13 +32,18 @@ public class ServerObjectController<T> {
             System.out.println(inputLine);
 
             List<T> items = new JsonParser<T>(typeParameterClass).getObjectList(inputLine);
+            System.out.println(typeParameterClass);
+            System.out.println(items.get(0).getClass());
+            System.out.println(items.get(0));
+
             in.close();
 
             return items;
 
         } catch (IOException e) {
             e.printStackTrace();
-            return new LinkedList<T>();
+            System.out.println("encountered exception");
+            return new LinkedList<>();
         }
     }
 
@@ -59,6 +64,7 @@ public class ServerObjectController<T> {
 
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("encountered exception");
             return null;
         }
     }

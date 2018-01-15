@@ -1,6 +1,7 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
+import com.fls.forum.model.ServerController;
 import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.localModel.Section;
 import com.fls.forum.model.localModel.Topic;
@@ -20,6 +21,7 @@ public class ForumController {
     private Pane primaryPane = new AnchorPane();
 
     private Manager manager;
+    private ServerController serverController = new ServerController();
 
     public ForumController() {
         dataGenerator.init();
@@ -134,4 +136,5 @@ public class ForumController {
             return manager.userId;
         return 1L;
     }
+
 }

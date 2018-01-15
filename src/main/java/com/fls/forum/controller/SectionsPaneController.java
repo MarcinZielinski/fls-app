@@ -1,5 +1,6 @@
 package com.fls.forum.controller;
 
+import com.fls.forum.model.ServerController;
 import com.fls.forum.model.localModel.Section;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,13 +18,15 @@ public class SectionsPaneController implements Initializable {
     private ListView<Section> sectionsListView = new ListView<>();
     private ObservableList<Section> nameList;
     private ForumController forumController;
+    private ServerController serverController = new ServerController();
 
     public SectionsPaneController(){
 
     }
 
     private void setSectionsListView(){
-        List<Section> sections = new dataGenerator().getSections();
+//        List<Section> sections = dataGenerator.getSections();
+        List<Section> sections = serverController.getAllSections();
         nameList = FXCollections.observableArrayList(sections);
         sectionsListView.setItems(nameList);
         sectionsListView.setOnMouseClicked(mouseEvent -> {
@@ -44,6 +47,7 @@ public class SectionsPaneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         setSectionsListView();
     }
 
