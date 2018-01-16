@@ -47,14 +47,13 @@ public class Section {
         this.id = id;
         this.name = name;
         this.description = description;
-        //TODO: get from server
-        topics = dataGenerator.getTopics(id);
+//        topics = dataGenerator.getTopics(id);
         this.topicIds = topicIds;
         this.topicCount = topicCount;
 
 
-        for(Topic topic: topics)
-            topic.setSection(this);
+//        for(Topic topic: topics)
+//            topic.setSection(this);
 
     }
 
@@ -63,19 +62,17 @@ public class Section {
         this.id = id;
         this.name = name;
         this.description = description;
-        //TODO: get from server
-        topics = dataGenerator.getTopics(id);
-        this.topics = topics;
+//        topics = dataGenerator.getTopics(id);
         this.topicCount = topicCount;
 
 
-        for(Topic topic: topics)
-            topic.setSection(this);
+//        for(Topic topic: topics)
+//            topic.setSection(this);
 
     }
 
-    public void loadTopics(){
-        topics = new ServerController().getAllTopics(this);
+    public void loadTopics(ServerController serverController){
+        topics = serverController.getAllTopics(this);
 
         for(Topic topic: topics)
             topic.setSection(this);

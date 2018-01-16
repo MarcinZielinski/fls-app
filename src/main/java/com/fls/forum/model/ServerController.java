@@ -7,6 +7,8 @@ import com.fls.forum.model.serverModel.PostServer;
 import com.fls.forum.model.serverModel.SectionServer;
 import com.fls.forum.model.serverModel.TopicServer;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Date;
@@ -17,8 +19,23 @@ public class ServerController {
     private ServerObjectController<TopicServer> topicController = new ServerObjectController<>(TopicServer.class);
     private ServerObjectController<PostServer> postController = new ServerObjectController<>(PostServer.class);
     private ServerObjectParser serverObjectParser = new ServerObjectParser();
+    private String urlPrefix = "http://localhost:8080/";
 
-    private final boolean SERVER_COMMUNICATION = true;
+    private boolean SERVER_COMMUNICATION;
+
+    public ServerController(){
+
+        try {
+
+            URL oracle = new URL(urlPrefix + "/register");
+            oracle.openConnection().getInputStream();
+            SERVER_COMMUNICATION = true;
+        } catch (IOException e) {
+            SERVER_COMMUNICATION = false;
+        }
+
+    }
+
 
 
     public List<Section> getAllSections(){

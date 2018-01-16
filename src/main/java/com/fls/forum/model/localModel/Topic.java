@@ -17,6 +17,7 @@ public class Topic {
     private Section section;
     private ObservableList<Post> posts = FXCollections.observableArrayList();
 
+
     public Long getAuthorId() {
         return authorId;
     }
@@ -48,24 +49,22 @@ public class Topic {
         this(categoryId, name, questionPost, null);
     }
 
-    public void loadPosts(){
-        this.posts.addAll(new ServerController().getAllPosts(this));
+    public void loadPosts(ServerController serverController){
+        this.posts.clear();
+        this.posts.addAll(serverController.getAllPosts(this));
     }
 
 
     public ObservableList<Post> getPosts() {
-        //TODO: load from database
         return posts;
     }
 
     public void addPost(Post post){
-        // TODO: send to database
         posts.add(post);
     }
 
 
     public void setPosts(ObservableList<Post> posts){
-        // TODO: send to database
         this.posts = posts;
     }
 

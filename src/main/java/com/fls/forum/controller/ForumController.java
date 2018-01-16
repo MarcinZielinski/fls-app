@@ -35,7 +35,7 @@ public class ForumController {
         try {
             Pane root = loader.load();
 
-            topic.loadPosts();
+            topic.loadPosts(serverController);
             PostsController postsController = loader.getController();
             postsController.setForumController(this);
             postsController.setData(getUserId(), topic);
@@ -97,7 +97,7 @@ public class ForumController {
         try {
             Parent root = loader.load();
 
-            section.loadTopics();
+            section.loadTopics(serverController);
             TopicsPaneController topicsPaneController = loader.getController();
             topicsPaneController.setForumController(this);
             topicsPaneController.setCurrentSection(section);
