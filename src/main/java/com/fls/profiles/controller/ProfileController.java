@@ -105,11 +105,11 @@ public class ProfileController {
         imageField.imageProperty().bindBidirectional(user.getImageProperty());
         spokenLanguagesList.setItems(FXCollections.observableArrayList(user.getSpokenLanguages()));
         programmingLanguagesList.setItems(FXCollections.observableArrayList(user.getProgrammingLanguages()));
-        ArrayList<IUser> friends = user.getFriends();
+        ArrayList<Long> friends = user.getFriends();
         if(!friends.isEmpty()){
-            friend1Pane.getChildren().add(profile.getInfo(friends.get(0).getID()));
+            friend1Pane.getChildren().add(profile.getInfo(friends.get(0)));
             if(friends.size() > 1){
-                friend2Pane.getChildren().add(profile.getInfo(friends.get(0).getID()));
+                friend2Pane.getChildren().add(profile.getInfo(friends.get(1)));
             }
         }
     }

@@ -47,7 +47,7 @@ public interface IUser {
     Integer getStackPoints();
     Integer getHackerrankPoints();
     Image getImage();
-    ArrayList<IUser> getFriends();
+    ArrayList<Long> getFriends();
 
     StringProperty getLoginProperty();
     StringProperty getPasswordProperty();

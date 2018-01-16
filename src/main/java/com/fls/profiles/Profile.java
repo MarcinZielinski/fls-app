@@ -24,6 +24,7 @@ import java.util.Set;
 
 public class Profile implements IProfile {
     public final Manager manager;
+    private ArrayList<IUser> mockUsers = new ArrayList<>();
 
     public Profile(Manager manager) {
         this.manager = manager;
@@ -39,7 +40,21 @@ public class Profile implements IProfile {
             ProfileController controller = (ProfileController) loader.getController();
             controller.setProfile(this);
 
-            //controller.setUser(user);
+            Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
+            spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
+            programming.add("c++"); programming.add("java"); programming.add("icon");
+            File file = new File("/com/fls/profile/avatar.jpg");
+            Image img = new Image(file.toURI().toString());
+
+            ArrayList<Long> friends = new ArrayList<>();
+            friends.add(0L);
+            friends.add(1L);
+
+            Programist prog = new Programist(1,"stefek111", "qwerty","Stefan", "Stefkowski", "20-12-1990", "stefan@agh.edu.pl",
+                    "123456789", "Stefkowa 5", "Stefanowo", "Poland", spoken, programming,
+                    10, 99999, 63, 28, img, friends);
+
+            controller.setUser(prog);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,10 +68,18 @@ public class Profile implements IProfile {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/info.fxml"));
             layout = (Pane) loader.load();
+            Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
+            spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
+            programming.add("c++"); programming.add("java"); programming.add("icon");
+            File file = new File("/com/fls/profile/avatar.jpg");
+            Image img = new Image(file.toURI().toString());
+            Programist prog1 = new Programist(1,"stefek111", "qwerty","Stefan", "Stefkowski", "20-12-1990", "stefan@agh.edu.pl",
+                    "123456789", "Stefkowa 5", "Stefanowo", "Poland", spoken, programming,
+                    10, 99999, 63, 28, img, new ArrayList<>());
 
             // set initial data into controller
             InfoController controller = (InfoController) loader.getController();
-            //controller.setUser(user);
+            controller.setUser(prog1);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,10 +93,18 @@ public class Profile implements IProfile {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/detailed.fxml"));
             layout = (Pane) loader.load();
+            Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
+            spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
+            programming.add("c++"); programming.add("java"); programming.add("icon");
+            File file = new File("/com/fls/profile/avatar.jpg");
+            Image img = new Image(file.toURI().toString());
+            Programist prog1 = new Programist(1,"stefek111", "qwerty","Stefan", "Stefkowski", "20-12-1990", "stefan@agh.edu.pl",
+                    "123456789", "Stefkowa 5", "Stefanowo", "Poland", spoken, programming,
+                    10, 99999, 63, 28, img, new ArrayList<>());
 
             // set initial data into controller
             DetailedController controller = (DetailedController) loader.getController();
-            //controller.setUser(user);
+            controller.setUser(prog1);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,7 +130,20 @@ public class Profile implements IProfile {
             Scene scene = new Scene(layout);
             dialogStage.setScene(scene);
             EditController controller = (EditController) loader.getController();
-            //controller.setUser(user);
+            Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
+            spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
+            programming.add("c++"); programming.add("java"); programming.add("icon");
+            File file = new File("/com/fls/profile/avatar.jpg");
+            Image img = new Image(file.toURI().toString());
+
+            ArrayList<Long> friends = new ArrayList<>();
+            friends.add(0L);
+            friends.add(1L);
+
+            Programist prog = new Programist(1,"stefek111", "qwerty","Stefan", "Stefkowski", "20-12-1990", "stefan@agh.edu.pl",
+                    "123456789", "Stefkowa 5", "Stefanowo", "Poland", spoken, programming,
+                    10, 99999, 63, 28, img, friends);
+            controller.setUser(prog);
             controller.setStage(dialogStage);
             dialogStage.showAndWait();
         } catch (IOException e) {

@@ -27,11 +27,11 @@ public class Programist implements IUser {
     private StringProperty stackPoints;
     private StringProperty hackerrankPoints;
     private ObjectProperty<Image> image;
-    private ArrayList<IUser> friends;
+    private ArrayList<Long> friends;
 
     public Programist(long id, String login, String password, String firstname, String lastname, String birthdate, String email, String phone, String address,
                       String city, String country, Set<String> spoken, Set<String> programming, Integer experience,
-                      Integer fls, Integer stack, Integer hacker, Image img, ArrayList<IUser> friends) {
+                      Integer fls, Integer stack, Integer hacker, Image img, ArrayList<Long> friends) {
         this.id = new SimpleLongProperty(id);
         this.login = new SimpleStringProperty(login);
         this.password = new SimpleStringProperty(password);
@@ -72,7 +72,7 @@ public class Programist implements IUser {
         this.stackPoints = new SimpleStringProperty();
         this.hackerrankPoints = new SimpleStringProperty();
         this.image = new SimpleObjectProperty<>();
-        this.friends = new ArrayList<>();
+        this.friends = new ArrayList<Long>();
     }
 
     @Override
@@ -256,7 +256,7 @@ public class Programist implements IUser {
     }
 
     @Override
-    public ArrayList<IUser> getFriends() {
+    public ArrayList<Long> getFriends() {
         return friends;
     }
 
