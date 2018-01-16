@@ -1,76 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.forum.controller.TopicsCreatorPaneController">
-      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="com.fls.forum.controller.TopicsCreatorPaneController">
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <top>
             <Pane prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="currentSectionNameLabel" layoutX="14.0" layoutY="50.0" text="Java">
-                     <font>
-                        <Font name="DejaVu Sans Mono Bold Oblique" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="14.0" text="Stwórz nowy wątek">
-                     <font>
-                        <Font name="DejaVu Sans ExtraLight" size="26.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="backFromTopicCreatorButton" layoutX="544.0" layoutY="64.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="62.0" text="Wróć" />
-               </children>
+                <children>
+                    <Label fx:id="currentSectionNameLabel" layoutX="14.0" layoutY="50.0" text="Java">
+                        <font>
+                            <Font name="DejaVu Sans Mono Bold Oblique" size="24.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="14.0" layoutY="14.0" text="Stwórz nowy wątek">
+                        <font>
+                            <Font name="DejaVu Sans ExtraLight" size="26.0"/>
+                        </font>
+                    </Label>
+                    <Button fx:id="backFromTopicCreatorButton" layoutX="544.0" layoutY="64.0" mnemonicParsing="false"
+                            prefHeight="24.0" prefWidth="62.0" text="Wróć"/>
+                </children>
             </Pane>
-         </top>
-         <left>
+        </top>
+        <left>
             <GridPane hgap="15.0" prefHeight="222.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="67.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="518.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="91.0" minHeight="1.0" prefHeight="4.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-                  <TextArea fx:id="topicQuestionContentTextArea" prefHeight="192.0" prefWidth="494.0" promptText="Opisz dokładnie swój problem" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TilePane prefHeight="192.0" prefWidth="97.0" GridPane.rowIndex="1">
-                        <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="66.0" text="Post">
-                           <font>
-                              <Font name="DejaVu Sans ExtraLight" size="20.0" />
-                           </font>
-                        </Label>
-                  </TilePane>
-                  <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="108.0" text="Nazwa">
-                     <font>
-                        <Font name="DejaVu Sans ExtraLight" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="topicNameTextField" promptText="Napisz krótko w czym rzecz" GridPane.columnIndex="1" />
-                  <Pane prefHeight="61.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                        <Button fx:id="makePostButton" layoutX="456.0" layoutY="34.0" mnemonicParsing="false" onAction="#onMakePostButtonClicked" text="Stwórz" />
-                        <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="480.0" textFill="#da0505" visible="false">
-                           <font>
-                              <Font name="DejaVu Sans ExtraLight" size="15.0" />
-                           </font>
-                        </Label>
-                  </Pane>
-               <BorderPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </BorderPane.margin>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="67.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="518.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="91.0" minHeight="1.0" prefHeight="4.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <TextArea fx:id="topicQuestionContentTextArea" prefHeight="192.0" prefWidth="494.0"
+                          promptText="Opisz dokładnie swój problem" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TilePane prefHeight="192.0" prefWidth="97.0" GridPane.rowIndex="1">
+                    <Label alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="66.0"
+                           text="Post">
+                        <font>
+                            <Font name="DejaVu Sans ExtraLight" size="20.0"/>
+                        </font>
+                    </Label>
+                </TilePane>
+                <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="108.0" text="Nazwa">
+                    <font>
+                        <Font name="DejaVu Sans ExtraLight" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="topicNameTextField" promptText="Napisz krótko w czym rzecz" GridPane.columnIndex="1"/>
+                <Pane prefHeight="61.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                      GridPane.valignment="BOTTOM">
+                    <Button fx:id="makePostButton" layoutX="456.0" layoutY="34.0" mnemonicParsing="false"
+                            onAction="#onMakePostButtonClicked" text="Stwórz"/>
+                    <Label fx:id="topicNameErrorLabel" layoutY="5.0" prefHeight="19.0" prefWidth="480.0"
+                           textFill="#da0505" visible="false">
+                        <font>
+                            <Font name="DejaVu Sans ExtraLight" size="15.0"/>
+                        </font>
+                    </Label>
+                </Pane>
+                <BorderPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </BorderPane.margin>
             </GridPane>
-         </left>
-      </BorderPane>
-    <AnchorPane layoutX="-184.0" layoutY="32.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        </left>
+    </BorderPane>
+    <AnchorPane layoutX="-184.0" layoutY="32.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0"/>
 </AnchorPane>

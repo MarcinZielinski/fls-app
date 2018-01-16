@@ -1,6 +1,5 @@
 package com.fls.forum.model;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -25,7 +24,7 @@ public class JsonParser<T> {
 
         TypeFactory typeFactory = mapper.getTypeFactory();
 
-        JavaType inner = typeFactory.constructParametricType( List.class, typeParameterClass );
+        JavaType inner = typeFactory.constructParametricType(List.class, typeParameterClass);
 
 
         try {

@@ -27,7 +27,14 @@ public class WallPost {
         this.postImage = postImage;
     }
 
-    public Pane load(){
+    WallPost(User user, String content, Wall wall, Long timestamp) {
+        this.user = user;
+        this.content = content;
+        this.wall = wall;
+        this.timestamp = timestamp;
+    }
+
+    public Pane load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("pane_wallpost.fxml"));
         try {
             postView = loader.load();
@@ -48,19 +55,12 @@ public class WallPost {
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Wall getWall() {
         return wall;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    WallPost(User user, String content, Wall wall, Long timestamp) {
-        this.user = user;
-        this.content = content;
-        this.wall = wall;
-        this.timestamp = timestamp;
     }
 
     public Long getTimestamp() {
@@ -68,11 +68,11 @@ public class WallPost {
         return timestamp;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public WallPostController getWallPostController(){
+    public WallPostController getWallPostController() {
         return postController;
     }
 

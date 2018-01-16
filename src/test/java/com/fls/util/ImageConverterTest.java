@@ -20,7 +20,7 @@ public class ImageConverterTest extends ApplicationTest {
         byte[] expectedBytes = ImageConverter.convertToByteArray(imageView);
         ImageView convertedImage = ImageConverter.convertToImageView(expectedBytes);
         //then
-        assertEquals(imageView.getImage().getHeight(),convertedImage.getImage().getHeight(),10e-15);
-        assertEquals(imageView.getImage().getWidth(),convertedImage.getImage().getWidth(),10e-15);
+        assertEquals(imageView.getImage().getHeight(), convertedImage.getImage().getHeight(), 10e-15);
+        assertEquals(imageView.getImage().getWidth(), convertedImage.getImage().getWidth(), 10e-15);
     }
 }

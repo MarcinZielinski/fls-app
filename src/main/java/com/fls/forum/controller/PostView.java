@@ -7,7 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 
 public class PostView {
@@ -15,11 +16,11 @@ public class PostView {
     private ForumController forumController;
 
 
-    public PostView(ForumController forumController){
+    public PostView(ForumController forumController) {
         this.forumController = forumController;
     }
 
-    public HBox showPost(Post post){
+    public HBox showPost(Post post) {
 //        String defalultStyle = "-fx-padding: 10;" + "-fx-border-style: solid inside;"
 //                + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
 //                + "-fx-border-radius: 5;" + "-fx-border-color: blue;";
@@ -100,7 +101,7 @@ public class PostView {
 
         hBox.getChildren().addAll(buttons);
 
-        for (Node child: hBox.getChildren()) {
+        for (Node child : hBox.getChildren()) {
             child.setStyle(defalultStyle);
         }
 //        vBox.getChildren().addAll(hBox);

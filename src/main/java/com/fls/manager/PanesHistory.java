@@ -20,15 +20,15 @@ public class PanesHistory {
 
     public void addPane(Node pane, Object module) {
         redoStack.clear();
-        if(undoStack.getSize() == size) {
+        if (undoStack.getSize() == size) {
             undoStack.popFromBottom();
         }
-        undoStack.push(pane,module);
+        undoStack.push(pane, module);
     }
 
     public StackNode<Node, Object> undoPane() {
-        if(undoStack.getSize() == 1) return null;
-        StackNode <Node, Object> actualNode = undoStack.popFromTop();
+        if (undoStack.getSize() == 1) return null;
+        StackNode<Node, Object> actualNode = undoStack.popFromTop();
         StackNode<Node, Object> previousNode = undoStack.peekTop();
         redoStack.push(actualNode);
         return previousNode;
@@ -36,7 +36,7 @@ public class PanesHistory {
 
     public StackNode<Node, Object> redoPane() {
         StackNode<Node, Object> nextNode = redoStack.popFromTop();
-        if(nextNode != null) {
+        if (nextNode != null) {
             undoStack.push(nextNode);
         }
         return nextNode;

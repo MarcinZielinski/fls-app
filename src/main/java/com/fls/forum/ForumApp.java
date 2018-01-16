@@ -1,6 +1,5 @@
 package com.fls.forum;
 
-import com.fls.forum.model.ServerObjectController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

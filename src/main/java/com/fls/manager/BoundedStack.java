@@ -4,9 +4,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class BoundedStack<T, E> {
+    private final int MAX_SIZE;
     private StackNode<T, E> bottom;
     private StackNode<T, E> top;
-    private final int MAX_SIZE;
     private IntegerProperty size;
 
     public BoundedStack(final int maxSize) {
@@ -30,19 +30,19 @@ public class BoundedStack<T, E> {
     }
 
     public void push(StackNode<T, E> node) {
-        if(node != null)
+        if (node != null)
             push(node.firstValue, node.secondValue);
     }
 
     public void push(T firstValue, E secondValue) {
-        if(getSize() < MAX_SIZE) {
+        if (getSize() < MAX_SIZE) {
             StackNode<T, E> next = new StackNode<>(firstValue, secondValue);
 
             top.next = next;
             next.prev = top;
 
             top = next;
-            setSize(getSize()+1);
+            setSize(getSize() + 1);
         }
     }
 
@@ -53,26 +53,26 @@ public class BoundedStack<T, E> {
 
     @SuppressWarnings({"Duplicates", "unchecked"}) // it's not duplicate. Using different class fields in both methods
     public StackNode<T, E> popFromTop() {
-        if(isEmpty()) return null;
+        if (isEmpty()) return null;
 
         StackNode<T, E> tmp = top;
         top = tmp.prev;
         top.next = null;
 
-        setSize(getSize()-1);
+        setSize(getSize() - 1);
 
         return tmp;
     }
 
     @SuppressWarnings({"Duplicates", "unchecked"}) // it's not duplicate.. using different fields
     public StackNode<T, E> popFromBottom() {
-        if(isEmpty()) return null;
+        if (isEmpty()) return null;
 
         StackNode<T, E> tmp = bottom;
         bottom = tmp.next;
         bottom.prev = null;
 
-        setSize(getSize()-1);
+        setSize(getSize() - 1);
 
         return tmp;
     }

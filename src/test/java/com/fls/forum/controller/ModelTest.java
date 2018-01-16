@@ -1,9 +1,10 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.generator.DataGenerator;
+import com.fls.forum.model.localModel.Post;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ModelTest {
     private Post post;
 
     @Before
-    public void before(){
+    public void before() {
         postList = DataGenerator.generatePosts(null);
         post = postList.get(0);
     }
@@ -24,19 +25,18 @@ public class ModelTest {
     public void addPlusTest() {
 
         long plusCount = post.getPlusCount();
-        post.addPlus();
+        post.addPlus(-1L);
 
-        assertEquals(plusCount + 1, (long)post.getPlusCount());
+        assertEquals(plusCount + 1, (long) post.getPlusCount());
     }
 
 
-
     @Test
-    public void addMinusTest(){
+    public void addMinusTest() {
 
         long plusCount = post.getPlusCount();
 
-        post.removePlus();
-        assertEquals(plusCount - 1, (long)post.getPlusCount());
+        post.removePlus(-1L);
+        assertEquals(plusCount - 1, (long) post.getPlusCount());
     }
 }

@@ -18,6 +18,7 @@ public abstract class TestFXBase extends ApplicationTest {
         FxToolkit.registerPrimaryStage();
         FxToolkit.setupApplication(Main.class);
     }
+
     @Override
     public void start(Stage stage) {
         stage.show();
@@ -32,6 +33,6 @@ public abstract class TestFXBase extends ApplicationTest {
     }
 
     public <T extends Node> T find(final String fxId) throws Exception {
-        return (T) lookup(fxId).tryQuery().orElseThrow(() -> new Exception(String.format("Couldn't find node with fxId: %s",fxId)));
+        return (T) lookup(fxId).tryQuery().orElseThrow(() -> new Exception(String.format("Couldn't find node with fxId: %s", fxId)));
     }
 }

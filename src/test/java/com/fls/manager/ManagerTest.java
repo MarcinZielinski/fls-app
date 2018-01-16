@@ -7,7 +7,6 @@ import org.testfx.api.FxToolkit;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.util.WaitForAsyncUtils;
 
-import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import static org.mockito.Mockito.spy;
@@ -23,12 +22,12 @@ public class ManagerTest extends TestFXBase {
 
     @Before
     public void before() throws TimeoutException {
-        manager = spy(new Manager(null,0L, 0L));
+        manager = spy(new Manager(null, 0L, 0L));
         FxToolkit.setupScene(manager::getScene);
     }
 
     @Test
-    public void sideBarAppearingTest () {
+    public void sideBarAppearingTest() {
         moveTo("#sideHBox");
 
         WaitForAsyncUtils.waitForFxEvents();

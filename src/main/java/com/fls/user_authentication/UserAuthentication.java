@@ -1,10 +1,10 @@
 package com.fls.user_authentication;
 
+import com.fls.Main;
 import com.fls.manager.controller.UAController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import com.fls.Main;
 
 import java.io.IOException;
 

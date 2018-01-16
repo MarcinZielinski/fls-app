@@ -14,7 +14,7 @@ public class ThreadHelper<T> extends Service<T> {
     private Callable<T> method;
 
     public ThreadHelper(StackPane parentPane, Callable<T> method, Consumer<T> whatToDoOnSucceed) {
-        if(!parentPane.getChildren().contains(progressIndicator)) {
+        if (!parentPane.getChildren().contains(progressIndicator)) {
             parentPane.getChildren().add(progressIndicator);
         }
         this.method = method;

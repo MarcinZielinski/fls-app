@@ -43,8 +43,7 @@ public class Profile implements IProfile {
             Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
             spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
             programming.add("c++"); programming.add("java"); programming.add("icon");
-            File file = new File("/com/fls/profile/avatar.jpg");
-            Image img = new Image(file.toURI().toString());
+            Image img = new Image("/com/fls/profile/avatar.jpg");
 
             ArrayList<Long> friends = new ArrayList<>();
             friends.add(0L);
@@ -133,8 +132,8 @@ public class Profile implements IProfile {
             Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
             spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
             programming.add("c++"); programming.add("java"); programming.add("icon");
-            File file = new File("/com/fls/profile/avatar.jpg");
-            Image img = new Image(file.toURI().toString());
+            //File file = new File("/com/fls/profile/avatar.jpg");
+            Image img = new Image("/com/fls/profile/avatar.jpg");
 
             ArrayList<Long> friends = new ArrayList<>();
             friends.add(0L);

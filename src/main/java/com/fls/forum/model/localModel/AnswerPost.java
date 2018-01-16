@@ -2,7 +2,7 @@ package com.fls.forum.model.localModel;
 
 import java.util.Date;
 
-public class AnswerPost extends Post{
+public class AnswerPost extends Post {
 
     private boolean rightAnswer;
 

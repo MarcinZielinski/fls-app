@@ -10,13 +10,14 @@ import javafx.stage.Stage;
  * Created by Marcin on 2017-12-12.
  */
 public class Main extends Application {
+    private Stage stage;
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    private Stage stage;
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         stage = primaryStage;
         stage.setTitle("FLSocial");
         stage.setMinWidth(300);
@@ -24,10 +25,12 @@ public class Main extends Application {
 
         loadUserAuthentication();
     }
+
     public void loadUserAuthentication() {
         UserAuthentication authentication = new UserAuthentication(this);
         stage.setScene(SoundPlayer.addSoundToScene(authentication.getScene()));
     }
+
     public void loadManager(Long tokenId, Long userId) {
         Manager manager = new Manager(this, tokenId, userId);
         stage.setScene(SoundPlayer.addSoundToScene(manager.getScene()));

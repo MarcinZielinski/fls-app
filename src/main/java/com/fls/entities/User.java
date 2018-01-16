@@ -1,7 +1,10 @@
 package com.fls.entities;
+
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Set; /**
+import java.util.Set;
+
+/**
  * Created by Marcin on 2017-12-12.
  */
 public class User {
