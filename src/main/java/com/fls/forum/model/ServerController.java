@@ -83,16 +83,17 @@ public class ServerController {
     }
 
     public void sendNewTopic(Topic topic){
-        topicController.createItem(serverObjectParser.toTopicServer(topic),
-                "editTopic?topicId=" + topic.getId() + "&userToken=" + "userT" + "&content=");
+        if(SERVER_COMMUNICATION) {
+            topicController.createItem(serverObjectParser.toTopicServer(topic),
+                    "editTopic?topicId=" + topic.getId() + "&userToken=" + "userT" + "&content=");
+        }
     }
 
-    public void sendNewPost(Post post){
-        postController.createItem(serverObjectParser.toPostServer(post),
-                "editTopic?topicId=" + post.getId() + "&userToken=" + "userT" + "&content=");
+    public void sendNewPost(Post post) {
+        if (SERVER_COMMUNICATION) {
+            postController.createItem(serverObjectParser.toPostServer(post),
+                    "editTopic?topicId=" + post.getId() + "&userToken=" + "userT" + "&content=");
+        }
     }
-
-
-
-
 }
+
