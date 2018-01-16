@@ -1,9 +1,10 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
-import com.fls.forum.model.Post;
-import com.fls.forum.model.Section;
-import com.fls.forum.model.Topic;
+import com.fls.forum.model.ServerController;
+import com.fls.forum.model.localModel.Post;
+import com.fls.forum.model.localModel.Section;
+import com.fls.forum.model.localModel.Topic;
 import com.fls.manager.Manager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,12 @@ public class ForumController {
 
     private Manager manager;
 
+    public ServerController getServerController() {
+        return serverController;
+    }
+
+    private ServerController serverController = new ServerController();
+
     public ForumController() {
         dataGenerator.init();
     }
@@ -32,6 +39,8 @@ public class ForumController {
 
         try {
             Pane root = loader.load();
+            if(topic.getPosts().size() == 0)
+                topic.loadPosts(serverController);
             PostsController postsController = loader.getController();
             postsController.setForumController(this);
             postsController.setData(getUserId(), topic);
@@ -53,6 +62,7 @@ public class ForumController {
         try {
             Pane root = loader.load();
             EditorController editorController = loader.getController();
+            editorController.setForumController(this);
 
             Stage editStage = new Stage();
             editorController.setData(post, editStage);
@@ -92,6 +102,8 @@ public class ForumController {
 
         try {
             Parent root = loader.load();
+            if(section.getTopics().size() == 0)
+                section.loadTopics(serverController);
             TopicsPaneController topicsPaneController = loader.getController();
             topicsPaneController.setForumController(this);
             topicsPaneController.setCurrentSection(section);
@@ -134,4 +146,5 @@ public class ForumController {
             return manager.userId;
         return 1L;
     }
+
 }

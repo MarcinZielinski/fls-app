@@ -1,7 +1,7 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Section;
-import com.fls.forum.model.Topic;
+import com.fls.forum.model.localModel.Section;
+import com.fls.forum.model.localModel.Topic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class TopicsPaneController implements Initializable{
     private Pagination topicsListPagination;
 
 
-//    public TopicsPaneController(Section section){
+//    public TopicsPaneController(SectionServer section){
 //        this.currentSection = section;
 //    }
 

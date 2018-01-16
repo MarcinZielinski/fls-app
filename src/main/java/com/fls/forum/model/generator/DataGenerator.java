@@ -1,6 +1,6 @@
 package com.fls.forum.model.generator;
 
-import com.fls.forum.model.*;
+import com.fls.forum.model.localModel.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

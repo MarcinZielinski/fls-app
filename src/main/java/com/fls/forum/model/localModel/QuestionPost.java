@@ -1,6 +1,4 @@
-package com.fls.forum.model;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
+package com.fls.forum.model.localModel;
 
 import java.util.Date;
 

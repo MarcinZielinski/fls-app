@@ -1,12 +1,14 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
-import com.fls.forum.ForumApp;
+import com.fls.forum.model.ServerController;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public abstract class Post {
@@ -32,6 +34,14 @@ public abstract class Post {
         this.authorPlus = new SimpleBooleanProperty(authorPlus);
     }
 
+
+    public Post(Long id, String content, Long authorId, Integer plusCount) {
+        this.id = new SimpleLongProperty(id);
+        this.content = new SimpleObjectProperty<>(new Content(content));
+        this.authorId = new SimpleLongProperty(authorId);
+        this.plusCount = new SimpleLongProperty(plusCount);
+    }
+
     public Long getPlusCount() {
         return plusCount.get();
     }
@@ -55,6 +65,11 @@ public abstract class Post {
         plusAuthors.get().add(author);
         setAuthorPlus(true);
     }
+
+    public void sendToServer(ServerController serverController){
+        serverController.sendNewPost(this);
+    }
+
 
     public Content getContent() {
         return content.get();

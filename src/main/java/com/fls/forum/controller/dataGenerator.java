@@ -1,11 +1,12 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Content;
-import com.fls.forum.model.QuestionPost;
-import com.fls.forum.model.Section;
-import com.fls.forum.model.Topic;
+import com.fls.forum.model.localModel.Content;
+import com.fls.forum.model.localModel.QuestionPost;
+import com.fls.forum.model.localModel.Section;
+import com.fls.forum.model.localModel.Topic;
 
 import java.util.*;
+import static java.lang.Math.toIntExact;
 
 public class dataGenerator {
 
@@ -40,11 +41,12 @@ public class dataGenerator {
 
 
     private static void fillWithSections(){
-        sections.add(new Section(1, "Java", "Programowanie w języku Java"));
-        sections.add(new Section(2, "Humor", "Napisz coś śmiesznego"));
-        sections.add(new Section(3, "Koło", "BIT, AGLO, AI i inne"));
-        sections.add(new Section(4, "Praktyki", "Ogłoszenia pracy, staże"));
+        sections.add(new Section(1, "Java", "Programowanie w języku Java",  (long)topics.size()));
+        sections.add(new Section(2, "Humor", "Napisz coś śmiesznego",  (long)topics.size()));
+        sections.add(new Section(3, "Koło", "BIT, AGLO, AI i inne",  (long)topics.size()));
+        sections.add(new Section(4, "Praktyki", "Ogłoszenia pracy, staże",  (long)topics.size()));
     }
+
 
     private static void fillWithTopics(){
         topics.add(new Topic(1, "What is a NullPointerException, and how do I fix it?", new QuestionPost()));

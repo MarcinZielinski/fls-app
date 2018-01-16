@@ -1,6 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Post;
+import com.fls.forum.model.localModel.Post;
 import javafx.scene.control.Button;
 
 public class AddButton extends Button{

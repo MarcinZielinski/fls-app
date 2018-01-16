@@ -1,7 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.ForumApp;
-import com.fls.forum.model.Post;
+import com.fls.forum.model.localModel.Post;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -1,19 +1,32 @@
-package com.fls.forum.model;
+package com.fls.forum.model.localModel;
 
+import com.fls.forum.model.ServerController;
+import com.fls.forum.model.serverModel.PostServer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Topic {
 
     private long categoryId;
-    private long id;
+    private long id = 0;
     private String name;
     private QuestionPost questionPost;
     private Section section;
     private ObservableList<Post> posts = FXCollections.observableArrayList();
+
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    private Long authorId = -1L;
 
     public List<Integer> getAllPostsIds(){
         return null;
@@ -27,25 +40,34 @@ public class Topic {
         if(questionPost != null){
             addPost(questionPost);
         }
+
     }
+
+    public void sendToServer(ServerController serverController){
+        serverController.sendNewTopic(this);
+    }
+
 
     public Topic(long categoryId, String name, QuestionPost questionPost){
         this(categoryId, name, questionPost, null);
     }
 
+    public void loadPosts(ServerController serverController){
+        this.posts.clear();
+        this.posts.addAll(serverController.getAllPosts(this));
+    }
+
+
     public ObservableList<Post> getPosts() {
-        //TODO: load from database
         return posts;
     }
 
     public void addPost(Post post){
-        // TODO: send to database
         posts.add(post);
     }
 
 
     public void setPosts(ObservableList<Post> posts){
-        // TODO: send to database
         this.posts = posts;
     }
 

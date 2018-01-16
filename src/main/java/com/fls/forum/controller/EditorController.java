@@ -1,7 +1,7 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.Content;
-import com.fls.forum.model.Post;
+import com.fls.forum.model.localModel.Content;
+import com.fls.forum.model.localModel.Post;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -11,6 +11,8 @@ public class EditorController {
 
     private Post post;
     private Stage stage;
+
+    private ForumController forumController;
 
     @FXML
     public TextArea textArea;
@@ -24,6 +26,7 @@ public class EditorController {
     public void handleOkAction() {
         post.setContent(new Content(textArea.getText()));
         stage.close();
+        post.sendToServer(forumController.getServerController());
     }
 
     public void handleCancelAction() {
@@ -34,6 +37,10 @@ public class EditorController {
         this.post = post;
         this.stage = stage;
         textArea.setText(post.getContent().toString());
+    }
+
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
     }
 
 }
