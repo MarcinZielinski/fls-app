@@ -4,23 +4,19 @@ import com.fls.Server;
 import com.fls.entities.User;
 import com.fls.manager.Manager;
 import com.fls.user_finder.contoller.UFController;
-import com.fls.util.ImageConverter;
 import com.fls.util.ThreadHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by Marcin on 2017-12-12.
@@ -59,8 +55,8 @@ public class UserFinder {
     }
 
     private void fillWithQueryResult(VBox vBox, List<User> users) {
-        byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
-        users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(1L, 1L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
+        //byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
+        //users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(1L, 1L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
         vBox.getChildren().clear(); // clearing the results of the last search
         if(users!=null) {
             vBox.setAlignment(Pos.TOP_LEFT);
@@ -92,7 +88,7 @@ public class UserFinder {
 
         Platform.runLater(() -> searchResultsPane.setExpanded(true)); // run later, when "later" means: run after FXMLLoader.invoke() method is called. invoke() sets "expanded" to false, so we need to change it to true after invoke() execution
         if(actualTask != null) actualTask.cancel();
-        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUsers(user), (users) -> fillWithQueryResult(vBox, users));
+        actualTask = new ThreadHelper<>(stackPane, () -> Server.getUser(1L), (users) -> fillWithQueryResult(vBox, Collections.singletonList(users)));
         actualTask.restart();
     }
 }
