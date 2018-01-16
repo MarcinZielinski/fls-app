@@ -1,8 +1,5 @@
 package com.fls.chat;
 
-import com.fls.chat.ChatRoom;
-import com.fls.chat.ChatServer;
-import com.fls.chat.ChatUser;
 import com.fls.chat.event.ChatEventHandler;
 import com.fls.chat.message.constructor.MessageConstructor;
 

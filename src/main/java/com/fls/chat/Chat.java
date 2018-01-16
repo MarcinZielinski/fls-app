@@ -2,6 +2,7 @@ package com.fls.chat;
 
 import com.fls.chat.event.ChatEvent;
 import com.fls.chat.event.ChatEventHandler;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,4 +48,8 @@ public class Chat {
         eventHandlers.put(eventClass, handlers);
     }
 
+
+    public Pane load(List<Long> userIds) {
+        return null;
+    }
 }

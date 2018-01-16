@@ -1,7 +1,7 @@
 package com.fls.chat.event;
 
-import com.fls.chat.message.Message;
 import com.fls.chat.ChatRoom;
+import com.fls.chat.message.Message;
 
 public class NewMessageEvent extends ChatEvent {
 

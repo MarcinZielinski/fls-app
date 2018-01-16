@@ -11,11 +11,11 @@ public class TimedLabel {
 
     private Label label;
 
-    TimedLabel(Label label){
+    TimedLabel(Label label) {
         this.label = label;
     }
 
-    void setText(String text, double seconds){
+    void setText(String text, double seconds) {
         label.setText(text);
         label.setVisible(true);
         timer.schedule(new TimerTask() {
@@ -23,6 +23,6 @@ public class TimedLabel {
             public void run() {
                 label.setVisible(false);
             }
-        }, (int)(seconds * 1000));
+        }, (int) (seconds * 1000));
     }
 }

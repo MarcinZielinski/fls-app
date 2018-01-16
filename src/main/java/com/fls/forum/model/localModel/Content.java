@@ -17,7 +17,7 @@ public class Content {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return text;
     }
 

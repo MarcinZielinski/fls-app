@@ -9,17 +9,14 @@ import javafx.stage.Stage;
 
 public class EditorController {
 
-    private Post post;
-    private Stage stage;
-
     @FXML
     public TextArea textArea;
-
     @FXML
     public Button okButton;
-
     @FXML
     public Button cancelButton;
+    private Post post;
+    private Stage stage;
 
     public void handleOkAction() {
         post.setContent(new Content(textArea.getText()));
@@ -30,7 +27,7 @@ public class EditorController {
         stage.close();
     }
 
-    public void setData(Post post, Stage stage){
+    public void setData(Post post, Stage stage) {
         this.post = post;
         this.stage = stage;
         textArea.setText(post.getContent().toString());

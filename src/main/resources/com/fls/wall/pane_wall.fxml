@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="362.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="com.fls.wall.controller.WallController">
+    <Accordion blendMode="BLUE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <panes>
+            <TitledPane fx:id="creatorPane" cache="true" cacheHint="QUALITY" cacheShape="false" pickOnBounds="false"
+                        text="Post Editor">
+                <content>
+                    <ScrollPane fx:id="scrollPostsPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0"
+                                prefWidth="200.0" vbarPolicy="ALWAYS">
+                        <content>
+                            <AnchorPane>
+                                <children>
+                                    <VBox fx:id="creatorSections" alignment="TOP_CENTER" maxWidth="600.0"
+                                          minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0"
+                                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                          AnchorPane.topAnchor="0.0">
+                                        <children>
+                                            <TextArea fx:id="content" promptText="Type your content here"
+                                                      wrapText="true">
+                                                <padding>
+                                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                                </padding>
+                                            </TextArea>
+                                            <Pane VBox.vgrow="SOMETIMES">
+                                                <children>
+                                                    <ImageView fx:id="imageView" pickOnBounds="true"
+                                                               preserveRatio="true">
+                                                        <viewport>
+                                                            <Rectangle2D/>
+                                                        </viewport>
+                                                    </ImageView>
+                                                </children>
+                                            </Pane>
+                                            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                                <buttons>
+                                                    <Button fx:id="addImage" cache="true" cacheHint="QUALITY"
+                                                            cacheShape="false" mnemonicParsing="false"
+                                                            text="Add Image"/>
+                                                    <Button fx:id="apply" mnemonicParsing="false" text="Apply"/>
+                                                </buttons>
+                                            </ButtonBar>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </ScrollPane>
+                </content>
+            </TitledPane>
+            <TitledPane fx:id="postsPane" cacheShape="false" expanded="false" text="Posts">
+                <content>
+                    <StackPane fx:id="stackPane">
+                        <children>
+                            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="ALWAYS">
+                                <VBox fx:id="posts" alignment="TOP_CENTER">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                    </padding>
+                                </VBox>
+                            </ScrollPane>
+                        </children>
+                    </StackPane>
+                </content>
+            </TitledPane>
+        </panes>
+    </Accordion>
+</AnchorPane>

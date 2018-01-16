@@ -11,34 +11,10 @@ public class Section {
     private String name;
     private String description;
     private List<Topic> topics;
-
-    public List<Integer> getTopicIds() {
-        return topicIds;
-    }
-
-    public void setTopicIds(List<Integer> topicIds) {
-        this.topicIds = topicIds;
-    }
-
     private List<Integer> topicIds;
-
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Long getTopicCount() {
-        return topicCount;
-    }
-
-    public void setTopicCount(Long topicCount) {
-        this.topicCount = topicCount;
-    }
-
     private Long topicCount;
 
-
-    public Section(){
+    public Section() {
 
     }
 
@@ -53,11 +29,10 @@ public class Section {
         this.topicCount = topicCount;
 
 
-        for(Topic topic: topics)
+        for (Topic topic : topics)
             topic.setSection(this);
 
     }
-
 
     public Section(long id, String name, String description, Long topicCount) {
         this.id = id;
@@ -69,34 +44,51 @@ public class Section {
         this.topicCount = topicCount;
 
 
-        for(Topic topic: topics)
+        for (Topic topic : topics)
             topic.setSection(this);
 
     }
 
-    public void loadTopics(){
+    public List<Integer> getTopicIds() {
+        return topicIds;
+    }
+
+    public void setTopicIds(List<Integer> topicIds) {
+        this.topicIds = topicIds;
+    }
+
+    public Long getTopicCount() {
+        return topicCount;
+    }
+
+    public void setTopicCount(Long topicCount) {
+        this.topicCount = topicCount;
+    }
+
+    public void loadTopics() {
         topics = new ServerController().getAllTopics(this);
 
-        for(Topic topic: topics)
+        for (Topic topic : topics)
             topic.setSection(this);
 
     }
 
-    public void setTopics(List<Topic> topics){
-        this.topics = topics;
-    }
-
-    public List<Topic> getTopics(){
+    public List<Topic> getTopics() {
         return topics;
     }
 
-    public void addTopic(Topic topic){
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public void addTopic(Topic topic) {
         this.topics.add(topic);
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -104,6 +96,7 @@ public class Section {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -112,8 +105,12 @@ public class Section {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%-25s", name) + description;
     }
 }

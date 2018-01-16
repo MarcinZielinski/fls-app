@@ -6,7 +6,6 @@ import com.fls.forum.model.localModel.Section;
 import com.fls.forum.model.localModel.Topic;
 import com.fls.manager.Manager;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class Forum implements com.fls.forum.model.Forum {
         return forumController.loadSectionsPane();
     }
 
-    public void setManager(Manager manager){
+    public void setManager(Manager manager) {
         forumController.setManager(manager);
     }
 }

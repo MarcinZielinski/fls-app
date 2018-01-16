@@ -1,12 +1,10 @@
 package com.fls.forum.model.localModel;
 
 import com.fls.forum.model.ServerController;
-import com.fls.forum.model.serverModel.PostServer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
-import java.util.Set;
 
 public class Topic {
 
@@ -16,6 +14,22 @@ public class Topic {
     private QuestionPost questionPost;
     private Section section;
     private ObservableList<Post> posts = FXCollections.observableArrayList();
+    private Long authorId = -1L;
+
+    public Topic(long categoryId, String name, QuestionPost questionPost, Section section) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.questionPost = questionPost;
+        this.section = section;
+        if (questionPost != null) {
+            addPost(questionPost);
+        }
+
+    }
+
+    public Topic(long categoryId, String name, QuestionPost questionPost) {
+        this(categoryId, name, questionPost, null);
+    }
 
     public Long getAuthorId() {
         return authorId;
@@ -25,30 +39,11 @@ public class Topic {
         this.authorId = authorId;
     }
 
-    private Long authorId = -1L;
-
-    public List<Integer> getAllPostsIds(){
+    public List<Integer> getAllPostsIds() {
         return null;
     }
 
-    public Topic(long categoryId, String name, QuestionPost questionPost, Section section){
-        this.categoryId = categoryId;
-        this.name = name;
-        this.questionPost = questionPost;
-        this.section = section;
-        if(questionPost != null){
-            addPost(questionPost);
-        }
-
-    }
-
-
-
-    public Topic(long categoryId, String name, QuestionPost questionPost){
-        this(categoryId, name, questionPost, null);
-    }
-
-    public void loadPosts(){
+    public void loadPosts() {
         this.posts.addAll(new ServerController().getAllPosts(this));
     }
 
@@ -58,17 +53,15 @@ public class Topic {
         return posts;
     }
 
-    public void addPost(Post post){
-        // TODO: send to database
-        posts.add(post);
-    }
-
-
-    public void setPosts(ObservableList<Post> posts){
+    public void setPosts(ObservableList<Post> posts) {
         // TODO: send to database
         this.posts = posts;
     }
 
+    public void addPost(Post post) {
+        // TODO: send to database
+        posts.add(post);
+    }
 
     public long getCategoryId() {
         return categoryId;
@@ -86,8 +79,13 @@ public class Topic {
         return questionPost;
     }
 
+    public void setQuestionPost(QuestionPost questionPost) {
+        this.questionPost = questionPost;
+        posts.add(questionPost);
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s", name);
     }
 
@@ -97,10 +95,5 @@ public class Topic {
 
     public void setSection(Section section) {
         this.section = section;
-    }
-
-    public void setQuestionPost(QuestionPost questionPost) {
-        this.questionPost = questionPost;
-        posts.add(questionPost);
     }
 }

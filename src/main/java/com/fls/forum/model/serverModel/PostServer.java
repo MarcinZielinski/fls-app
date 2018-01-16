@@ -18,19 +18,20 @@ public class PostServer {
         this.plusCount = plusCount;
     }
 
-    public PostServer(){ }
+    public PostServer() {
+    }
 
 
     public Integer getTopicId() {
         return topicId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Integer getAuthorId() {

@@ -1,12 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0"/>
-        <Label layoutX="136.0" layoutY="47.0" text="Załadowało sie hehe"/>
-    </children>
-</Pane>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="408.0"
+            prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="com.fls.user_finder.contoller.UFController">
+    <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <panes>
+            <TitledPane fx:id="advancedSearchPane" cacheShape="false" expanded="false" text="Advanced Search">
+                <ScrollPane fx:id="scrollPane" cacheShape="false" fitToWidth="true" pannable="true">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <GridPane alignment="CENTER" hgap="10.0" AnchorPane.bottomAnchor="0.0"
+                                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                          AnchorPane.topAnchor="0.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"
+                                                           prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Advanced search" GridPane.columnSpan="2147483647"
+                                               GridPane.halignment="CENTER"/>
+                                        <Label text="Name:" GridPane.rowIndex="1"/>
+                                        <TextField fx:id="nameTextField" promptText="You can leave this field empty"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                        <Label text="Spoken languages:" GridPane.rowIndex="2"/>
+                                        <Label text="Programming languages:" GridPane.rowIndex="3"/>
+                                        <Label text="Work experience:" GridPane.rowIndex="4"/>
+                                        <TextField fx:id="programmingLangsTextField" promptText="Separate with , or ;"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                        <GridPane fx:id="spokenLaguagesGridPane" GridPane.columnIndex="1"
+                                                  GridPane.rowIndex="2">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="0.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <CheckBox fx:id="englishCheckbox" mnemonicParsing="false"
+                                                          onAction="#spokenLangChecked" text="English"/>
+                                                <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked"
+                                                          text="German" GridPane.rowIndex="1"/>
+                                                <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked"
+                                                          text="French" GridPane.rowIndex="2"/>
+                                                <CheckBox mnemonicParsing="false" onAction="#spokenLangChecked"
+                                                          text="Polish" GridPane.rowIndex="3"/>
+                                                <Button fx:id="addSpokenLanguageButton" alignment="CENTER"
+                                                        contentDisplay="CENTER" ellipsisString="+"
+                                                        mnemonicParsing="false" onAction="#addSpokenLanguage"
+                                                        pickOnBounds="false" text="+" textAlignment="CENTER"
+                                                        GridPane.rowIndex="6">
+                                                    <cursor>
+                                                        <Cursor fx:constant="HAND"/>
+                                                    </cursor>
+                                                    <font>
+                                                        <Font size="10.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </GridPane>
+                                        <Slider fx:id="experienceSlider" blockIncrement="1.0" max="50.0"
+                                                minorTickCount="1" showTickLabels="true" GridPane.columnIndex="1"
+                                                GridPane.rowIndex="4"/>
+                                        <Label fx:id="experienceLabel" text="Years (minimum):" GridPane.columnIndex="1"
+                                               GridPane.halignment="CENTER" GridPane.rowIndex="5"
+                                               GridPane.valignment="TOP"/>
+                                        <Button fx:id="advancedSearchButton" mnemonicParsing="false"
+                                                onAction="#searchForUser" text="Search" GridPane.columnSpan="2"
+                                                GridPane.halignment="CENTER" GridPane.rowIndex="8"/>
+                                        <Label text="Points (minimum)" GridPane.rowIndex="6"/>
+                                        <GridPane hgap="5.0" vgap="15.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="FLS points" GridPane.halignment="CENTER"/>
+                                                <TextField fx:id="pointsFls" text="0" GridPane.rowIndex="1"/>
+                                                <Label text="Stackoverflow" GridPane.columnIndex="1"
+                                                       GridPane.halignment="CENTER"/>
+                                                <TextField fx:id="pointsStack" text="0" GridPane.columnIndex="1"
+                                                           GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets/>
+                                                    </GridPane.margin>
+                                                </TextField>
+                                                <Label text="Hackerrank" GridPane.columnIndex="2"
+                                                       GridPane.halignment="CENTER"/>
+                                                <TextField fx:id="pointsHackerrank" text="0" GridPane.columnIndex="2"
+                                                           GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets/>
+                                                    </GridPane.margin>
+                                                </TextField>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </ScrollPane>
+            </TitledPane>
+            <TitledPane fx:id="resultsPane" text="Search results">
+                <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
+                            <VBox fx:id="searchResultsVBox" spacing="20.0">
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </VBox>
+                        </ScrollPane>
+                    </children>
+                </StackPane>
+            </TitledPane>
+        </panes>
+    </Accordion>
+</AnchorPane>

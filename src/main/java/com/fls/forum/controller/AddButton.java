@@ -3,9 +3,9 @@ package com.fls.forum.controller;
 import com.fls.forum.model.localModel.Post;
 import javafx.scene.control.Button;
 
-public class AddButton extends Button{
+public class AddButton extends Button {
 
-    AddButton(Post post, Long userId){
+    AddButton(Post post, Long userId) {
 
         this.setText("+");
 

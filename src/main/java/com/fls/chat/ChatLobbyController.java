@@ -1,7 +1,5 @@
 package com.fls.chat;
 
-import com.fls.chat.Chat;
-import com.fls.chat.ChatContext;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -31,23 +31,32 @@ public class TopicsCreatorPaneController {
     @FXML
     private TextField topicNameTextField;
 
+    private static void addTextLimiter(final TextField tf, final int maxLength) {
+        tf.textProperty().addListener((ov, oldValue, newValue) -> {
+            if (tf.getText().length() > maxLength) {
+                String s = tf.getText().substring(0, maxLength);
+                tf.setText(s);
+            }
+        });
+    }
+
     public void setForumController(ForumController forumController) {
         this.forumController = forumController;
     }
 
-    public void setData(Section section, Stage stage){
+    public void setData(Section section, Stage stage) {
         this.section = section;
         this.stage = stage;
         currentSectionNameLabel.setText(section.getName());
         addTextLimiter(topicNameTextField, 100);
     }
 
-    private void onBackFromTopicCreatorButtonClicked(){
+    private void onBackFromTopicCreatorButtonClicked() {
         stage.close();
     }
 
-    private boolean validateCreatedTopic(String postContent, String topicName){
-        if(topicName.length() > 3) {
+    private boolean validateCreatedTopic(String postContent, String topicName) {
+        if (topicName.length() > 3) {
 
             if (postContent.length() > 15000) {
                 topicNameErrorLabel.setText(String.format("Zbyt duża ilość znaków: %d (max. 15000)", postContent.length()));
@@ -65,11 +74,11 @@ public class TopicsCreatorPaneController {
         return true;
     }
 
-    public void onMakePostButtonClicked(){
+    public void onMakePostButtonClicked() {
         String topicName = topicNameTextField.getText();
         String postContent = topicQuestionContentTextArea.getText();
 
-        if(validateCreatedTopic(postContent, topicName)){
+        if (validateCreatedTopic(postContent, topicName)) {
 
             Topic newTopic = new Topic(section.getId(), topicName, null, section);
             QuestionPost newPost = new QuestionPost(newTopic, new Date(), forumController.getUserId(), new Content(postContent), topicName);
@@ -80,15 +89,6 @@ public class TopicsCreatorPaneController {
             forumController.loadPostsPane(newTopic);
             stage.close();
         }
-    }
-
-    private static void addTextLimiter(final TextField tf, final int maxLength) {
-        tf.textProperty().addListener((ov, oldValue, newValue) -> {
-            if (tf.getText().length() > maxLength) {
-                String s = tf.getText().substring(0, maxLength);
-                tf.setText(s);
-            }
-        });
     }
 
 

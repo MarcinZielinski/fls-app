@@ -14,15 +14,16 @@ public class SectionServer implements Serializable {
     private String decription;
     private List<Integer> topics;
 
-    public SectionServer(){}
+    public SectionServer() {
+    }
 
     public SectionServer(int id, int sectionId, int topicCount, String name, String description, List<Integer> topics) {
-        this.id=id;
-        this.sectionId=sectionId;
-        this.topicCount =topicCount;
-        this.name=name;
-        this.decription=description;
-        this.topics=topics;
+        this.id = id;
+        this.sectionId = sectionId;
+        this.topicCount = topicCount;
+        this.name = name;
+        this.decription = description;
+        this.topics = topics;
     }
 
 
@@ -50,12 +51,12 @@ public class SectionServer implements Serializable {
         this.sectionId = sectionId;
     }
 
-    public void setTopics(List<Integer> topics) {
-        this.topics = topics;
-    }
-
     public List<Integer> getTopics() {
         return topics;
+    }
+
+    public void setTopics(List<Integer> topics) {
+        this.topics = topics;
     }
 
     public String getName() {

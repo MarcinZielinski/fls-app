@@ -28,7 +28,7 @@ public class ForumController {
     }
 
 
-    public void loadPostsPane(Topic topic){
+    public void loadPostsPane(Topic topic) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_posts.fxml"));
 
@@ -71,7 +71,7 @@ public class ForumController {
 
     }
 
-    public Pane loadSectionsPane(){
+    public Pane loadSectionsPane() {
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -89,7 +89,7 @@ public class ForumController {
         }
     }
 
-    public void loadTopicsPane(Section section){
+    public void loadTopicsPane(Section section) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_topics.fxml"));
 
@@ -111,11 +111,11 @@ public class ForumController {
         }
     }
 
-    public void loadTopicsCreator(Section section){
+    public void loadTopicsCreator(Section section) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_topics_create.fxml"));
 
-        try{
+        try {
             Pane root = loader.load();
             TopicsCreatorPaneController topicsCreatorPaneController = loader.getController();
             topicsCreatorPaneController.setForumController(this);
@@ -135,8 +135,8 @@ public class ForumController {
         this.manager = manager;
     }
 
-    public Long getUserId(){
-        if(manager != null)
+    public Long getUserId() {
+        if (manager != null)
             return manager.userId;
         return 1L;
     }

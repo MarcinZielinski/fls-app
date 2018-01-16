@@ -6,11 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SectionsPaneController implements Initializable {
 
@@ -20,11 +21,11 @@ public class SectionsPaneController implements Initializable {
     private ForumController forumController;
     private ServerController serverController = new ServerController();
 
-    public SectionsPaneController(){
+    public SectionsPaneController() {
 
     }
 
-    private void setSectionsListView(){
+    private void setSectionsListView() {
 //        List<Section> sections = dataGenerator.getSections();
         List<Section> sections = serverController.getAllSections();
         nameList = FXCollections.observableArrayList(sections);
@@ -32,7 +33,7 @@ public class SectionsPaneController implements Initializable {
         sectionsListView.setOnMouseClicked(mouseEvent -> {
             try {
                 if (mouseEvent.getClickCount() == 2)
-                changeScreenSectionSelected();
+                    changeScreenSectionSelected();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,7 +42,7 @@ public class SectionsPaneController implements Initializable {
 
     private void changeScreenSectionSelected() throws IOException {
         Section section = sectionsListView.getSelectionModel().getSelectedItem();
-        if(section != null)
+        if (section != null)
             forumController.loadTopicsPane(sectionsListView.getSelectionModel().getSelectedItem());
     }
 

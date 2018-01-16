@@ -1,6 +1,6 @@
 package com.fls;
 
-import com.fls.chat.ChatRoom;
+import com.fls.chat.ChatSession;
 import com.fls.entities.User;
 import com.fls.wall.WallPost;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Marcin on 2017-12-12.
  */
 public interface Server {
-    static ChatRoom[] getUserChatRooms(Long userId) {
+    static ChatSession[] getAllChatSessions(Long userId) {
         return null;
     }
 
@@ -22,11 +22,15 @@ public interface Server {
         return null;
     }
 
-    static WallPost[] getWallPosts(Long userId) {
+    static List<WallPost> getWallPosts(Long userId) {
         return null;
     }
 
-    static List<User> getUsers(String query) {
+    static List<User> getUsers(User user) {
+        return null;
+    }
+
+    static Long createPost(WallPost wp) {
         return null;
     }
 }

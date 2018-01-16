@@ -1,8 +1,6 @@
 package com.fls.forum.model.serverModel;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
-import java.util.Set;
 
 @XmlRootElement
 public class TopicServer {
@@ -10,39 +8,37 @@ public class TopicServer {
     private Integer categoryId;
     private Integer postCount;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public void setPostCount(Integer postCount) {
-        this.postCount = postCount;
-    }
-
-
     public TopicServer(Integer id, Integer categoryId, Integer postCount) {
         this.id = id;
         this.categoryId = categoryId;
         this.postCount = postCount;
     }
 
-    public TopicServer(){ }
-
-
+    public TopicServer() {
+    }
 
     public Integer getCategoryId() {
         return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getPostCount() {
         return postCount;
+    }
+
+    public void setPostCount(Integer postCount) {
+        this.postCount = postCount;
     }
 
     public void incresePostCount() {

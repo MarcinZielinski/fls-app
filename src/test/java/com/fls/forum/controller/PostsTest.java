@@ -1,9 +1,9 @@
 package com.fls.forum.controller;
 
 import com.fls.forum.ForumApp;
+import com.fls.forum.model.generator.DataGenerator;
 import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.localModel.Topic;
-import com.fls.forum.model.generator.DataGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
@@ -32,7 +31,8 @@ public class PostsTest extends ApplicationTest {
     private Pagination pagination;
     private List<Node> hBoxList;
 
-    @Override public void start(Stage primaryStage) throws IOException {
+    @Override
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ForumApp.class.getResource("pane_posts.fxml"));
 
@@ -54,8 +54,6 @@ public class PostsTest extends ApplicationTest {
     }
 
 
-
-
     @Test
     public void sendTextButton() {
         // expect:
@@ -64,7 +62,7 @@ public class PostsTest extends ApplicationTest {
 
 
     @Test
-    public void sendEmptyMessageControl(){
+    public void sendEmptyMessageControl() {
 
         // when:
         clickOn("#send");
@@ -74,7 +72,7 @@ public class PostsTest extends ApplicationTest {
     }
 
     @Test
-    public void sendEmptyMessage(){
+    public void sendEmptyMessage() {
 
         //given
         int postCount = posts.size();
@@ -90,7 +88,7 @@ public class PostsTest extends ApplicationTest {
     }
 
     @Test
-    public void sendMessageTest(){
+    public void sendMessageTest() {
 
         //given
         int postCount = posts.size();
@@ -105,10 +103,10 @@ public class PostsTest extends ApplicationTest {
     }
 
     @Test
-    public void invisiblePlusTest(){
+    public void invisiblePlusTest() {
         // given
 
-        Button firstAddButton = (Button) (((HBox)(((Pane)(((HBox)hBoxList.get(1))).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
+        Button firstAddButton = (Button) (((HBox) (((Pane) (((HBox) hBoxList.get(1))).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
         //when
 
         // then:
@@ -116,10 +114,10 @@ public class PostsTest extends ApplicationTest {
     }
 
     @Test
-    public void visiblePlusTest(){
+    public void visiblePlusTest() {
         // given
-        Button secondAddButton = (Button) (((HBox)(((Pane)((HBox)hBoxList.get(0)).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
-        Button secondMinusButton = (Button) (((HBox)(((Pane)((HBox)hBoxList.get(0)).getChildren().get(3)).getChildren().get(0))).getChildren().get(1));
+        Button secondAddButton = (Button) (((HBox) (((Pane) ((HBox) hBoxList.get(0)).getChildren().get(3)).getChildren().get(0))).getChildren().get(0));
+        Button secondMinusButton = (Button) (((HBox) (((Pane) ((HBox) hBoxList.get(0)).getChildren().get(3)).getChildren().get(0))).getChildren().get(1));
 
         //when
 
@@ -130,9 +128,9 @@ public class PostsTest extends ApplicationTest {
 
 
     @Test
-    public void invisibleEdit(){
+    public void invisibleEdit() {
         // given
-        Button firstEditButton = (Button) ((((Pane)((HBox)hBoxList.get(0)).getChildren().get(3)).getChildren().get(1)));
+        Button firstEditButton = (Button) ((((Pane) ((HBox) hBoxList.get(0)).getChildren().get(3)).getChildren().get(1)));
 
         //when
 
@@ -141,9 +139,8 @@ public class PostsTest extends ApplicationTest {
     }
 
     public <T extends Node> T find(final String fxId) throws Exception {
-        return (T) lookup(fxId).tryQuery().orElseThrow(() -> new Exception(String.format("Couldn't find node with fxId: %s",fxId)));
+        return (T) lookup(fxId).tryQuery().orElseThrow(() -> new Exception(String.format("Couldn't find node with fxId: %s", fxId)));
     }
-
 
 
 }

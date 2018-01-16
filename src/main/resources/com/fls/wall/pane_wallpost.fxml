@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="postContainer"
+      alignment="TOP_CENTER"
+      style="-fx-background-radius: 10; -fx-background-color: lightgrey; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/8.0.121"
+      fx:controller="com.fls.wall.controller.WallPostController">
+    <children>
+        <AnchorPane fx:id="postView" maxHeight="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT"
+                    prefHeight="104.0" prefWidth="600.0">
+            <children>
+                <Circle fx:id="avatar" fill="#0968ba7a" layoutX="42.0" layoutY="42.0" radius="15.0" stroke="TRANSPARENT"
+                        strokeType="INSIDE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0"/>
+                <Label fx:id="name" layoutX="60.0" layoutY="27.0" text="Name Surname" wrapText="true"
+                       AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="27.0"/>
+                <Label fx:id="content" alignment="TOP_LEFT" cacheHint="SCALE" contentDisplay="TEXT_ONLY" layoutX="20.0"
+                       layoutY="68.0" lineSpacing="2.0" mouseTransparent="true"
+                       text="aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa "
+                       wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                       AnchorPane.topAnchor="65.0"/>
+                <SplitMenuButton fx:id="menu" disable="true" graphicTextGap="0.0" layoutX="528.0" layoutY="14.0"
+                                 mnemonicParsing="false" pickOnBounds="false" text="..." visible="false"
+                                 AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                    <items>
+                        <MenuItem fx:id="editAction" mnemonicParsing="false" text="Edit"/>
+                        <MenuItem fx:id="deleteAct" mnemonicParsing="false" text="Delete"/>
+                    </items>
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </SplitMenuButton>
+                <Label fx:id="time" layoutX="60.0" layoutY="44.0" text="Label" textFill="#7a76a8">
+                    <font>
+                        <Font size="10.0"/>
+                    </font>
+                </Label>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <cursor>
+                <Cursor fx:constant="DEFAULT"/>
+            </cursor>
+        </AnchorPane>
+        <Pane fx:id="imagePane">
+            <children>
+                <ImageView fx:id="postImage" pickOnBounds="true" preserveRatio="true"/>
+            </children>
+        </Pane>
+    </children>
+</VBox>
