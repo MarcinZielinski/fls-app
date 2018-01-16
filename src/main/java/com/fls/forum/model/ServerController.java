@@ -7,17 +7,35 @@ import com.fls.forum.model.serverModel.PostServer;
 import com.fls.forum.model.serverModel.SectionServer;
 import com.fls.forum.model.serverModel.TopicServer;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ServerController {
 
-    private final boolean SERVER_COMMUNICATION = true;
     private ServerObjectController<SectionServer> sectionController = new ServerObjectController<>(SectionServer.class);
     private ServerObjectController<TopicServer> topicController = new ServerObjectController<>(TopicServer.class);
     private ServerObjectController<PostServer> postController = new ServerObjectController<>(PostServer.class);
     private ServerObjectParser serverObjectParser = new ServerObjectParser();
+    private String urlPrefix = "http://localhost:8080/";
+
+    private boolean SERVER_COMMUNICATION;
+
+    public ServerController() {
+
+        try {
+
+            URL oracle = new URL(urlPrefix + "/register");
+            oracle.openConnection().getInputStream();
+            SERVER_COMMUNICATION = true;
+        } catch (IOException e) {
+            SERVER_COMMUNICATION = false;
+        }
+
+    }
+
 
     public List<Section> getAllSections() {
 
@@ -57,8 +75,9 @@ public class ServerController {
             }
 
             return posts;
-        } else return DataGenerator.generatePosts(topic);
+        } else {
+            return DataGenerator.generatePosts(topic);
+        }
     }
-
 
 }

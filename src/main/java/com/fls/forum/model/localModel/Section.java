@@ -1,7 +1,6 @@
 package com.fls.forum.model.localModel;
 
 
-import com.fls.forum.controller.dataGenerator;
 import com.fls.forum.model.ServerController;
 
 import java.util.List;
@@ -23,14 +22,13 @@ public class Section {
         this.id = id;
         this.name = name;
         this.description = description;
-        //TODO: get from server
-        topics = dataGenerator.getTopics(id);
+//        topics = dataGenerator.getTopics(id);
         this.topicIds = topicIds;
         this.topicCount = topicCount;
 
 
-        for (Topic topic : topics)
-            topic.setSection(this);
+//        for(Topic topic: topics)
+//            topic.setSection(this);
 
     }
 
@@ -38,35 +36,17 @@ public class Section {
         this.id = id;
         this.name = name;
         this.description = description;
-        //TODO: get from server
-        topics = dataGenerator.getTopics(id);
-        this.topics = topics;
+//        topics = dataGenerator.getTopics(id);
         this.topicCount = topicCount;
 
 
-        for (Topic topic : topics)
-            topic.setSection(this);
+//        for(Topic topic: topics)
+//            topic.setSection(this);
 
     }
 
-    public List<Integer> getTopicIds() {
-        return topicIds;
-    }
-
-    public void setTopicIds(List<Integer> topicIds) {
-        this.topicIds = topicIds;
-    }
-
-    public Long getTopicCount() {
-        return topicCount;
-    }
-
-    public void setTopicCount(Long topicCount) {
-        this.topicCount = topicCount;
-    }
-
-    public void loadTopics() {
-        topics = new ServerController().getAllTopics(this);
+    public void loadTopics(ServerController serverController) {
+        topics = serverController.getAllTopics(this);
 
         for (Topic topic : topics)
             topic.setSection(this);
