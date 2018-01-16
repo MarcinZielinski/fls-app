@@ -26,12 +26,19 @@ public class ImageConverter {
     }
 
     public static ImageView convertToImageView(byte[] bytes) {
-        ImageView imageView = null;
+        return new ImageView(convertToImage(bytes));
+    }
+
+    public static Image convertToImage(byte[] bytes){
+        Image image = null;
+        if(bytes == null) {
+            return new Image("/com/fls/user_finder/thmb.jpg");
+        }
         try(ByteArrayInputStream is = new ByteArrayInputStream(bytes)) {
-            imageView = new ImageView(new Image(is));
+            image = new Image(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return imageView;
+        return image;
     }
 }

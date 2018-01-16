@@ -2,6 +2,7 @@ package com.fls;
 
 import com.fls.manager.Manager;
 import com.fls.user_authentication.UserAuthentication;
+import com.fls.util.SoundPlayer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,15 +19,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         stage.setTitle("FLSocial");
+        stage.setMinWidth(300);
         stage.show();
+
         loadUserAuthentication();
     }
     public void loadUserAuthentication() {
         UserAuthentication authentication = new UserAuthentication(this);
-        stage.setScene(authentication.getScene());
+        stage.setScene(SoundPlayer.addSoundToScene(authentication.getScene()));
     }
     public void loadManager(Long tokenId, Long userId) {
         Manager manager = new Manager(this, tokenId, userId);
-        stage.setScene(manager.getScene());
+        stage.setScene(SoundPlayer.addSoundToScene(manager.getScene()));
     }
 }
