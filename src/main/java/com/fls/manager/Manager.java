@@ -4,7 +4,7 @@ import com.fls.Main;
 import com.fls.chat.Chat;
 import com.fls.entities.User;
 import com.fls.forum.Forum;
-import com.fls.profiles.Profiles;
+import com.fls.profiles.Profile;
 import com.fls.user_finder.UserFinder;
 import com.fls.manager.controller.ManagerController;
 import com.fls.util.SoundEnum;
@@ -29,7 +29,7 @@ public class Manager {
     private ManagerController controller;
     private List<User> friendsOnline;
     private Chat chat;
-    private Profiles profiles;
+    private Profile profiles;
     private UserFinder userFinder;
     private Forum forum;
     private Wall wall;
@@ -45,7 +45,7 @@ public class Manager {
         this.tokenId = tokenId;
         this.userId = userId;
         this.chat = new Chat(this);
-        this.profiles = new Profiles(this);
+        this.profiles = new Profile(this);
         this.userFinder = new UserFinder(this);
         this.forum = new Forum();
         this.forum.setManager(this);
@@ -89,7 +89,7 @@ public class Manager {
     public void loadProfile(Long userId) {
         System.out.println("profil o id " + userId);
         if(actualCenterModule != profiles) {
-            Node newPane  = profiles.load(userId);
+            Node newPane  = profiles.getProfile(userId);
             panesHistory.addPane(newPane, profiles);
             setCenterModule(newPane, profiles);
         }

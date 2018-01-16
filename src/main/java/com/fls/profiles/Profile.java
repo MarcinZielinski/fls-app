@@ -1,12 +1,14 @@
 package com.fls.profiles;
 
 
+import com.fls.manager.Manager;
 import com.fls.profiles.controller.DetailedController;
 import com.fls.profiles.controller.EditController;
 import com.fls.profiles.controller.InfoController;
 import com.fls.profiles.controller.ProfileController;
 import com.fls.profiles.model.IUser;
 import com.fls.profiles.model.Programist;
+import com.sun.javafx.stage.StageHelper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,25 +23,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Profile implements IProfile {
-    Stage primary;
+    public final Manager manager;
 
-    public Profile(Stage prim){
-        primary = prim;
+    public Profile(Manager manager) {
+        this.manager = manager;
     }
 
-    public Profile(){}
     @Override
-    public Pane getProfile(IUser user) {
+    public Pane getProfile(long id) {
         Pane layout = new Pane();
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/fls/profile/profile.fxml"));
             layout = (Pane) loader.load();
 
             ProfileController controller = (ProfileController) loader.getController();
+            controller.setProfile(this);
 
-            controller.setUser(user);
-            controller.setStage(primary);
+            //controller.setUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,16 +47,16 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public Pane getInfo(IUser user) {
+    public Pane getInfo(long id) {
         Pane layout = new Pane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/info.fxml"));
+            loader.setLocation(Profile.class.getResource("/com/fls/profile/info.fxml"));
             layout = (Pane) loader.load();
 
             // set initial data into controller
             InfoController controller = (InfoController) loader.getController();
-            controller.setUser(user);
+            //controller.setUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,28 +64,16 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public Pane getDetailedInfo(int user_id) {
+    public Pane getDetailedInfo(long id) {
         Pane layout = new Pane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/detailed.fxml"));
+            loader.setLocation(Profile.class.getResource("/com/fls/profile/detailed.fxml"));
             layout = (Pane) loader.load();
 
             // set initial data into controller
             DetailedController controller = (DetailedController) loader.getController();
-            Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
-            spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
-            programming.add("c++"); programming.add("java"); programming.add("icon");
-            File file = new File("avatar.jpg");
-            //byte[] buffer = Files.readAllBytes(fi.toPath());
-            //Image img = new Image(new ByteArrayInputStream(buffer));
-            Image img = new Image(file.toURI().toString());
-
-            Programist prog = new Programist(1,"stefek111", "qwerty","Stefan", "Stefkowski",
-                    "20-12-1990", "stefan@agh.edu.pl","123456789", "Stefkowa 5", "Stefanowo",
-                    "Poland", FXCollections.observableSet(spoken), FXCollections.observableSet(programming),
-                    10, 99999, 63, 28, img, new ArrayList<>());
-            controller.setUser(prog);
+            //controller.setUser(user);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,21 +85,21 @@ public class Profile implements IProfile {
         return null;
     }
 
-    public void editDialog(IUser user){
+    public void editDialog(long id){
         Pane layout = new Pane();
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/edit.fxml"));
+            loader.setLocation(Profile.class.getResource("/com/fls/profile/edit.fxml"));
             layout = (Pane) loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit profile");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primary);
+            dialogStage.initOwner(StageHelper.getStages().get(0));
             Scene scene = new Scene(layout);
             dialogStage.setScene(scene);
             EditController controller = (EditController) loader.getController();
-            if(user != null) controller.setUser(user);
+            //controller.setUser(user);
             controller.setStage(dialogStage);
             dialogStage.showAndWait();
         } catch (IOException e) {

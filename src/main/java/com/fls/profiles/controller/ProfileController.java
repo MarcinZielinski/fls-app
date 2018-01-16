@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ProfileController {
     private IUser user;
-    private Stage stage;
+    private Profile profile;
 
     @FXML
     private Text firstnameField;
@@ -84,6 +84,10 @@ public class ProfileController {
         flsPointsField.textProperty().addListener((ov, oldVal, newVal) -> flsPointsField.setText(newVal));
     }
 
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public void setUser(IUser user){
         this.user = user;
         firstnameField.textProperty().bindBidirectional(user.getFirstnameProperty());
@@ -101,22 +105,16 @@ public class ProfileController {
         imageField.imageProperty().bindBidirectional(user.getImageProperty());
         spokenLanguagesList.setItems(FXCollections.observableArrayList(user.getSpokenLanguages()));
         programmingLanguagesList.setItems(FXCollections.observableArrayList(user.getProgrammingLanguages()));
-        Profile prof = new Profile();
         ArrayList<IUser> friends = user.getFriends();
         if(!friends.isEmpty()){
-            friend1Pane.getChildren().add(prof.getInfo(friends.get(0)));
+            friend1Pane.getChildren().add(profile.getInfo(friends.get(0).getID()));
             if(friends.size() > 1){
-                friend2Pane.getChildren().add(prof.getInfo(friends.get(0)));
+                friend2Pane.getChildren().add(profile.getInfo(friends.get(0).getID()));
             }
         }
     }
 
-    public void setStage(Stage stage){
-        this.stage = stage;
-    }
-
     public void editProfile(){
-        Profile prof = new Profile(stage);
-        prof.editDialog(user);
+        profile.editDialog(profile.manager.userId);
     }
 }

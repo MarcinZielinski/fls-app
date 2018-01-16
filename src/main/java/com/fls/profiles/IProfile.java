@@ -4,8 +4,8 @@ import com.fls.profiles.model.IUser;
 import javafx.scene.layout.Pane;
 
 public interface IProfile {
-    Pane getProfile(IUser user);
-    Pane getInfo(IUser user);
-    Pane getDetailedInfo(int user_id);
+    Pane getProfile(long id);
+    Pane getInfo(long id);
+    Pane getDetailedInfo(long id);
     IUser register();
 }
