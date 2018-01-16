@@ -35,7 +35,6 @@ public class ThreadHelper<T> extends Service<T> {
                 T res = null;
                 try {
                     res = method.call();
-                    Thread.sleep(3000);
                 } catch (Exception e) {
                     System.out.println("Actual search interrupted");
                 }

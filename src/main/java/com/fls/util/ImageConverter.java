@@ -6,9 +6,8 @@ import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.awt.image.DataBufferByte;
+import java.io.*;
 
 /**
  * Created by Marcin on 2017-12-29.
@@ -16,7 +15,7 @@ import java.io.IOException;
 public class ImageConverter {
     public static byte[] convertToByteArray(ImageView imageView) {
         byte[] bytes = null;
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+        try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             BufferedImage buffered = SwingFXUtils.fromFXImage(imageView.getImage(), null);
             ImageIO.write(buffered, "jpg", baos);
             bytes = baos.toByteArray();
@@ -30,9 +29,12 @@ public class ImageConverter {
         return new ImageView(convertToImage(bytes));
     }
 
-    public static Image convertToImage(byte[] bytes) {
+    public static Image convertToImage(byte[] bytes){
         Image image = null;
-        try (ByteArrayInputStream is = new ByteArrayInputStream(bytes)) {
+        if(bytes == null) {
+            return new Image("/com/fls/user_finder/thmb.jpg");
+        }
+        try(ByteArrayInputStream is = new ByteArrayInputStream(bytes)) {
             image = new Image(is);
         } catch (IOException e) {
             e.printStackTrace();

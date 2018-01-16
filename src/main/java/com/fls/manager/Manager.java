@@ -4,17 +4,17 @@ import com.fls.Main;
 import com.fls.chat.Chat;
 import com.fls.entities.User;
 import com.fls.forum.Forum;
-import com.fls.manager.controller.ManagerController;
-import com.fls.profiles.Profiles;
+import com.fls.profiles.Profile;
 import com.fls.user_finder.UserFinder;
+import com.fls.manager.controller.ManagerController;
 import com.fls.util.SoundEnum;
 import com.fls.util.SoundPlayer;
-import com.fls.wall.Wall;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import com.fls.wall.Wall;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Manager {
     private ManagerController controller;
     private List<User> friendsOnline;
     private Chat chat;
-    private Profiles profiles;
+    private Profile profiles;
     private UserFinder userFinder;
     private Forum forum;
     private Wall wall;
@@ -45,9 +45,10 @@ public class Manager {
         this.tokenId = tokenId;
         this.userId = userId;
         this.chat = new Chat(this);
-        this.profiles = new Profiles(this);
+        this.profiles = new Profile(this);
         this.userFinder = new UserFinder(this);
         this.forum = new Forum();
+        this.forum.setManager(this);
         this.wall = new Wall(this);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));
@@ -79,43 +80,39 @@ public class Manager {
     }
 
     public void loadChat(List<Long> userIds) {
-        if (actualCenterModule != chat) {
-            Node newPane = chat.load(userIds);
+        if(actualCenterModule != chat) {
+            Node newPane  = chat.load(userIds);
             panesHistory.addPane(newPane, chat);
             setCenterModule(newPane, chat);
         }
     }
-
     public void loadProfile(Long userId) {
         System.out.println("profil o id " + userId);
-        if (actualCenterModule != profiles) {
-            Node newPane = profiles.load(userId);
+        if(actualCenterModule != profiles) {
+            Node newPane  = profiles.getProfile(userId);
             panesHistory.addPane(newPane, profiles);
             setCenterModule(newPane, profiles);
         }
     }
-
     public void loadForum() {
-        if (actualCenterModule != forum) {
-            Node newPane = forum.load();
+        if(actualCenterModule != forum) {
+            Node newPane  = forum.load();
             panesHistory.addPane(newPane, forum);
             setCenterModule(newPane, forum);
         }
     }
-
     public void loadWall() {
-        if (actualCenterModule != wall) {
-            Node newPane = wall.load();
+        if(actualCenterModule != wall) {
+            Node newPane  = wall.load();
             panesHistory.addPane(newPane, wall);
             setCenterModule(newPane, wall);
         } else {
             wall.refreshPosts();
         }
     }
-
     public void loadUserFinder(String query) {
-        if (actualCenterModule != userFinder) {
-            Node newPane = userFinder.load(query);
+        if(actualCenterModule != userFinder) {
+            Node newPane  = userFinder.load(query);
             panesHistory.addPane(newPane, userFinder);
             setCenterModule(newPane, userFinder);
         } else {
@@ -129,14 +126,14 @@ public class Manager {
 
     public void undo() {
         StackNode<Node, Object> node = panesHistory.undoPane();
-        if (node != null) {
+        if(node != null) {
             setCenterModule(node.firstValue, node.secondValue);
         }
     }
 
     public void redo() {
         StackNode<Node, Object> node = panesHistory.redoPane();
-        if (node != null) {
+        if(node != null) {
             setCenterModule(node.firstValue, node.secondValue);
         }
     }

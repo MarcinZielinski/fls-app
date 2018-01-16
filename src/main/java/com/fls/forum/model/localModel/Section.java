@@ -1,19 +1,45 @@
 package com.fls.forum.model.localModel;
 
 
+import com.fls.forum.controller.dataGenerator;
 import com.fls.forum.model.ServerController;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Section {
     private long id;
     private String name;
     private String description;
-    private List<Topic> topics;
+    private List<Topic> topics = new LinkedList<>();
+
+    public List<Integer> getTopicIds() {
+        return topicIds;
+    }
+
+    public void setTopicIds(List<Integer> topicIds) {
+        this.topicIds = topicIds;
+    }
+
     private List<Integer> topicIds;
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getTopicCount() {
+        return topicCount;
+    }
+
+    public void setTopicCount(Long topicCount) {
+        this.topicCount = topicCount;
+    }
+
     private Long topicCount;
 
-    public Section() {
+
+    public Section(){
 
     }
 
@@ -32,6 +58,7 @@ public class Section {
 
     }
 
+
     public Section(long id, String name, String description, Long topicCount) {
         this.id = id;
         this.name = name;
@@ -45,30 +72,29 @@ public class Section {
 
     }
 
-    public void loadTopics(ServerController serverController) {
+    public void loadTopics(ServerController serverController){
         topics = serverController.getAllTopics(this);
 
-        for (Topic topic : topics)
+        for(Topic topic: topics)
             topic.setSection(this);
 
     }
 
-    public List<Topic> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(List<Topic> topics) {
+    public void setTopics(List<Topic> topics){
         this.topics = topics;
     }
 
-    public void addTopic(Topic topic) {
+    public List<Topic> getTopics(){
+        return topics;
+    }
+
+    public void addTopic(Topic topic){
         this.topics.add(topic);
     }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -76,7 +102,6 @@ public class Section {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -85,20 +110,8 @@ public class Section {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     @Override
-    public String toString() {
+    public String toString(){
         return String.format("%-25s", name) + description;
-    }
-
-    public List<Integer> getTopicIds() {
-        return topicIds;
-    }
-
-    public Long getTopicCount() {
-        return topicCount;
     }
 }

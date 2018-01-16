@@ -1,9 +1,6 @@
 package com.fls.forum.controller;
 
-import com.fls.forum.model.localModel.AnswerPost;
-import com.fls.forum.model.localModel.Content;
-import com.fls.forum.model.localModel.Post;
-import com.fls.forum.model.localModel.Topic;
+import com.fls.forum.model.localModel.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,12 +17,15 @@ import java.util.Date;
 public class PostsController {
 
 
+
     private Long userId;
     private Topic topic;
     private PostView postView;
 
 
+
     private ObservableList<Post> posts = FXCollections.observableArrayList();
+
 
 
     @FXML
@@ -35,7 +35,7 @@ public class PostsController {
     private Button backButton;
 
     @FXML
-    private Button send;
+    private  Button send;
 
     @FXML
     private Label errorLabel;
@@ -68,10 +68,13 @@ public class PostsController {
 
     @FXML
     private void handleSendAction() {
-        if (answerText.getText().length() > 0) {
-            addPost(new AnswerPost(topic, 1, new Date(), userId, new Content(1, answerText.getText()), false));
+        if(answerText.getText().length() > 0) {
+            Post post = new AnswerPost(topic, 1, new Date(), userId, new Content(1, answerText.getText()), false);
+            addPost(post);
+            post.sendToServer(forumController.getServerController());
             answerText.setText("");
-        } else {
+        }
+        else{
             errorTimedLabel.setText("You cannot send empty message", 3);
         }
     }
@@ -99,7 +102,7 @@ public class PostsController {
 
     }
 
-    private VBox createPage(int pageIndex) {
+    private VBox createPage(int pageIndex){
         VBox box = new VBox();
         int page = pageIndex * itemsOnPage;
         hBoxList = FXCollections.observableArrayList();
@@ -114,24 +117,24 @@ public class PostsController {
     }
 
 
-    void setForumController(ForumController forumController) {
+    void setForumController(ForumController forumController){
         this.forumController = forumController;
     }
 
 
-    private void addPost(Post post) {
-        if (posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
+    private void addPost(Post post){
+        if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
             hBoxList.add(postView.showPost(post));
         }
         posts.add(post);
 
-        if (posts.size() % itemsOnPage == 1)
+        if(posts.size() % itemsOnPage ==  1)
             pagination.setPageCount(pagination.getPageCount() + 1);
         pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
     }
 
-    private void viewPost(Post post) {
-        if (posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
+    private void viewPost(Post post){
+        if(posts.size() % itemsOnPage != 0 && pagination.getPageCount() - 1 == pagination.getCurrentPageIndex()) {
             hBoxList.add(postView.showPost(post));
         }
         pagination.setCurrentPageIndex(pagination.getPageCount() - 1);
@@ -142,7 +145,7 @@ public class PostsController {
         this.topic = topic;
         postView = new PostView(forumController);
         posts = topic.getPosts();
-        for (Post post : posts) {
+        for(Post post: posts){
             viewPost(post);
         }
         pagination.setCurrentPageIndex(0);

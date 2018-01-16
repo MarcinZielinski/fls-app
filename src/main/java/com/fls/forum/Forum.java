@@ -1,5 +1,6 @@
 package com.fls.forum;
 
+// <<<<<<< forum
 import com.fls.forum.controller.ForumController;
 import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.localModel.Section;
@@ -8,10 +9,18 @@ import com.fls.manager.Manager;
 import javafx.scene.layout.Pane;
 
 import java.util.List;
+// =======
+// >>>>>>> develop
+// import com.fls.manager.Manager;
+// import javafx.scene.layout.Pane;
+// import javafx.stage.Stage;
+
+// import java.util.List;
 
 /**
  * Created by Marcin on 2017-12-12.
  */
+// <<<<<<< forum
 public class Forum implements com.fls.forum.model.Forum {
 
     private ForumController forumController = new ForumController();
@@ -60,7 +69,15 @@ public class Forum implements com.fls.forum.model.Forum {
         return forumController.loadSectionsPane();
     }
 
-    public void setManager(Manager manager) {
+    public void setManager(Manager manager){
         forumController.setManager(manager);
     }
+// =======
+// public class Forum {
+//     public Forum(Manager manager) {
+
+//     }
+
+//     public Pane load() {return null;}
+// >>>>>>> develop
 }

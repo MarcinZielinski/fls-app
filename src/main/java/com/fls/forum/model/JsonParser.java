@@ -20,7 +20,6 @@ public class JsonParser<T> {
 
     public List<T> getObjectList(String json) {
 
-        System.out.println(typeParameterClass);
         ObjectMapper mapper = new ObjectMapper();
 
         TypeFactory typeFactory = mapper.getTypeFactory();
@@ -33,7 +32,6 @@ public class JsonParser<T> {
                     inner);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("encountered exception");
             return new LinkedList<T>();
         }
     }
@@ -45,8 +43,18 @@ public class JsonParser<T> {
             return mapper.readValue(json, typeParameterClass);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("encountered exception");
             return null;
+        }
+    }
+
+    public String parseObject(T item){
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            return mapper.writeValueAsString(item);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 }

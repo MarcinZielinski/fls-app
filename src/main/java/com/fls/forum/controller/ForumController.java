@@ -21,6 +21,11 @@ public class ForumController {
     private Pane primaryPane = new AnchorPane();
 
     private Manager manager;
+
+    public ServerController getServerController() {
+        return serverController;
+    }
+
     private ServerController serverController = new ServerController();
 
     public ForumController() {
@@ -34,8 +39,8 @@ public class ForumController {
 
         try {
             Pane root = loader.load();
-
-            topic.loadPosts(serverController);
+            if(topic.getPosts().size() == 0)
+                topic.loadPosts(serverController);
             PostsController postsController = loader.getController();
             postsController.setForumController(this);
             postsController.setData(getUserId(), topic);
@@ -57,6 +62,7 @@ public class ForumController {
         try {
             Pane root = loader.load();
             EditorController editorController = loader.getController();
+            editorController.setForumController(this);
 
             Stage editStage = new Stage();
             editorController.setData(post, editStage);
@@ -96,8 +102,8 @@ public class ForumController {
 
         try {
             Parent root = loader.load();
-
-            section.loadTopics(serverController);
+            if(section.getTopics().size() == 0)
+                section.loadTopics(serverController);
             TopicsPaneController topicsPaneController = loader.getController();
             topicsPaneController.setForumController(this);
             topicsPaneController.setCurrentSection(section);

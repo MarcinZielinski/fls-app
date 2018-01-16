@@ -9,28 +9,38 @@ import javafx.stage.Stage;
 
 public class EditorController {
 
-    @FXML
-    public TextArea textArea;
-    @FXML
-    public Button okButton;
-    @FXML
-    public Button cancelButton;
     private Post post;
     private Stage stage;
+
+    private ForumController forumController;
+
+    @FXML
+    public TextArea textArea;
+
+    @FXML
+    public Button okButton;
+
+    @FXML
+    public Button cancelButton;
 
     public void handleOkAction() {
         post.setContent(new Content(textArea.getText()));
         stage.close();
+        post.sendToServer(forumController.getServerController());
     }
 
     public void handleCancelAction() {
         stage.close();
     }
 
-    public void setData(Post post, Stage stage) {
+    public void setData(Post post, Stage stage){
         this.post = post;
         this.stage = stage;
         textArea.setText(post.getContent().toString());
+    }
+
+    public void setForumController(ForumController forumController) {
+        this.forumController = forumController;
     }
 
 }

@@ -83,6 +83,8 @@ public class TopicsCreatorPaneController {
             Topic newTopic = new Topic(section.getId(), topicName, null, section);
             QuestionPost newPost = new QuestionPost(newTopic, new Date(), forumController.getUserId(), new Content(postContent), topicName);
 
+            newTopic.sendToServer(forumController.getServerController());
+
             newTopic.setQuestionPost(newPost);
             section.addTopic(newTopic);
 

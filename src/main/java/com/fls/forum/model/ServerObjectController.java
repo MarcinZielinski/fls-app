@@ -1,8 +1,14 @@
 package com.fls.forum.model;
 
+import com.fls.forum.model.serverModel.SectionServer;
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.LinkedList;
@@ -10,14 +16,18 @@ import java.util.List;
 
 public class ServerObjectController<T> {
 
-    private final Class<T> typeParameterClass;
     private String urlPrefix = "http://localhost:8080/";
 
+    private final Class<T> typeParameterClass;
+    JsonParser<T> jsonParser;
+
     public ServerObjectController(Class<T> typeParameterClass) {
+
         this.typeParameterClass = typeParameterClass;
+        jsonParser = new JsonParser<>(typeParameterClass);
     }
 
-    public List<T> getItemList(String query) {
+    public List<T> getItemList(String query){
         try {
             URL oracle = new URL(urlPrefix + query);
             URLConnection yc = oracle.openConnection();
@@ -27,10 +37,7 @@ public class ServerObjectController<T> {
 
             System.out.println(inputLine);
 
-            List<T> items = new JsonParser<T>(typeParameterClass).getObjectList(inputLine);
-            System.out.println(typeParameterClass);
-            System.out.println(items.get(0).getClass());
-            System.out.println(items.get(0));
+            List<T> items = jsonParser.getObjectList(inputLine);
 
             in.close();
 
@@ -38,12 +45,11 @@ public class ServerObjectController<T> {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("encountered exception");
             return new LinkedList<>();
         }
     }
 
-    public T getItem(String query) {
+    public T getItem(String query){
         try {
             URL oracle = new URL(urlPrefix + query);
             URLConnection yc = oracle.openConnection();
@@ -51,17 +57,35 @@ public class ServerObjectController<T> {
                     yc.getInputStream()));
             String inputLine = in.readLine();
 
-            System.out.println(inputLine);
-
-            T item = new JsonParser<T>(typeParameterClass).getObject(inputLine);
+            T item = jsonParser.getObject(inputLine);
             in.close();
 
             return item;
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("encountered exception");
             return null;
+        }
+    }
+
+    public void createItem(T item, String query){
+        try {
+            URL oracle = new URL(urlPrefix + query + jsonParser.parseObject(item));
+            URLConnection yc = oracle.openConnection();
+
+            System.out.println("sending new object to server");
+
+            HttpURLConnection http = (HttpURLConnection)yc;
+            http.setRequestMethod("POST"); // PUT is another valid option
+            http.setDoOutput(true);
+            http.connect();
+            try(OutputStream os = http.getOutputStream()) {
+                os.write(12);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

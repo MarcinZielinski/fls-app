@@ -9,9 +9,9 @@ import com.fls.forum.model.serverModel.TopicServer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Date;
 
 public class ServerController {
 
@@ -23,7 +23,7 @@ public class ServerController {
 
     private boolean SERVER_COMMUNICATION;
 
-    public ServerController() {
+    public ServerController(){
 
         try {
 
@@ -37,9 +37,10 @@ public class ServerController {
     }
 
 
-    public List<Section> getAllSections() {
 
-        if (SERVER_COMMUNICATION) {
+    public List<Section> getAllSections(){
+
+        if(SERVER_COMMUNICATION) {
 
             List<Section> sections = new LinkedList<>();
 
@@ -47,12 +48,13 @@ public class ServerController {
                 sections.add(serverObjectParser.fromSectionServer(section));
 
             return sections;
-        } else return dataGenerator.getSections();
+        }
+        else return dataGenerator.getSections();
     }
 
-    public List<Topic> getAllTopics(Section section) {
+    public List<Topic> getAllTopics(Section section){
 
-        if (SERVER_COMMUNICATION) {
+        if(SERVER_COMMUNICATION) {
 
             List<Topic> topics = new LinkedList<>();
 
@@ -60,12 +62,13 @@ public class ServerController {
                 topics.add(serverObjectParser.fromTopicServer(topic, section));
 
             return topics;
-        } else return dataGenerator.getTopics(section.getId());
+        }
+        else return dataGenerator.getTopics(section.getId());
     }
 
-    public List<Post> getAllPosts(Topic topic) {
+    public List<Post> getAllPosts(Topic topic){
 
-        if (SERVER_COMMUNICATION) {
+        if(SERVER_COMMUNICATION) {
             List<Post> posts = new LinkedList<>();
 
             QuestionPost questionPost = new QuestionPost(topic, new Date(), topic.getAuthorId(), new Content(topic.getName()), topic.getName());
@@ -75,9 +78,22 @@ public class ServerController {
             }
 
             return posts;
-        } else {
-            return DataGenerator.generatePosts(topic);
+        }
+        else return DataGenerator.generatePosts(topic);
+    }
+
+    public void sendNewTopic(Topic topic){
+        if(SERVER_COMMUNICATION) {
+            topicController.createItem(serverObjectParser.toTopicServer(topic),
+                    "editTopic?topicId=" + topic.getId() + "&userToken=" + "userT" + "&content=");
         }
     }
 
+    public void sendNewPost(Post post) {
+        if (SERVER_COMMUNICATION) {
+            postController.createItem(serverObjectParser.toPostServer(post),
+                    "editTopic?topicId=" + post.getId() + "&userToken=" + "userT" + "&content=");
+        }
+    }
 }
+
