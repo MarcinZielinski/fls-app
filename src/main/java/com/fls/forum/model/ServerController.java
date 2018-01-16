@@ -82,6 +82,11 @@ public class ServerController {
         else return DataGenerator.generatePosts(topic);
     }
 
+    public void sendNewTopic(Topic topic){
+        topicController.createItem(serverObjectParser.toTopicServer(topic));
+    }
+
+
 
 
 }

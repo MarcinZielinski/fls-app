@@ -11,7 +11,7 @@ import java.util.Set;
 public class Topic {
 
     private long categoryId;
-    private long id = -1;
+    private long id = 0;
     private String name;
     private QuestionPost questionPost;
     private Section section;
@@ -43,6 +43,9 @@ public class Topic {
 
     }
 
+    public void sendToServer(){
+
+    }
 
 
     public Topic(long categoryId, String name, QuestionPost questionPost){

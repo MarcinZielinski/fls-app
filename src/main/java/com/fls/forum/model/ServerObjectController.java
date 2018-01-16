@@ -69,4 +69,8 @@ public class ServerObjectController<T> {
         }
     }
 
+    public void createItem(T item){
+
+    }
+
 }

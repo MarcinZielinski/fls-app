@@ -4,13 +4,14 @@ package com.fls.forum.model.localModel;
 import com.fls.forum.controller.dataGenerator;
 import com.fls.forum.model.ServerController;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Section {
     private long id;
     private String name;
     private String description;
-    private List<Topic> topics;
+    private List<Topic> topics = new LinkedList<>();
 
     public List<Integer> getTopicIds() {
         return topicIds;
