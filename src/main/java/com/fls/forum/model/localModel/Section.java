@@ -93,4 +93,12 @@ public class Section {
     public String toString() {
         return String.format("%-25s", name) + description;
     }
+
+    public List<Integer> getTopicIds() {
+        return topicIds;
+    }
+
+    public Long getTopicCount() {
+        return topicCount;
+    }
 }

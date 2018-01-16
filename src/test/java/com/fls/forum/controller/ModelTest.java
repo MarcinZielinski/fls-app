@@ -25,7 +25,7 @@ public class ModelTest {
     public void addPlusTest() {
 
         long plusCount = post.getPlusCount();
-        post.addPlus();
+        post.addPlus(-1L);
 
         assertEquals(plusCount + 1, (long) post.getPlusCount());
     }
@@ -36,7 +36,7 @@ public class ModelTest {
 
         long plusCount = post.getPlusCount();
 
-        post.removePlus();
+        post.removePlus(-1L);
         assertEquals(plusCount - 1, (long) post.getPlusCount());
     }
 }

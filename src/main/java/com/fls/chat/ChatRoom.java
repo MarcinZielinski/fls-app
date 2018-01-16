@@ -9,15 +9,15 @@ import java.util.Set;
 
 public class ChatRoom {
 
+    private final ChatContext ctx;
     private final String name;
-    private final ChatSession chatSession;
-    private final Set<ChatUser> roomMembers;
+    private final Set<ChatUser> members;
     private final List<Message> messages;
 
-    public ChatRoom(String name, ChatSession chatSession, Set<ChatUser> roomMembers, List<Message> messages) {
+    public ChatRoom(ChatContext ctx, String name, Set<ChatUser> members, List<Message> messages) {
+        this.ctx = ctx;
         this.name = name;
-        this.chatSession = chatSession;
-        this.roomMembers = roomMembers;
+        this.members = members;
         this.messages = messages;
     }
 
@@ -26,15 +26,15 @@ public class ChatRoom {
     }
 
     void sendMessage(Message message) {
-        chatSession.sendMessage(this, message);
+        ctx.getSession().sendMessage(this, message);
     }
 
     public Pane load(ChatRoom chatRoom) {
         return new Pane();
     }
 
-    public Set<ChatUser> getRoomMembers() {
-        return roomMembers;
+    public Set<ChatUser> getMembers() {
+        return members;
     }
 
     public List<Message> getMessages() {

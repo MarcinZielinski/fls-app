@@ -7,26 +7,29 @@ import java.util.List;
 import java.util.Map;
 
 public class ChatContext {
-    private final ChatUser chatUser;
-    private final ChatServer chatServer;
+
+    private final ChatUser user;
+    private final ChatSession session;
     private final Map<Class, MessageConstructor> messageConstructors;
     private final Map<Class, List<ChatEventHandler>> eventHandlers;
-    private final List<ChatRoom> openChatRooms;
+    private final List<ChatRoom> openRooms;
+    private final ChatPresenter presenter;
 
-    public ChatContext(ChatUser chatUser, ChatServer chatServer, Map<Class, MessageConstructor> messageConstructors, Map<Class, List<ChatEventHandler>> eventHandlers, List<ChatRoom> openChatRooms) {
-        this.chatUser = chatUser;
-        this.chatServer = chatServer;
+    public ChatContext(ChatUser user, ChatSession session, Map<Class, MessageConstructor> messageConstructors, Map<Class, List<ChatEventHandler>> eventHandlers, List<ChatRoom> openRooms, ChatPresenter presenter) {
+        this.user = user;
+        this.session = session;
         this.messageConstructors = messageConstructors;
         this.eventHandlers = eventHandlers;
-        this.openChatRooms = openChatRooms;
+        this.openRooms = openRooms;
+        this.presenter = presenter;
     }
 
-    public ChatUser getChatUser() {
-        return chatUser;
+    public ChatUser getUser() {
+        return user;
     }
 
-    public ChatServer getChatServer() {
-        return chatServer;
+    public ChatSession getSession() {
+        return session;
     }
 
     public Map<Class, MessageConstructor> getMessageConstructors() {
@@ -37,7 +40,11 @@ public class ChatContext {
         return eventHandlers;
     }
 
-    public List<ChatRoom> getOpenChatRooms() {
-        return openChatRooms;
+    public List<ChatRoom> getOpenRooms() {
+        return openRooms;
+    }
+
+    public ChatPresenter getPresenter() {
+        return presenter;
     }
 }

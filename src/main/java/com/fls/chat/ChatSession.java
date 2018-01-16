@@ -1,18 +1,39 @@
 package com.fls.chat;
 
 import com.fls.chat.message.Message;
+import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 import java.util.Set;
 
-public interface ChatSession {
+public class ChatSession {
 
-    ChatRoom createRoom(String name, Set<ChatUser> roomMembers);
+    public List<String> getUserChatRooms(ChatUser chatUser) {
+        return ImmutableList.of("AWS", "ABW", "AKW", "AMA");
+    }
 
-    ChatRoom openRoom(String name);
+    public long putResource(Object resource) {
+        return -1;
+    }
 
-    void sendMessage(ChatRoom room, Message message);
+    public Object getResource(long resourceId) {
+        return null;
+    }
 
-    List<Message> getMessages(ChatRoom room);
+    ChatRoom createRoom(String name, Set<ChatUser> roomMembers) {
+        return null;
+    }
+
+    ChatRoom openRoom(String name) {
+        return null;
+    }
+
+    void sendMessage(ChatRoom room, Message message) {
+
+    }
+
+    List<Message> getMessages(ChatRoom room) {
+        return null;
+    }
 
 }

@@ -2,7 +2,6 @@ package com.fls.manager;
 
 import com.fls.Main;
 import com.fls.chat.Chat;
-import com.fls.chat.ChatContext;
 import com.fls.entities.User;
 import com.fls.forum.Forum;
 import com.fls.manager.controller.ManagerController;
@@ -30,7 +29,6 @@ public class Manager {
     private ManagerController controller;
     private List<User> friendsOnline;
     private Chat chat;
-    private ChatContext chatContext;
     private Profiles profiles;
     private UserFinder userFinder;
     private Forum forum;
@@ -42,12 +40,11 @@ public class Manager {
     private PanesHistory panesHistory;
     private Node actualCenterPane;
 
-    public Manager(Main main, Long tokenId, Long userId, ChatContext chatContext) {
+    public Manager(Main main, Long tokenId, Long userId) {
         this.main = main;
         this.tokenId = tokenId;
         this.userId = userId;
-        this.chat = new Chat(chatContext);
-        this.chatContext = chatContext;
+        this.chat = new Chat(this);
         this.profiles = new Profiles(this);
         this.userFinder = new UserFinder(this);
         this.forum = new Forum();
