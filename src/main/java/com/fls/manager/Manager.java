@@ -47,7 +47,8 @@ public class Manager {
         this.chat = new Chat(this);
         this.profiles = new Profiles(this);
         this.userFinder = new UserFinder(this);
-        this.forum = new Forum(this);
+        this.forum = new Forum();
+        this.forum.setManager(this);
         this.wall = new Wall(this);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("manager.fxml"));

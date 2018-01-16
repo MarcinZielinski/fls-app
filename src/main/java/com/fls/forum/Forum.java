@@ -5,6 +5,10 @@ import com.fls.forum.controller.ForumController;
 import com.fls.forum.model.localModel.Post;
 import com.fls.forum.model.localModel.Section;
 import com.fls.forum.model.localModel.Topic;
+import com.fls.manager.Manager;
+import javafx.scene.layout.Pane;
+
+import java.util.List;
 // =======
 // >>>>>>> develop
 // import com.fls.manager.Manager;
