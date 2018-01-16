@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" fx:id="mainPane" prefHeight="720.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.forum.controller.PostsController">
+   <VBox fx:id="mainVbox" layoutX="-6.0" layoutY="-3.0" prefHeight="669.0" prefWidth="1220.0" style="-fx-padding: 40;">
+      <children>
+         <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleGoBackAction" text="Go back" />
+         <Label fx:id="titleLabel" prefHeight="39.0" prefWidth="474.0" text="Title" />
+         <ScrollPane fx:id="scrollPane" prefHeight="505.0" prefWidth="1214.0">
+            <content>
+               <!--<ScrollPane fx:id="scrollPane" layoutX="27.0" layoutY="53.0" prefHeight="453.0" prefWidth="1090.0">-->
+                  <!--<VBox fx:id="vBox" alignment="TOP_CENTER" prefHeight="402.0" prefWidth="772.0"/>-->
+               <!--</ScrollPane>-->
+               <Pagination fx:id="pagination" prefHeight="388.0" prefWidth="1213.0" />
+            </content>
+         </ScrollPane>
+         <Region prefHeight="200.0" prefWidth="1080.0" />
+         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="90.0" text="Your answer" />
+         <TextArea fx:id="answerText" prefHeight="25.0" prefWidth="761.0" />
+         <HBox prefHeight="17.0" prefWidth="1214.0">
+            <children>
+               <Button fx:id="send" mnemonicParsing="false" onAction="#handleSendAction" text="Send" />
+               <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="227.0" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+</AnchorPane>
