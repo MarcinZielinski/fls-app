@@ -27,7 +27,8 @@ public class ManagerController {
     public BorderPane borderPane;
     public Button undoButton;
     public Button redoButton;
-
+    @FXML
+    public Button searchButton;
     private Manager model;
 
     @FXML
@@ -43,11 +44,13 @@ public class ManagerController {
         return sideHBox;
     }
 
-    @FXML
-    public Button searchButton;
+    public Manager getModel() {
+        return model;
+    }
 
-    public Manager getModel() {return model;}
-    public void setModel(Manager model) {this.model = model;}
+    public void setModel(Manager model) {
+        this.model = model;
+    }
 
     public void searchForUsers(ActionEvent event) {
         model.loadUserFinder(searchUserField.getText());
@@ -76,7 +79,8 @@ public class ManagerController {
     }
 
     public void checkForEnter(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.ENTER)
+        if (keyEvent.getCode() == KeyCode.ENTER)
             searchForUsers(null);
     }
+
 }

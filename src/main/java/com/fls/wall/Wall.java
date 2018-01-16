@@ -9,11 +9,9 @@ import com.fls.wall.controller.WallController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TitledPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class Wall {
     private List<WallPost> posts;
     private TitledPane postsPane;
 
-    public Wall(Manager manager){
+    public Wall(Manager manager) {
         this.manager = manager;
     }
 
@@ -53,19 +51,19 @@ public class Wall {
 
     private void loadPosts() {
         Platform.runLater(() -> postsPane.setExpanded(true));
-        if(actualTask!=null) actualTask.cancel();
+        if (actualTask != null) actualTask.cancel();
         actualTask = new ThreadHelper<>(stackPane, () -> Server.getWallPosts(manager.tokenId), this::loadPosts);
         actualTask.restart();
     }
 
     private void loadPosts(List<WallPost> wallPosts) {
         //posts = wallPosts;
-        if(posts == null) {
+        if (posts == null) {
             posts = new ArrayList<>();
             for (int i = 0; i < 5; ++i) {
                 byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
                 posts.add(0, new WallPost(new User(1L, 1L, "Andrzej", "Duda", image),
-                        "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD", this, System.currentTimeMillis()-1000000000+i*2000));
+                        "BleBleBLe\ndasdaserdddddddddddddddddddddddddsad\ndfavdsedSDSAD", this, System.currentTimeMillis() - 1000000000 + i * 2000));
             }
         }
         wController.loadPosts(posts);
@@ -79,21 +77,19 @@ public class Wall {
         return manager;
     }
 
-    public WallController getwController(){
+    public WallController getwController() {
         return wController;
     }
 
-    public void addPost(WallPost wp){
+    public void addPost(WallPost wp) {
         posts.add(0, wp);
         loadPosts();
     }
 
-    public void deletePost(WallPost wp){
+    public void deletePost(WallPost wp) {
         posts.remove(wp);
         loadPosts();
     }
-
-
 
 
 }

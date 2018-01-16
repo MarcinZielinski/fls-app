@@ -6,7 +6,6 @@ import com.fls.util.ImageConverter;
 import com.fls.wall.Wall;
 import com.fls.wall.WallPost;
 import com.sun.javafx.stage.StageHelper;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -47,16 +46,16 @@ public class WallController {
     private VBox posts;
 
     @FXML
-    void initialize(){
-        posts.layoutYProperty().addListener(( x ) -> posts.setLayoutY(0));
+    void initialize() {
+        posts.layoutYProperty().addListener((x) -> posts.setLayoutY(0));
         addImage.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> showImageChooser());
         //imageView.
         imageView.fitWidthProperty().bind(creatorSections.widthProperty());
         apply.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> postCreator());
     }
 
-    private void postCreator(){
-        if(actualWallPost==null){
+    private void postCreator() {
+        if (actualWallPost == null) {
             WallPost wp = new WallPost(Server.getUser(model.getManager().userId), content.getText(), model, imageView.getImage());
             byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
             wp = new WallPost(new User(0L, 0L, "Kamil", "Wróbel", image), content.getText(), model, imageView.getImage());
@@ -65,8 +64,7 @@ public class WallController {
             wp.setTimestamp(timeStamp);
             model.addPost(wp);
             clearCreator();
-        }
-        else{
+        } else {
             actualWallPost.setContent(content.getText());
             actualWallPost.getWallPostController().updateControls();
             model.refreshPosts();
@@ -75,32 +73,33 @@ public class WallController {
         }
     }
 
-    private void clearCreator(){
+    private void clearCreator() {
         content.setText(null);
         imageView.setImage(null);
     }
 
-    public void loadPosts(List<WallPost> posts){
+    public void loadPosts(List<WallPost> posts) {
         this.posts.getChildren().clear();
-        if(posts != null) {
+        if (posts != null) {
             for (WallPost wallPost : posts) {
                 this.posts.getChildren().add(wallPost.load());
             }
         }
     }
 
-    public void setModel(Wall model){
+    public void setModel(Wall model) {
         this.model = model;
     }
-    void updateModel(){
+
+    void updateModel() {
 
     }
 
-    public VBox getPostsVBox(){
+    public VBox getPostsVBox() {
         return posts;
     }
 
-    private void showImageChooser(){
+    private void showImageChooser() {
         File file = (new FileChooser()).showOpenDialog(StageHelper.getStages().get(0));
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -111,13 +110,13 @@ public class WallController {
         }
     }
 
-    public void editPost(WallPost wp){
+    public void editPost(WallPost wp) {
         actualWallPost = wp;
         content.setText(actualWallPost.getContent());
         creatorPane.setExpanded(true);
     }
 
-    public void deletePost(WallPost wp){
+    public void deletePost(WallPost wp) {
         model.deletePost(wp);
     }
 

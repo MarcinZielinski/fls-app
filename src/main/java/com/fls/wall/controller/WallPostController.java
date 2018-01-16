@@ -33,9 +33,10 @@ public class WallPostController {
     public VBox postContainer;
     public Pane imagePane;
     private double ratio;
+    private WallPost model;
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         Platform.runLater(this::adjustSize);
         content.heightProperty().addListener((x) -> adjustSize());
         avatar.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> model.getWall().getManager().loadProfile(model.getUser().getUserId()));
@@ -51,7 +52,7 @@ public class WallPostController {
         })));
 
         imagePane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            if(postImage.getImage() != null) {
+            if (postImage.getImage() != null) {
                 postImage.setFitWidth(postContainer.getWidth());
                 postContainer.setPrefHeight(postImage.getFitWidth() * ratio + postView.getHeight());
                 postContainer.setMinHeight(postImage.getFitWidth() * ratio + postView.getHeight());
@@ -63,9 +64,7 @@ public class WallPostController {
         deleteAct.setOnAction(e -> deletePost());
     }
 
-    private WallPost model;
-
-    public void setModel(WallPost model){
+    public void setModel(WallPost model) {
         this.model = model;
         updateControls();
     }
@@ -76,30 +75,30 @@ public class WallPostController {
         postContainer.setMinHeight(content.getHeight() + content.getLayoutY() + 20 + postImage.getFitHeight());
     }
 
-    public void updateControls(){
+    public void updateControls() {
         avatar.setFill(new ImagePattern(ImageConverter.convertToImage(model.getUser().getImage())));
         name.setText(model.getUser().getFirstName() + " " + model.getUser().getLastName());
         content.setText(model.getContent());
         postImage.setImage(model.getPostImage());
-        if(model.getWall().getManager().userId == model.getUser().getUserId()){
+        if (model.getWall().getManager().userId == model.getUser().getUserId()) {
             menu.setDisable(false);
             menu.setVisible(true);
         }
-        if(model.getTimestamp()!=null){
+        if (model.getTimestamp() != null) {
             time.setText((new Date(model.getTimestamp())).toString());
         }
     }
 
-    private void editPost(){
+    private void editPost() {
         model.getWall().getwController().editPost(model);
     }
 
-    private void deletePost(){
+    private void deletePost() {
         model.getWall().getwController().deletePost(model);
     }
 
     public void calculateRatio(Image image) {
-        if(image != null)
+        if (image != null)
             ratio = image.getHeight() / image.getWidth();
     }
 }

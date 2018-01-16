@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public abstract class Post {
@@ -46,12 +44,12 @@ public abstract class Post {
         return plusCount.get();
     }
 
-    public LongProperty plusCountProperty() {
-        return plusCount;
-    }
-
     public void setPlusCount(long plusCount) {
         this.plusCount.set(plusCount);
+    }
+
+    public LongProperty plusCountProperty() {
+        return plusCount;
     }
 
     public void addPlus(Long author) {
@@ -75,72 +73,72 @@ public abstract class Post {
         return content.get();
     }
 
-    public ObjectProperty<Content> contentProperty() {
-        return content;
-    }
-
     public void setContent(Content content) {
         this.content.set(content);
+    }
+
+    public ObjectProperty<Content> contentProperty() {
+        return content;
     }
 
     public Long getAuthorId() {
         return authorId.get();
     }
 
-    public LongProperty authorIdProperty() {
-        return authorId;
-    }
-
     public void setAuthorId(long authorId) {
         this.authorId.set(authorId);
+    }
+
+    public LongProperty authorIdProperty() {
+        return authorId;
     }
 
     public Date getCratedAt() {
         return cratedAt.get();
     }
 
-    public ObjectProperty<Date> cratedAtProperty() {
-        return cratedAt;
-    }
-
     public void setCratedAt(Date cratedAt) {
         this.cratedAt.set(cratedAt);
+    }
+
+    public ObjectProperty<Date> cratedAtProperty() {
+        return cratedAt;
     }
 
     public Long getId() {
         return id.get();
     }
 
-    public LongProperty idProperty() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id.set(id);
+    }
+
+    public LongProperty idProperty() {
+        return id;
     }
 
     public ObservableList<Long> getPlusAuthors() {
         return plusAuthors.get();
     }
 
-    public ListProperty<Long> plusAuthorsProperty() {
-        return plusAuthors;
-    }
-
     public void setPlusAuthors(ObservableList<Long> plusAuthors) {
         this.plusAuthors.set(plusAuthors);
+    }
+
+    public ListProperty<Long> plusAuthorsProperty() {
+        return plusAuthors;
     }
 
     public boolean isAuthorPlus() {
         return authorPlus.get();
     }
 
-    public BooleanProperty authorPlusProperty() {
-        return authorPlus;
-    }
-
     public void setAuthorPlus(boolean authorPlus) {
         this.authorPlus.set(authorPlus);
+    }
+
+    public BooleanProperty authorPlusProperty() {
+        return authorPlus;
     }
 
     public Topic getTopic() {

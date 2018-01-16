@@ -30,17 +30,17 @@ public class SoundPlayer {
     public static Scene addSoundToScene(Scene scene) {
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             EventTarget target = event.getTarget();
-            if(target instanceof Text) {
-                if(((Text)target).getParent() instanceof Button) {
+            if (target instanceof Text) {
+                if (((Text) target).getParent() instanceof Button) {
                     SoundPlayer.play(SoundEnum.BUTTON_CLICK);
                 }
             }
-            if(target instanceof Button) {
+            if (target instanceof Button) {
                 SoundPlayer.play(SoundEnum.BUTTON_CLICK);
             }
         });
         scene.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
-            if(event.getCode() == KeyCode.ENTER && scene.getFocusOwner() instanceof TextField) {
+            if (event.getCode() == KeyCode.ENTER && scene.getFocusOwner() instanceof TextField) {
                 SoundPlayer.play(SoundEnum.KEY_PRESS);
             }
         });

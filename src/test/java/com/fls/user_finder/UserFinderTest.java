@@ -80,7 +80,7 @@ public class UserFinderTest extends TestFXBase {
 
         VBox vBox = find(SEARCH_RESULTS_VBOX);
         //when:
-        Platform.runLater(() -> userFinder.searchForUsers(new User("Andrzej","Duda")));
+        Platform.runLater(() -> userFinder.searchForUsers(new User("Andrzej", "Duda")));
         WaitForAsyncUtils.sleep(4L, SECONDS); // wait for server response
         //then:
         verifyThat("Andrzej Duda", NodeMatchers.isNotNull());
@@ -99,7 +99,7 @@ public class UserFinderTest extends TestFXBase {
 
         clickOn(ADD_SPOKEN_LANGUAGE_BUTTON);
         clickOn(obj -> obj instanceof ComboBox).clickOn("Russian");
-        verifyThat((ComboBox)(lookup(obj -> obj instanceof ComboBox)).tryQuery().get(), (ComboBox comboBox) -> comboBox.getSelectionModel().getSelectedItem().equals("Russian"));
+        verifyThat((ComboBox) (lookup(obj -> obj instanceof ComboBox)).tryQuery().get(), (ComboBox comboBox) -> comboBox.getSelectionModel().getSelectedItem().equals("Russian"));
 
         clickOn(PROGRAMMING_LANGUAGES_TEXT_FIELD).write("C#;Java;C++");
 
@@ -116,7 +116,7 @@ public class UserFinderTest extends TestFXBase {
         verifyStatic(Server.class);
         Server.getUsers(captor.capture());
         User expectedUser = new User(
-                "James","van Bond",
+                "James", "van Bond",
                 new HashSet<>(Arrays.asList("Russian", "English")),
                 new HashSet<>(Arrays.asList("C#", "Java", "C++")),
                 0, 5, 0, 0);
@@ -133,7 +133,7 @@ public class UserFinderTest extends TestFXBase {
         mockStatic(Server.class);
         when(Server.getUsers(any(User.class))).thenReturn(users);
 
-        Platform.runLater(() -> userFinder.searchForUsers(new User("Andrzej","Duda")));
+        Platform.runLater(() -> userFinder.searchForUsers(new User("Andrzej", "Duda")));
         WaitForAsyncUtils.sleep(4L, SECONDS); // wait for server response
 
         clickOn("Andrzej Dudaszek");

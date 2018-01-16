@@ -36,7 +36,7 @@ public class WallTest extends TestFXBase {
     private Wall wall;
 
     @Before
-    public void before() throws TimeoutException{
+    public void before() throws TimeoutException {
         manager = mock(Manager.class);
         wall = new Wall(manager);
         FxToolkit.setupSceneRoot(() -> wall.load());
@@ -53,7 +53,7 @@ public class WallTest extends TestFXBase {
         WaitForAsyncUtils.waitForFxEvents();
         WaitForAsyncUtils.sleep(5000, TimeUnit.MILLISECONDS);
         verifyThat(content, NodeMatchers.isNotNull());
-        moveTo(OPTIONS_MENU).moveBy(10,0).clickOn();
+        moveTo(OPTIONS_MENU).moveBy(10, 0).clickOn();
         WaitForAsyncUtils.waitForFxEvents();
         clickOn(EDIT_OPTION);
         WaitForAsyncUtils.waitForFxEvents();
@@ -64,7 +64,7 @@ public class WallTest extends TestFXBase {
         WaitForAsyncUtils.waitForFxEvents();
         WaitForAsyncUtils.sleep(5000, TimeUnit.MILLISECONDS);
         verifyThat(edittedContent, NodeMatchers.isNotNull());
-        moveTo(OPTIONS_MENU).moveBy(10,0).clickOn();
+        moveTo(OPTIONS_MENU).moveBy(10, 0).clickOn();
         WaitForAsyncUtils.waitForFxEvents();
         clickOn(DELETE_OPTION);
         WaitForAsyncUtils.waitForFxEvents();

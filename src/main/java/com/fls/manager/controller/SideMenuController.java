@@ -23,7 +23,7 @@ public class SideMenuController {
     public void initialize() {
         sideBar = new SideBar(100, sideGrid);
         sidePane = new Pane();
-        sidePane.setBackground(new Background(new BackgroundImage(new Image("/com/fls/manager/arrows.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(20,40,false,false,false,false))));
+        sidePane.setBackground(new Background(new BackgroundImage(new Image("/com/fls/manager/arrows.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(20, 40, false, false, false, false))));
         sidePane.setPrefWidth(20);
 
         sideHBox.getChildren().addAll(sideBar, sidePane);
@@ -54,7 +54,7 @@ public class SideMenuController {
     public void mousePressed(MouseEvent mouseEvent) {
         AnchorPane anchorPane = (AnchorPane) mouseEvent.getSource();
         anchorPane.setOpacity(0.5);
-   }
+    }
 
     public void mouseReleased(MouseEvent mouseEvent) {
         AnchorPane anchorPane = (AnchorPane) mouseEvent.getSource();

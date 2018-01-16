@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane minHeight="500.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fls.manager.controller.ManagerController">
-   <BorderPane fx:id="borderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <top>
-         <AnchorPane minHeight="100.0" BorderPane.alignment="CENTER">
-            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <HBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1">
-                     <Label text="Enter name" />
-                     <TextField fx:id="searchUserField" onKeyReleased="#checkForEnter" />
-                     <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchForUsers" text="Search" />
-                  </HBox>
-                  <Button mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                  <VBox>
-                     <children>
-                        <Label onMouseClicked="#logoClicked" text="FLSocial">
-                           <font>
-                              <Font size="38.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <HBox spacing="10.0">
-                           <children>
-                              <Button fx:id="undoButton" mnemonicParsing="false" onAction="#undoPage" text="&lt;-" />
-                              <Button fx:id="redoButton" mnemonicParsing="false" onAction="#redoPage" text="-&gt;" />
-                           </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="500.0" minWidth="800.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="com.fls.manager.controller.ManagerController">
+    <BorderPane fx:id="borderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <top>
+            <AnchorPane minHeight="100.0" BorderPane.alignment="CENTER">
+                <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <HBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1">
+                            <Label text="Enter name"/>
+                            <TextField fx:id="searchUserField" onKeyReleased="#checkForEnter"/>
+                            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchForUsers"
+                                    text="Search"/>
                         </HBox>
-                     </children>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets left="15.0" right="15.0" />
-               </padding>
-            </GridPane>
-         </AnchorPane>
-      </top>
-      <bottom>
-         <Label text="FLS 2018" BorderPane.alignment="CENTER" />
-      </bottom>
-   </BorderPane>
+                        <Button mnemonicParsing="false" onAction="#logout" text="Logout" GridPane.columnIndex="2"
+                                GridPane.halignment="RIGHT"/>
+                        <VBox>
+                            <children>
+                                <Label onMouseClicked="#logoClicked" text="FLSocial">
+                                    <font>
+                                        <Font size="38.0"/>
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </Label>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="undoButton" mnemonicParsing="false" onAction="#undoPage"
+                                                text="&lt;-"/>
+                                        <Button fx:id="redoButton" mnemonicParsing="false" onAction="#redoPage"
+                                                text="-&gt;"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets left="15.0" right="15.0"/>
+                    </padding>
+                </GridPane>
+            </AnchorPane>
+        </top>
+        <bottom>
+            <Label text="FLS 2018" BorderPane.alignment="CENTER"/>
+        </bottom>
+    </BorderPane>
 </AnchorPane>

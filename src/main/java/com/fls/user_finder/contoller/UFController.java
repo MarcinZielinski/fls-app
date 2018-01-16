@@ -2,18 +2,10 @@ package com.fls.user_finder.contoller;
 
 import com.fls.entities.User;
 import com.fls.user_finder.UserFinder;
-import javafx.application.Platform;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -51,14 +43,20 @@ public class UFController {
     private void initialize() {
         spokenLanguagesList = new ArrayList<>();
         languagesVbox = new VBox();
-        spokenLaguagesGridPane.add(languagesVbox,0,5);
+        spokenLaguagesGridPane.add(languagesVbox, 0, 5);
         experienceSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             experienceSlider.setValue((int) Math.round(newValue.doubleValue()));
-            experienceLabel.setText(String.format("Years (minimum): %d", (int)experienceSlider.getValue()));
+            experienceLabel.setText(String.format("Years (minimum): %d", (int) experienceSlider.getValue()));
         });
-        pointsFls.addEventFilter(KeyEvent.KEY_TYPED, e -> { if(!Character.isDigit(e.getCharacter().charAt(0))) e.consume(); });
-        pointsStack.addEventFilter(KeyEvent.KEY_TYPED, e -> { if(!Character.isDigit(e.getCharacter().charAt(0))) e.consume(); });
-        pointsHackerrank.addEventFilter(KeyEvent.KEY_TYPED, e -> { if(!Character.isDigit(e.getCharacter().charAt(0))) e.consume(); });
+        pointsFls.addEventFilter(KeyEvent.KEY_TYPED, e -> {
+            if (!Character.isDigit(e.getCharacter().charAt(0))) e.consume();
+        });
+        pointsStack.addEventFilter(KeyEvent.KEY_TYPED, e -> {
+            if (!Character.isDigit(e.getCharacter().charAt(0))) e.consume();
+        });
+        pointsHackerrank.addEventFilter(KeyEvent.KEY_TYPED, e -> {
+            if (!Character.isDigit(e.getCharacter().charAt(0))) e.consume();
+        });
     }
 
     public void addSpokenLanguage(ActionEvent actionEvent) {
@@ -71,7 +69,7 @@ public class UFController {
         });
         Button minusButton = new Button("-");
         minusButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            spokenLanguagesList.remove((String)((ComboBox)newHBox.getChildren().stream().filter(ComboBox.class::isInstance).findFirst().get()).getValue());
+            spokenLanguagesList.remove((String) ((ComboBox) newHBox.getChildren().stream().filter(ComboBox.class::isInstance).findFirst().get()).getValue());
             languagesVbox.getChildren().removeAll(newHBox);
         });
         newHBox.getChildren().addAll(minusButton, comboBox);
@@ -82,10 +80,10 @@ public class UFController {
         String name = nameTextField.getText();
         String[] nameSplit = name.split(" ");
         String firstName = nameSplit[0];
-        String lastName = name.length() > firstName.length() ? name.substring(firstName.length()+1) : "";
+        String lastName = name.length() > firstName.length() ? name.substring(firstName.length() + 1) : "";
         Set<String> spokenLanguages = new HashSet<>(spokenLanguagesList);
         Set<String> programmingLanguages = new HashSet<>(Arrays.asList(programmingLangsTextField.getText().split("[,;]")));
-        Integer experience = (int)Math.round(experienceSlider.getValue());
+        Integer experience = (int) Math.round(experienceSlider.getValue());
 
         System.out.println(
                 String.format("Name: %s\n" +
