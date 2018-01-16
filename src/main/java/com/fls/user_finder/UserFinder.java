@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Marcin on 2017-12-12.
@@ -58,7 +59,7 @@ public class UserFinder {
         //byte[] image = ImageConverter.convertToByteArray(new ImageView("com/fls/user_finder/thmb.jpg"));
         //users = Stream.of(new User(1L, 1L, "Andrzej", "Duda", image), new User(2L, 2L, "Andrzej", "Dudaszek", image), new User(1L, 1L, "Stefan", "Stefańczyk", image)).collect(Collectors.toCollection(ArrayList::new));
         vBox.getChildren().clear(); // clearing the results of the last search
-        if(users!=null) {
+        if(!users.isEmpty() && users.stream().filter(Objects::nonNull).toArray().length != 0) {
             vBox.setAlignment(Pos.TOP_LEFT);
             for (User user : users) {
                 UFResult result = new UFResult(manager, user);
