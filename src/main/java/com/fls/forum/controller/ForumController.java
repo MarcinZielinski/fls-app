@@ -21,6 +21,11 @@ public class ForumController {
     private Pane primaryPane = new AnchorPane();
 
     private Manager manager;
+
+    public ServerController getServerController() {
+        return serverController;
+    }
+
     private ServerController serverController = new ServerController();
 
     public ForumController() {
@@ -57,6 +62,7 @@ public class ForumController {
         try {
             Pane root = loader.load();
             EditorController editorController = loader.getController();
+            editorController.setForumController(this);
 
             Stage editStage = new Stage();
             editorController.setData(post, editStage);

@@ -1,5 +1,6 @@
 package com.fls.forum.model.localModel;
 
+import com.fls.forum.model.ServerController;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,6 +65,11 @@ public abstract class Post {
         plusAuthors.get().add(author);
         setAuthorPlus(true);
     }
+
+    public void sendToServer(ServerController serverController){
+        serverController.sendNewPost(this);
+    }
+
 
     public Content getContent() {
         return content.get();

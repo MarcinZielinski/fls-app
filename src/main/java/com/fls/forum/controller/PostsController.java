@@ -69,7 +69,9 @@ public class PostsController {
     @FXML
     private void handleSendAction() {
         if(answerText.getText().length() > 0) {
-            addPost(new AnswerPost(topic, 1, new Date(), userId, new Content(1, answerText.getText()), false));
+            Post post = new AnswerPost(topic, 1, new Date(), userId, new Content(1, answerText.getText()), false);
+            addPost(post);
+            post.sendToServer(forumController.getServerController());
             answerText.setText("");
         }
         else{

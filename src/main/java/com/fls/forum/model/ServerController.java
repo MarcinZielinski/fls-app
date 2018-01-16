@@ -83,7 +83,13 @@ public class ServerController {
     }
 
     public void sendNewTopic(Topic topic){
-        topicController.createItem(serverObjectParser.toTopicServer(topic));
+        topicController.createItem(serverObjectParser.toTopicServer(topic),
+                "editTopic?topicId=" + topic.getId() + "&userToken=" + "userT" + "&content=");
+    }
+
+    public void sendNewPost(Post post){
+        postController.createItem(serverObjectParser.toPostServer(post),
+                "editTopic?topicId=" + post.getId() + "&userToken=" + "userT" + "&content=");
     }
 
 

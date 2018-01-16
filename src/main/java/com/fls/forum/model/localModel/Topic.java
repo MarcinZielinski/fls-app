@@ -43,8 +43,8 @@ public class Topic {
 
     }
 
-    public void sendToServer(){
-
+    public void sendToServer(ServerController serverController){
+        serverController.sendNewTopic(this);
     }
 
 
