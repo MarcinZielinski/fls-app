@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,11 +32,11 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public Pane getProfile(long id) {
-        Pane layout = new Pane();
+    public AnchorPane getProfile(long id) {
+        AnchorPane layout = new AnchorPane();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/fls/profile/profile.fxml"));
-            layout = (Pane) loader.load();
+            layout = (AnchorPane) loader.load();
 
             ProfileController controller = (ProfileController) loader.getController();
             controller.setProfile(this);
@@ -61,12 +62,12 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public Pane getInfo(long id) {
-        Pane layout = new Pane();
+    public AnchorPane getInfo(long id) {
+        AnchorPane layout = new AnchorPane();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/info.fxml"));
-            layout = (Pane) loader.load();
+            layout = (AnchorPane) loader.load();
             Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
             spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
             programming.add("c++"); programming.add("java"); programming.add("icon");
@@ -86,12 +87,12 @@ public class Profile implements IProfile {
     }
 
     @Override
-    public Pane getDetailedInfo(long id) {
-        Pane layout = new Pane();
+    public AnchorPane getDetailedInfo(long id) {
+        AnchorPane layout = new AnchorPane();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/detailed.fxml"));
-            layout = (Pane) loader.load();
+            layout = (AnchorPane) loader.load();
             Set<String> spoken = new HashSet<>(), programming = new HashSet<>();
             spoken.add("polish"); spoken.add("english"); spoken.add("esperanto");
             programming.add("c++"); programming.add("java"); programming.add("icon");
@@ -137,7 +138,7 @@ public class Profile implements IProfile {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/edit.fxml"));
-            Pane layout = (Pane) loader.load();
+            AnchorPane layout = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit profile");
