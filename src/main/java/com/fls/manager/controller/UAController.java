@@ -1,5 +1,6 @@
 package com.fls.manager.controller;
 
+import com.fls.profiles.Profile;
 import com.fls.user_authentication.UserAuthentication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ public class UAController {
 
     @FXML
     public Button loginButton;
+    public Button registerButton;
 
     @FXML
     void initialize() {}
@@ -26,11 +28,13 @@ public class UAController {
         model.login(0L,0L);
     }
 
+
+
     public void setModel(UserAuthentication model) {
         this.model = model;
     }
 
     public void register(ActionEvent actionEvent) {
-
+        model.setNewUser(Profile.register());
     }
 }

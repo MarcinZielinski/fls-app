@@ -3,6 +3,7 @@ package com.fls;
 import com.fls.chat.ChatSession;
 import com.fls.entities.Category;
 import com.fls.entities.User;
+import com.fls.profiles.model.IUser;
 import com.fls.wall.WallPost;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public class Server {
     public static Category getCategory(Long categoryId) {
         return new RequestCreator().getForObject(GET_CATEGORY_BY_ID_ENDPOINT, Category.class, categoryId);
     }
+//    public static User createUser(IUser user){
+//
+//    }
 }

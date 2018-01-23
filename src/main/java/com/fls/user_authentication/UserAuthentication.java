@@ -2,6 +2,7 @@ package com.fls.user_authentication;
 
 import com.fls.Main;
 import com.fls.manager.controller.UAController;
+import com.fls.profiles.model.IUser;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,7 @@ public class UserAuthentication {
     private Scene scene;
     private Pane rootLayout;
     private UAController uaController;
+    private IUser newUser;
 
     public UserAuthentication(Main main) {
         this.main = main;
@@ -37,4 +39,12 @@ public class UserAuthentication {
     public void login(long tokenId, long userId) {
         main.loadManager(tokenId, userId);
     }
+
+    public void setNewUser(IUser newUser) {
+        this.newUser = newUser;
+    }
+
+//    public static boolean sendNewUser(){
+//
+//    }
 }

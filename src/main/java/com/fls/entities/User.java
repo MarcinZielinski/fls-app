@@ -1,5 +1,7 @@
 package com.fls.entities;
 
+import com.fls.profiles.model.IUser;
+
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -7,7 +9,7 @@ import java.util.Set;
 /**
  * Created by Marcin on 2017-12-12.
  */
-public class User {
+public class User{
     private Long tokenId;
     private Long userId;
     private String firstName;
