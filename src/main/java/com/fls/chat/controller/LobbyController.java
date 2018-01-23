@@ -1,6 +1,7 @@
 package com.fls.chat.controller;
 
 import com.fls.chat.ChatContext;
+import com.fls.chat.ChatPresenter;
 import com.fls.chat.ChatRoom;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class LobbyController implements ChatController {
     private final Map<String, ChatRoom> openRooms = new HashMap<>();
 
     private ChatContext ctx;
+    private ChatPresenter presenter;
 
     @FXML
     private Pane lobbyPane;
@@ -28,7 +30,8 @@ public class LobbyController implements ChatController {
 
     @FXML
     public void onRoomClicked(MouseEvent e) {
-        ctx.getPresenter().loadRoomPane(openRooms.get(openRoomsView.getSelectionModel().getSelectedItem()));
+        String selectedRoomName = openRoomsView.getSelectionModel().getSelectedItem();
+        presenter.openRoomWindow(openRooms.get(selectedRoomName));
     }
 
     public Pane loadPane() {
@@ -43,5 +46,9 @@ public class LobbyController implements ChatController {
 
     public void setContext(ChatContext ctx) {
         this.ctx = ctx;
+    }
+
+    public void setPresenter(ChatPresenter presenter) {
+        this.presenter = presenter;
     }
 }

@@ -1,4 +1,4 @@
-package com.fls.chat.message.type;
+package com.fls.chat.message.text;
 
 import com.fls.chat.ChatUser;
 import com.fls.chat.message.Message;

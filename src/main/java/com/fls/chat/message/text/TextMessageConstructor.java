@@ -1,7 +1,7 @@
-package com.fls.chat.message.constructor;
+package com.fls.chat.message.text;
 
 import com.fls.chat.message.MessageBlueprint;
-import com.fls.chat.message.type.TextMessage;
+import com.fls.chat.message.MessageConstructor;
 
 public class TextMessageConstructor implements MessageConstructor<TextMessage> {
 

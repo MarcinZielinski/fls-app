@@ -2,53 +2,64 @@ package com.fls.chat;
 
 import com.fls.chat.controller.ChatController;
 import com.fls.chat.controller.LobbyController;
+import com.fls.chat.controller.RoomController;
+import com.fls.manager.Manager;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
 public class ChatPresenter {
 
-    private final FXMLLoader loader;
+    private final ChatContext ctx;
+    private final Manager manager;
 
-    private Pane currentPane;
-    private ChatController currentController;
-
-    public ChatPresenter() {
-        this.loader = new FXMLLoader();
+    public ChatPresenter(ChatContext ctx, Manager manager) {
+        this.ctx = ctx;
+        this.manager = manager;
     }
 
-    private ChatController getController(String resource) {
-        loader.setLocation(ChatPresenter.class.getResource(resource));
+    private ChatController loadController(String resource) {
+
+        FXMLLoader loader = new FXMLLoader(ChatPresenter.class.getResource(resource));
 
         try {
             //todo check without load
             loader.load();
-            currentController = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return currentController;
+        return loader.getController();
     }
 
-    public Pane loadLobbyPane(ChatContext ctx) {
+    public Pane getLobbyPane() {
 
-        LobbyController controller = (LobbyController) getController("pane_lobby.fxml");
+        LobbyController controller = (LobbyController) loadController("pane_lobby.fxml");
         controller.setContext(ctx);
+        controller.setPresenter(this);
 
-        currentPane = controller.loadPane();
-
-        return currentPane;
+        return controller.loadPane();
     }
 
-    public Pane loadRoomPane(ChatRoom room) {
-        //todo
-        return getController("pane_room.fxml").loadPane();
-    }
+    public Window openRoomWindow(ChatRoom room) {
 
-    public Pane getCurrentPane() {
-        return currentPane;
+        RoomController controller = (RoomController) loadController("pane_room.fxml");
+        controller.setRoom(room);
+
+        Scene scene = new Scene(controller.loadPane());
+        Stage roomStage = new Stage();
+
+        roomStage.setTitle(room.getName());
+//        dialogStage.initModality(Modality.NONE);
+        roomStage.initOwner(manager.getScene().getWindow());
+        roomStage.setScene(scene);
+        roomStage.show();
+
+        return roomStage;
     }
 
 }

@@ -2,8 +2,8 @@ package com.fls.chat;
 
 import com.fls.chat.event.ChatEvent;
 import com.fls.chat.event.ChatEventHandler;
-import com.fls.chat.message.constructor.TextMessageConstructor;
-import com.fls.chat.message.type.TextMessage;
+import com.fls.chat.message.text.TextMessage;
+import com.fls.chat.message.text.TextMessageConstructor;
 import com.fls.manager.Manager;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -18,6 +18,7 @@ import java.util.Set;
 public class Chat {
 
     private final ChatContext ctx;
+    private final ChatPresenter presenter;
 
     public Chat(Manager manager) {
 
@@ -29,15 +30,13 @@ public class Chat {
                 new ChatSession(),
                 ImmutableMap.of(TextMessage.class, new TextMessageConstructor()),
                 ImmutableMap.of(),
-                new ArrayList<>(),
-                new ChatPresenter());
+                new ArrayList<>());
 
-        ctx.getOpenRooms().add(new ChatRoom(ctx, "CircleGeork",
+        ctx.getOpenRooms().add(new ChatRoom(ctx, "Sir Cool Geork",
                 ImmutableSet.of(johnny, george),
                 ImmutableList.of(new TextMessage(johnny, new Date(), "Hullo!"))));
 
-        ctx.getPresenter().loadLobbyPane(ctx);
-
+        presenter = new ChatPresenter(ctx, manager);
     }
 
     public ChatRoom openRoom(String name) {
@@ -67,7 +66,7 @@ public class Chat {
     }
 
     public Pane load(List<Long> userIds) {
-        return getContext().getPresenter().getCurrentPane();
+        return presenter.getLobbyPane();
     }
 
     public ChatContext getContext() {
