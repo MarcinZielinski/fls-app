@@ -110,17 +110,34 @@ public class Profile implements IProfile {
         return layout;
     }
 
-    @Override
-    public IUser register() {
-        return null;
-    }
-
-    public void editDialog(long id){
-        Pane layout = new Pane();
+    static public IUser register() {
+        IUser new_user = new Programist();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Profile.class.getResource("/com/fls/profile/edit.fxml"));
-            layout = (Pane) loader.load();
+            Pane layout = (Pane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit profile");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(StageHelper.getStages().get(0));
+            Scene scene = new Scene(layout);
+            dialogStage.setScene(scene);
+            EditController controller = (EditController) loader.getController();
+            controller.setUser(new_user);
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new_user;
+    }
+
+    public void editDialog(long id){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Profile.class.getResource("/com/fls/profile/edit.fxml"));
+            Pane layout = (Pane) loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit profile");

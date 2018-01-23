@@ -7,5 +7,4 @@ public interface IProfile {
     Pane getProfile(long id);
     Pane getInfo(long id);
     Pane getDetailedInfo(long id);
-    IUser register();
 }
